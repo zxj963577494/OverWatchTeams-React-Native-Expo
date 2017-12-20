@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Provider, connect } from 'react-redux'
 import { addNavigationHelpers } from 'react-navigation'
-
 import Navigator from './routes'
 import configureStore from './store'
 import rootSaga from './sagas'

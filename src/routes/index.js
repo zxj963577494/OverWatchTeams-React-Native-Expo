@@ -2,13 +2,21 @@ import { TabNavigator, StackNavigator } from 'react-navigation'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import Home from '../screens/Home'
-import GroupOrders from '../screens/Home/GroupOrders'
-import RecruitOrders from '../screens/Home/RecruitOrders'
-import ResumeOrders from '../screens/Home/ResumeOrders'
-import WarOrders from '../screens/Home/WarOrders'
-import Teams from '../screens/Home/Teams'
-import UserInfos from '../screens/Home/UserInfos'
+import HomeGroupOrders from '../screens/Home/GroupOrders'
+import HomeRecruitOrders from '../screens/Home/RecruitOrders'
+import HomeResumeOrders from '../screens/Home/ResumeOrders'
+import HomeWarOrders from '../screens/Home/WarOrders'
+import HomeTeams from '../screens/Home/Teams'
+import HomeUserInfos from '../screens/Home/UserInfos'
+
 import Account from '../screens/Account'
+import AccountMime from '../screens/Account/Mime'
+import AccountEmaiVerify from '../screens/Account/EmaiVerify'
+import AccountGroupOrders from '../screens/Account/GroupOrders'
+import AccountRecruitOrders from '../screens/Account/RecruitOrders'
+import AccountResumeOrders from '../screens/Account/ResumeOrders'
+import AccountWarOrders from '../screens/Account/WarOrders'
+import AccountTeams from '../screens/Account/Teams'
 
 const HomeStack = StackNavigator({
   Home: {
@@ -18,37 +26,37 @@ const HomeStack = StackNavigator({
     }
   },
   GroupOrders: {
-    screen: GroupOrders,
+    screen: HomeGroupOrders,
     navigationOptions: {
       headerTitle: '组队上分'
     }
   },
   RecruitOrders: {
-    screen: RecruitOrders,
+    screen: HomeRecruitOrders,
     navigationOptions: {
       headerTitle: '战队招募'
     }
   },
   ResumeOrders: {
-    screen: ResumeOrders,
+    screen: HomeResumeOrders,
     navigationOptions: {
       headerTitle: '寻找战队'
     }
   },
   WarOrders: {
-    screen: WarOrders,
+    screen: HomeWarOrders,
     navigationOptions: {
       headerTitle: '比赛约战'
     }
   },
   Teams: {
-    screen: Teams,
+    screen: HomeTeams,
     navigationOptions: {
       headerTitle: '战队列表'
     }
   },
   UserInfos: {
-    screen: UserInfos,
+    screen: HomeUserInfos,
     navigationOptions: {
       headerTitle: '个人列表'
     }
@@ -60,6 +68,48 @@ const AccountStack = StackNavigator({
     screen: Account,
     navigationOptions: {
       headerTitle: '个人中心'
+    }
+  },
+  AccountMime: {
+    screen: AccountMime,
+    navigationOptions: {
+      headerTitle: '基本信息'
+    }
+  },
+  AccountEmaiVerify: {
+    screen: AccountEmaiVerify,
+    navigationOptions: {
+      headerTitle: '邮箱验证'
+    }
+  },
+  AccountGroupOrders: {
+    screen: AccountGroupOrders,
+    navigationOptions: {
+      headerTitle: '组队上分'
+    }
+  },
+  AccountRecruitOrders: {
+    screen: AccountRecruitOrders,
+    navigationOptions: {
+      headerTitle: '战队招募'
+    }
+  },
+  AccountResumeOrders: {
+    screen: AccountResumeOrders,
+    navigationOptions: {
+      headerTitle: '寻找战队'
+    }
+  },
+  AccountWarOrders: {
+    screen: AccountWarOrders,
+    navigationOptions: {
+      headerTitle: '比赛约战'
+    }
+  },
+  AccountTeams: {
+    screen: AccountTeams,
+    navigationOptions: {
+      headerTitle: '战队列表'
     }
   }
 })
