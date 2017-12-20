@@ -1,7 +1,7 @@
 import { put, fork, take, call } from 'redux-saga/effects'
 import { delay } from 'redux-saga'
-//import { Toast } from 'antd-mobile'
-//import { replace } from 'react-router-redux'
+import { Toast } from 'antd-mobile'
+import { NavigationActions } from 'react-navigation'
 import {
   GET_HOME_WAR_ORDER_LIST_REQUEST,
   GET_ACCOUNT_WAR_ORDER_LIST_REQUEST,
@@ -27,18 +27,18 @@ function* postWarOrderWorker(payload) {
       const response = yield call(warOrderService.cerateWarOrder, payload, team)
       yield put(action.fetchSuccess())
       yield put(action.postWarOrderSuccess(response))
-      //Toast.success('提交成功', 1)
+      Toast.success('提交成功', 1)
       yield delay(1000)
-      //yield put(replace('/account/warorders'))
+      yield put(NavigationActions.navigate('AccountWarOrders'))
     } else {
       yield put(action.postWarOrderFailed())
       yield put(action.fetchFailed())
-      //Toast.success(`1天最多发布${warOrderLimit}条比赛约战帖`, 1)
+      Toast.success(`1天最多发布${warOrderLimit}条比赛约战帖`, 1)
     }
   } catch (error) {
     yield put(action.postWarOrderFailed(error))
     yield put(action.fetchFailed())
-    //Toast.success('提交失败', 1)
+    Toast.success('提交失败', 1)
   }
 }
 
@@ -49,13 +49,13 @@ function* putWarOrderWorker(payload) {
     const response = yield call(warOrderService.updateWarOrder, payload, team)
     yield put(action.fetchSuccess())
     yield put(action.putWarOrderSuccess(response))
-    //Toast.success('提交成功', 1)
+    Toast.success('提交成功', 1)
     yield delay(1000)
-    //yield put(replace('/account/warorders'))
+    yield put(NavigationActions.navigate('AccountWarOrders'))
   } catch (error) {
     yield put(action.putWarOrderFailed(error))
     yield put(action.fetchFailed())
-    //Toast.success('提交失败', 1)
+    Toast.success('提交失败', 1)
   }
 }
 
@@ -65,11 +65,11 @@ function* deleteWarOrderWorker(payload) {
     const response = yield call(warOrderService.removeWarOrder, payload)
     yield put(action.deleteWarOrderSuccess(response))
     yield put(action.fetchSuccess())
-    //Toast.success('删除成功', 1)
+    Toast.success('删除成功', 1)
   } catch (error) {
     yield put(action.deleteWarOrderFailed(error))
     yield put(action.fetchFailed())
-    //Toast.success('删除失败', 1)
+    Toast.success('删除失败', 1)
   }
 }
 

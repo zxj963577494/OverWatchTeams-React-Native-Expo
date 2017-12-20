@@ -1,7 +1,7 @@
 import { put, fork, take, call } from 'redux-saga/effects'
 import { delay } from 'redux-saga'
-//import { Toast } from 'antd-mobile'
-//import { replace } from 'react-router-redux'
+import { Toast } from 'antd-mobile'
+import { NavigationActions } from 'react-navigation'
 import {
   GET_HOME_RESUME_ORDER_LIST_REQUEST,
   GET_ACCOUNT_RESUME_ORDER_LIST_REQUEST,
@@ -28,7 +28,7 @@ function* postResumeOrderWorker(payload) {
       yield put(action.fetchSuccess())
       Toast.success('提交成功', 1)
       yield delay(1000)
-      //yield put(replace('/account/resumeorders'))
+      yield put(NavigationActions.navigate('AccountResumeOrders'))
     } else {
       yield put(action.postResumeOrderFailed())
       yield put(action.fetchFailed())
@@ -49,7 +49,7 @@ function* putResumeOrderWorker(payload) {
     yield put(action.fetchSuccess())
     Toast.success('提交成功', 1)
     yield delay(1000)
-    //yield put(replace('/account/resumeorders'))
+    yield put(NavigationActions.navigate('AccountResumeOrders'))
   } catch (error) {
     yield put(action.putResumeOrderFailed(error))
     yield put(action.fetchFailed())

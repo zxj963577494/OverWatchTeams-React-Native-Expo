@@ -1,7 +1,7 @@
 import { put, fork, take, call } from 'redux-saga/effects'
 import { delay } from 'redux-saga'
-//import { goBack } from 'react-router-redux'
-//import { Toast } from 'antd-mobile'
+import { NavigationActions } from 'react-navigation'
+import { Toast } from 'antd-mobile'
 import {
   POST_TEAMS_REQUEST,
   PUT_TEAMS_REQUEST,
@@ -26,7 +26,7 @@ function* postTeamsWorker(payload) {
       yield put(action.postTeamsSuccess(response))
       Toast.success('提交成功', 1)
       yield delay(1000)
-      yield put(goBack())
+      yield put(NavigationActions.back())
     }
     else {
       Toast.fail('提交失败，每位用户最多可创建一支战队，若想创建多支战队，请联系管理员963577494@qq.com', 3)
@@ -48,7 +48,7 @@ function* putTeamsWorker(payload) {
     yield put(action.putTeamsSuccess(response))
     Toast.success('提交成功', 1)
     yield delay(1000)
-    yield put(goBack())
+    yield put(NavigationActions.back())
   } catch (error) {
     yield put(action.fetchFailed())
     yield put(action.putTeamsFailed())
@@ -88,7 +88,7 @@ function* deleteTeamMemberWorker(payload) {
     yield put(action.fetchSuccess())
     Toast.success('移除队员成功', 1.5)
     yield delay(1500)
-    yield put(goBack())
+    yield put(NavigationActions.back())
   } catch (error) {
     yield put(action.fetchFailed())
     yield put(action.deleteTeamMemberFailed(error))

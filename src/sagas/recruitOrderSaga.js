@@ -1,7 +1,7 @@
 import { put, fork, take, call } from 'redux-saga/effects'
 import { delay } from 'redux-saga'
-//import { Toast } from 'antd-mobile'
-//import { replace } from 'react-router-redux'
+import { Toast } from 'antd-mobile'
+import { NavigationActions } from 'react-navigation'
 import {
   GET_HOME_RECRUIT_ORDER_LIST_REQUEST,
   GET_ACCOUNT_RECRUIT_ORDER_LIST_REQUEST,
@@ -31,18 +31,18 @@ function* postRecruitOrderWorker(payload) {
       )
       yield put(action.postRecruitOrderSuccess(response))
       yield put(action.fetchSuccess())
-      //Toast.success('提交成功', 1)
+      Toast.success('提交成功', 1)
       yield delay(1000)
-      //yield put(replace('/account/recruitorders'))
+      yield put(NavigationActions.navigate('AccountRecruitOrders'))
     } else {
       yield put(action.postRecruitOrderFailed())
       yield put(action.fetchFailed())
-      //Toast.success(`1天最多发布${recruitOrderLimit}条战队招募令`, 1)
+      Toast.success(`1天最多发布${recruitOrderLimit}条战队招募令`, 1)
     }
   } catch (error) {
     yield put(action.postRecruitOrderFailed(error))
     yield put(action.fetchFailed())
-    //Toast.success('提交失败', 1)
+    Toast.success('提交失败', 1)
   }
 }
 
@@ -57,13 +57,13 @@ function* putRecruitOrderWorker(payload) {
     )
     yield put(action.putRecruitOrderSuccess(response))
     yield put(action.fetchSuccess())
-    //Toast.success('提交成功', 1)
+    Toast.success('提交成功', 1)
     yield delay(1000)
-    //yield put(replace('/account/recruitorders'))
+    yield put(NavigationActions.navigate('AccountRecruitOrders'))
   } catch (error) {
     yield put(action.putRecruitOrderFailed(error))
     yield put(action.fetchFailed())
-    //Toast.success('提交失败', 1)
+    Toast.success('提交失败', 1)
   }
 }
 
@@ -73,11 +73,11 @@ function* deleteRecruitOrderWorker(payload) {
     const response = yield call(recruitOrderService.removeRecruitOrder, payload)
     yield put(action.deleteRecruitOrderSuccess(response))
     yield put(action.fetchSuccess())
-    //Toast.success('删除成功', 1)
+    Toast.success('删除成功', 1)
   } catch (error) {
     yield put(action.deleteRecruitOrderFailed(error))
     yield put(action.fetchFailed())
-    //Toast.success('删除失败', 1)
+    Toast.success('删除失败', 1)
   }
 }
 

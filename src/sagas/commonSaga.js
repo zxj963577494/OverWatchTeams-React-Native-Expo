@@ -1,6 +1,6 @@
 import { put, fork, take, call } from 'redux-saga/effects'
-//import { replace } from 'react-router-redux'
-//import { Toast } from 'antd-mobile'
+import { Toast } from 'antd-mobile'
+import { NavigationActions } from 'react-navigation'
 import {
   POST_UPLOAD_REQUEST,
   SEND_EMAIL_REQUEST,
@@ -38,11 +38,11 @@ function* sendPasswordResetWorker(payload) {
     const response = yield call(commonService.requestPasswordReset, payload)
     yield put(action.sendPasswordResetSuccess(response))
     yield call(userService.logOut)
-    //yield put(replace('/home'))
-    //Toast.success('重置密码的邮件已发送', 1.5)
+    yield put(NavigationActions.navigate('Home'))
+    Toast.success('重置密码的邮件已发送', 1.5)
   } catch (error) {
     yield put(action.sendPasswordResetFailed(error))
-    //Toast.fail('重置密码的邮件发送失败', 1.5)
+    Toast.fail('重置密码的邮件发送失败', 1.5)
   }
 }
 

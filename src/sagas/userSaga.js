@@ -1,7 +1,7 @@
 import { put, fork, take, call } from 'redux-saga/effects'
 import { delay } from 'redux-saga'
-//import { replace, goBack } from 'react-router-redux'
-//import { Toast } from 'antd-mobile'
+import { NavigationActions } from 'react-navigation'
+import { Toast } from 'antd-mobile'
 import {
   POST_SIGNUP_REQUEST,
   POST_LOGIN_REQUEST,
@@ -20,7 +20,7 @@ function* postSignUpWorker(payload) {
     const response = yield call(userService.signUp, payload)
     yield put(action.fetchSuccess())
     yield put(action.postSignUpSuccess(response))
-    //yield put(replace('/account'))
+    yield put(NavigationActions.navigate('Account'))
   } catch (error) {
     yield put(action.fetchFailed())
     yield put(action.postSignUpFailed(error))
@@ -31,12 +31,10 @@ function* postLoginWorker(payload) {
   try {
     yield put(action.fetchRequest({ text: '登录中' }))
     const response = yield call(userService.logIn, payload)
-    console.log(response)
     yield put(action.fetchSuccess())
     yield put(action.postLoginSuccess(response))
-    //yield put(replace('/account'))
+    yield put(NavigationActions.navigate('Account'))
   } catch (error) {
-    console.log(error)
     yield put(action.fetchFailed())
     yield put(action.postLoginFailed(error))
   }
@@ -48,7 +46,7 @@ function* postLogoutWorker() {
     yield delay(1000)
     yield call(userService.logOut)
     yield put(action.fetchSuccess())
-    //yield put(replace('/home'))
+    yield put(NavigationActions.navigate('Home'))
   } catch (error) {
     yield put(action.fetchFailed())
   }
@@ -60,13 +58,13 @@ function* putUserInfoWorker(payload) {
     const response = yield call(userService.putUserInfo, payload)
     yield put(action.fetchSuccess())
     yield put(action.putUserInfoSuccess(response))
-    //Toast.success('提交成功', 1.5)
+    Toast.success('提交成功', 1.5)
     yield delay(1500)
-    yield put(goBack())
+    yield put(NavigationActions.back())
   } catch (error) {
     yield put(action.fetchFailed())
     yield put(action.putUserInfoFailed(error))
-    //Toast.fail('提交失败', 1.5)
+    Toast.fail('提交失败', 1.5)
   }
 }
 

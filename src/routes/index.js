@@ -25,37 +25,37 @@ const HomeStack = StackNavigator({
       headerTitle: 'OverWatchTeams'
     }
   },
-  GroupOrders: {
+  HomeGroupOrders: {
     screen: HomeGroupOrders,
     navigationOptions: {
       headerTitle: '组队上分'
     }
   },
-  RecruitOrders: {
+  HomeRecruitOrders: {
     screen: HomeRecruitOrders,
     navigationOptions: {
       headerTitle: '战队招募'
     }
   },
-  ResumeOrders: {
+  HomeResumeOrders: {
     screen: HomeResumeOrders,
     navigationOptions: {
       headerTitle: '寻找战队'
     }
   },
-  WarOrders: {
+  HomeWarOrders: {
     screen: HomeWarOrders,
     navigationOptions: {
       headerTitle: '比赛约战'
     }
   },
-  Teams: {
+  HomeTeams: {
     screen: HomeTeams,
     navigationOptions: {
       headerTitle: '战队列表'
     }
   },
-  UserInfos: {
+  HomeUserInfos: {
     screen: HomeUserInfos,
     navigationOptions: {
       headerTitle: '个人列表'

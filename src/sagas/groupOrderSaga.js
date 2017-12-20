@@ -1,7 +1,7 @@
 import { put, fork, take, call } from 'redux-saga/effects'
 import { delay } from 'redux-saga'
-//import { Toast } from 'antd-mobile'
-//import { replace } from 'react-router-redux'
+import { Toast } from 'antd-mobile'
+import { NavigationActions } from 'react-navigation'
 import {
   GET_HOME_GROUP_ORDER_LIST_REQUEST,
   GET_ACCOUNT_GROUP_ORDER_LIST_REQUEST,
@@ -23,13 +23,13 @@ function* postGroupOrderWorker(payload) {
     )
     yield put(action.fetchSuccess())
     yield put(action.postGroupOrderSuccess(response))
-    //Toast.success('提交成功', 1)
+    Toast.success('提交成功', 1)
     yield delay(1000)
-    //yield put(replace('/account/grouporders'))
+    yield put(NavigationActions.navigate('AccountGroupOrders'))
   } catch (error) {
     yield put(action.postGroupOrderFailed(error))
     yield put(action.fetchFailed())
-    //Toast.success('提交失败', 1)
+    Toast.success('提交失败', 1)
   }
 }
 
@@ -43,18 +43,18 @@ function* putGroupOrderWorker(payload) {
       const response = yield call(groupOrderService.updateGroupOrder, payload)
       yield put(action.fetchSuccess())
       yield put(action.putGroupOrderSuccess(response))
-      //Toast.success('提交成功', 1)
+      Toast.success('提交成功', 1)
       yield delay(1000)
-      //yield put(replace('/account/grouporders'))
+      yield put(NavigationActions.navigate('AccountGroupOrders'))
     } else {
       yield put(action.putGroupOrderFailed())
       yield put(action.fetchFailed())
-      //Toast.success(`1天最多发布${groupOrderLimit}条组队上分帖`, 1)
+      Toast.success(`1天最多发布${groupOrderLimit}条组队上分帖`, 1)
     }
   } catch (error) {
     yield put(action.putGroupOrderFailed(error))
     yield put(action.fetchFailed())
-    //Toast.success('提交失败', 1)
+    Toast.success('提交失败', 1)
   }
 }
 
@@ -64,11 +64,11 @@ function* deleteGroupOrderWorker(payload) {
     const response = yield call(groupOrderService.removeGroupOrder, payload)
     yield put(action.deleteGroupOrderSuccess(response))
     yield put(action.fetchSuccess())
-    //Toast.success('删除成功', 1)
+    Toast.success('删除成功', 1)
   } catch (error) {
     yield put(action.deleteGroupOrderFailed(error))
     yield put(action.fetchFailed())
-    //Toast.success('删除失败', 1)
+    Toast.success('删除失败', 1)
   }
 }
 
