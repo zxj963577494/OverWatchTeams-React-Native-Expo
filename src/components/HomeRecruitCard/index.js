@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 import { Card, Flex, WhiteSpace } from 'antd-mobile'
 import TimeAgo from 'react-native-timeago'
 
+import { cutstr } from '../../utils/utils'
+
 export default class HomeRecruitCard extends PureComponent {
   render() {
     const { item, navigateTo } = this.props

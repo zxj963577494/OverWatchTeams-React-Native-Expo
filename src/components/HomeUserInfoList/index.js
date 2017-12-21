@@ -61,11 +61,11 @@ export default class HomeUserInfoList extends PureComponent {
           ListFooterComponent={this._renderFonter}
           ItemSeparatorComponent={this._renderSeparator}
           renderItem={this._renderItem}
-          initialNumToRender={2}
+          initialNumToRender={3}
           initialScrollIndex={0}
           maxToRenderPerBatch={20}
           onEndReached={this._onEndReached}
-          onEndReachedThreshold={0.3}
+          onEndReachedThreshold={0.5}
           onRefresh={this._onRefresh}
           keyExtractor={this._keyExtractor}
           refreshing={isRefreshing}

@@ -4,9 +4,11 @@ import PropTypes from 'prop-types'
 import { Card, Flex, WhiteSpace } from 'antd-mobile'
 import TimeAgo from 'react-native-timeago'
 
+import { cutstr } from '../../utils/utils'
+
 export default class HomeGroupCard extends PureComponent {
   layout = e => {
-    console.log(e)
+    console.warn(e)
   }
 
   render() {
@@ -19,7 +21,7 @@ export default class HomeGroupCard extends PureComponent {
           })
         }
       >
-        <View onLayout={({ nativeEvent: e }) => this.layout(e)}>
+        <View>
           <Card full>
             <Card.Header
               title={item.title}
@@ -45,14 +47,15 @@ export default class HomeGroupCard extends PureComponent {
                 </Flex.Item>
               </Flex>
               <WhiteSpace />
-              <Flex style={{ minHeight: 30 }}>
+              <Flex style={{ minHeight: 50 }}>
                 <Flex.Item>
                   <Text
                     style={{
-                      textAlign: 'center'
+                      paddingLeft: 15,
+                      paddingRight: 15,
                     }}
                   >
-                    {item.description}
+                  {cutstr(item.description, 60, 0)}
                   </Text>
                 </Flex.Item>
               </Flex>

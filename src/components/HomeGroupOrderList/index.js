@@ -45,7 +45,7 @@ export default class HomeGroupOrderList extends PureComponent {
   }
 
   _getItemLayout(data, index) {
-    let [length, separator, header] = [200, 3, 0]
+    let [length, separator, header] = [197, 3, 0]
     return { length, offset: (length + separator) * index + header, index }
   }
 
@@ -70,9 +70,10 @@ export default class HomeGroupOrderList extends PureComponent {
           initialScrollIndex={0}
           maxToRenderPerBatch={20}
           onEndReached={this._onEndReached}
-          onEndReachedThreshold={0.3}
+          onEndReachedThreshold={0.5}
           onRefresh={this._onRefresh}
           keyExtractor={this._keyExtractor}
+          getItemLayout={this.__getItemLayout}
           refreshing={isRefreshing}
         />
       </View>
