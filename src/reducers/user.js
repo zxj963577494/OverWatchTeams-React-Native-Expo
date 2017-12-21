@@ -24,7 +24,7 @@ const initialUserState = {
   home: {
     loginError: '',
     signupError: '',
-    user: {
+    userinfo: {
       list: [],
       current: {},
       isFetching: false,
@@ -135,11 +135,11 @@ function userReducer(state = initialUserState, action) {
         ...state,
         home: {
           ...state.home,
-          user: {
-            ...state.home.user,
+          userinfo: {
+            ...state.home.userinfo,
             isFetching: true,
             isRefreshing: action.payload.isRefreshing || false,
-            list: action.payload.isRefreshing ? [] : state.home.user.list,
+            list: action.payload.isRefreshing ? [] : state.home.userinfo.list,
             page: action.payload.page ? action.payload.page : 1
           }
         }
@@ -149,9 +149,9 @@ function userReducer(state = initialUserState, action) {
         ...state,
         home: {
           ...state.home,
-          user: {
-            ...state.home.user,
-            list: state.home.user.list.concat(action.payload),
+          userinfo: {
+            ...state.home.userinfo,
+            list: state.home.userinfo.list.concat(action.payload),
             isFetching: false,
             isRefreshing: false,
             isLoadMore: action.payload.length < 20 ? false : true
@@ -163,8 +163,8 @@ function userReducer(state = initialUserState, action) {
         ...state,
         home: {
           ...state.home,
-          user: {
-            ...state.home.user,
+          userinfo: {
+            ...state.home.userinfo,
             isFetching: false,
             isRefreshing: false
           }
@@ -175,8 +175,8 @@ function userReducer(state = initialUserState, action) {
         ...state,
         home: {
           ...state.home,
-          user: {
-            ...state.home.user,
+          userinfo: {
+            ...state.home.userinfo,
             isFetching: true
           }
         }
@@ -186,8 +186,8 @@ function userReducer(state = initialUserState, action) {
         ...state,
         home: {
           ...state.home,
-          user: {
-            ...state.home.user,
+          userinfo: {
+            ...state.home.userinfo,
             isFetching: false,
             current: action.payload
           }
@@ -198,8 +198,8 @@ function userReducer(state = initialUserState, action) {
         ...state,
         home: {
           ...state.home,
-          user: {
-            ...state.home.user,
+          userinfo: {
+            ...state.home.userinfo,
             isFetching: false
           }
         }

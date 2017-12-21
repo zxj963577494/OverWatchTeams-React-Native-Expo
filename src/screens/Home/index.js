@@ -1,9 +1,22 @@
 import React, { Component } from 'react'
-import { View, Image, Text, StyleSheet, TouchableHighlight, Alert } from 'react-native'
+import {
+  View,
+  Image,
+  Text,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  ScrollView,
+  Alert
+} from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Flex, WhiteSpace, Grid, List } from 'antd-mobile'
+import { Flex, WhiteSpace, Grid, List, ActivityIndicator } from 'antd-mobile'
 import { NavigationActions } from 'react-navigation'
+import {
+  getHomeGroupOrderListRequest,
+  getHomeRecruitOrderListRequest
+} from '../../actions'
+import { HomeGroupCard, HomeRecruitCard } from '../../components'
 import config from '../../config'
 
 const data = [
@@ -40,13 +53,36 @@ const data = [
 ]
 
 class Home extends Component {
+  static propTypes = {
+    navigateTo: PropTypes.func,
+    groupOrder: PropTypes.object,
+    recruitOrder: PropTypes.object,
+    getHomeGroupOrderList: PropTypes.func,
+    getHomeRecruitOrderList: PropTypes.func
+  }
+
   _onPressButton = path => e => {
-    this.props.navigate(path)
+    this.props.navigateTo(path)
+  }
+
+  componentDidMount() {
+    if (this.props.groupOrder.list.length === 0) {
+      this.props.getHomeGroupOrderList({ page: 1 })
+    }
+    if (this.props.recruitOrder.list.length === 0) {
+      this.props.getHomeRecruitOrderList({ page: 1 })
+    }
   }
 
   render() {
+    const { navigateTo, groupOrder, recruitOrder } = this.props
     return (
-      <View>
+      <ScrollView>
+        <ActivityIndicator
+          toast
+          text={groupOrder.fetchingText}
+          animating={groupOrder.isFetching}
+        />
         <WhiteSpace size="md" />
         <View style={styles.headerer}>
           <Flex direction="column" justify="center">
@@ -70,20 +106,44 @@ class Home extends Component {
             columnNum={3}
             hasLine={false}
             renderItem={dataItem => (
-              <TouchableHighlight onPress={this._onPressButton(dataItem.path)}>
-                <View style={{ alignItems: 'center', marginTop: 15 }}>
+              <TouchableWithoutFeedback
+                onPress={this._onPressButton(dataItem.path)}
+              >
+                <View style={{ alignItems: 'center', marginTop: 15}}>
                   <Image
                     source={{ uri: dataItem.icon }}
                     style={{ width: 40, height: 40 }}
                   />
                   <Text style={{ marginTop: 8 }}>{dataItem.text}</Text>
                 </View>
-              </TouchableHighlight>
+              </TouchableWithoutFeedback>
             )}
           />
         </View>
         <WhiteSpace size="md" />
-      </View>
+        <List renderHeader={() => '组队上分'}>
+          {groupOrder.list.slice(0, 3).map((item, index) => {
+            return (
+              <HomeGroupCard
+                key={item.objectId}
+                item={item}
+                navigateTo={navigateTo}
+              />
+            )
+          })}
+        </List>
+        <List renderHeader={() => '战队招募'}>
+          {recruitOrder.list.slice(0, 3).map((item, index) => {
+            return (
+              <HomeRecruitCard
+                key={item.objectId}
+                item={item}
+                navigateTo={navigateTo}
+              />
+            )
+          })}
+        </List>
+      </ScrollView>
     )
   }
 }
@@ -99,12 +159,19 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => ({
-  
-});
+  groupOrder: state.groupOrder.home.groupOrder,
+  recruitOrder: state.recruitOrder.home.recruitOrder
+})
 
 const mapDispatchToProps = dispatch => ({
-  navigate: (path) => {
-    dispatch(NavigationActions.navigate({ routeName: path }))
+  getHomeGroupOrderList: payload => {
+    dispatch(getHomeGroupOrderListRequest(payload))
+  },
+  getHomeRecruitOrderList: payload => {
+    dispatch(getHomeRecruitOrderListRequest(payload))
+  },
+  navigateTo: (path, params) => {
+    dispatch(NavigationActions.navigate({ routeName: path, params: params }))
   }
 })
 

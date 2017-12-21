@@ -8,6 +8,8 @@ import HomeResumeOrders from '../screens/Home/ResumeOrders'
 import HomeWarOrders from '../screens/Home/WarOrders'
 import HomeTeams from '../screens/Home/Teams'
 import HomeUserInfos from '../screens/Home/UserInfos'
+import HomeTeamDetail from '../screens/Home/Teams/Detail'
+import HomeUserInfoDetail from '../screens/Home/UserInfos/Detail'
 
 import Account from '../screens/Account'
 import AccountMime from '../screens/Account/Mime'
@@ -59,6 +61,18 @@ const HomeStack = StackNavigator({
     screen: HomeUserInfos,
     navigationOptions: {
       headerTitle: '个人列表'
+    }
+  },
+  HomeTeamDetail: {
+    screen: HomeTeamDetail,
+    navigationOptions: {
+      headerTitle: '战队详情'
+    }
+  },
+  HomeUserInfoDetail: {
+    screen: HomeUserInfoDetail,
+    navigationOptions: {
+      headerTitle: '个人详情'
     }
   }
 })

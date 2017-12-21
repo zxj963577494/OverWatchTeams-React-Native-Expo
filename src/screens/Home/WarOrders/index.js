@@ -1,9 +1,53 @@
 import React, { Component } from 'react'
-import { Text } from 'react-native'
+import { View } from 'react-native'
 import PropTypes from 'prop-types'
+import { NavigationActions } from 'react-navigation'
+import { connect } from 'react-redux'
+import { getHomeWarOrderListRequest } from '../../../actions'
+import { HomeWarOrderList } from '../../../components'
 
-export default class HomeWarOrders extends Component {
+class HomeWarOrders extends Component {
+  componentDidMount() {
+    if (this.props.warOrder.list.length === 0) {
+      this.props.getHomeWarOrderList({ page: 1 })
+    }
+  }
+
   render() {
-    return <Text>HomeWarOrders</Text>
+    const { warOrder, navigateTo, getHomeWarOrderList } = this.props
+    return (
+      <View>
+        <HomeWarOrderList
+          warOrder={warOrder}
+          navigateTo={navigateTo}
+          getHomeWarOrderList={getHomeWarOrderList}
+        />
+      </View>
+    )
   }
 }
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    warOrder: state.warOrder.home.warOrder
+  }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    getHomeWarOrderList: payload => {
+      dispatch(getHomeWarOrderListRequest(payload))
+    },
+    navigateTo: (path, params) => {
+      dispatch(NavigationActions.navigate({ routeName: path, params: params }))
+    }
+  }
+}
+
+HomeWarOrders.propTypes = {
+  warOrder: PropTypes.object,
+  getHomeWarOrderList: PropTypes.func,
+  navigateTo: PropTypes.func
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeWarOrders)

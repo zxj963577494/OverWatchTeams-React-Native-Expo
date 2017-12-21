@@ -1,9 +1,53 @@
 import React, { Component } from 'react'
-import { Text } from 'react-native'
+import { View } from 'react-native'
 import PropTypes from 'prop-types'
+import { NavigationActions } from 'react-navigation'
+import { connect } from 'react-redux'
+import { getHomeRecruitOrderList } from '../../../actions'
+import { HomeRecruitOrderList } from '../../../components'
 
-export default class HomeRecruitOrders extends Component {
+class HomeRecruitOrders extends Component {
+  componentDidMount() {
+    if (this.props.recruitOrder.list.length === 0) {
+      this.props.getHomeRecruitOrderList({ page: 1 })
+    }
+  }
+
   render() {
-    return <Text>HomeRecruitOrders</Text>
+    const { recruitOrder, navigateTo, getHomeRecruitOrderList } = this.props
+    return (
+      <View>
+        <HomeRecruitOrderList
+          recruitOrder={recruitOrder}
+          navigateTo={navigateTo}
+          getHomeRecruitOrderList={getHomeRecruitOrderList}
+        />
+      </View>
+    )
   }
 }
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    recruitOrder: state.recruitOrder.home.recruitOrder
+  }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    getHomeRecruitOrderList: payload => {
+      dispatch(getHomeRecruitOrderList(payload))
+    },
+    navigateTo: (path, params) => {
+      dispatch(NavigationActions.navigate({ routeName: path, params: params }))
+    }
+  }
+}
+
+HomeRecruitOrders.propTypes = {
+  recruitOrder: PropTypes.object,
+  getHomeRecruitOrderList: PropTypes.func,
+  navigateTo: PropTypes.func
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeRecruitOrders)
