@@ -48,7 +48,8 @@ export default class HomeWarCard extends PureComponent {
                 <Flex.Item>
                   <Text
                     style={{
-                      textAlign: 'center'
+                      paddingLeft: 15,
+                      paddingRight: 15
                     }}
                   >
                     {item.description}

@@ -65,7 +65,7 @@ export default class HomeUserInfoCard extends PureComponent {
                     <View style={{ alignItems: 'center' }}>
                       <Image
                         source={{ uri: dataItem.image }}
-                        style={{ width: 80, height: 80, borderRadius: 40 }}
+                        style={{ width: 60, height: 60, borderRadius: 30 }}
                       />
                     </View>
                   )}

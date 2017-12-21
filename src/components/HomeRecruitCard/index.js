@@ -62,7 +62,8 @@ export default class HomeRecruitCard extends PureComponent {
               content={
                 <Text
                   style={{
-                    textAlign: 'center'
+                    paddingLeft: 15,
+                    paddingRight: 15
                   }}
                 >
                   发布时间：<TimeAgo time={item.createdAt} />
