@@ -1,3 +1,5 @@
+import React from 'react'
+import { StatusBar } from 'react-native'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
@@ -20,115 +22,133 @@ import AccountResumeOrders from '../screens/Account/ResumeOrders'
 import AccountWarOrders from '../screens/Account/WarOrders'
 import AccountTeams from '../screens/Account/Teams'
 
-const HomeStack = StackNavigator({
-  Home: {
-    screen: Home,
-    navigationOptions: {
-      headerTitle: 'OverWatchTeams'
-    }
-  },
-  HomeGroupOrders: {
-    screen: HomeGroupOrders,
-    navigationOptions: {
-      headerTitle: '组队上分'
-    }
-  },
-  HomeRecruitOrders: {
-    screen: HomeRecruitOrders,
-    navigationOptions: {
-      headerTitle: '战队招募'
-    }
-  },
-  HomeResumeOrders: {
-    screen: HomeResumeOrders,
-    navigationOptions: {
-      headerTitle: '寻找战队'
-    }
-  },
-  HomeWarOrders: {
-    screen: HomeWarOrders,
-    navigationOptions: {
-      headerTitle: '比赛约战'
-    }
-  },
-  HomeTeams: {
-    screen: HomeTeams,
-    navigationOptions: {
-      headerTitle: '战队列表'
-    }
-  },
-  HomeUserInfos: {
-    screen: HomeUserInfos,
-    navigationOptions: {
-      headerTitle: '个人列表'
-    }
-  },
-  HomeTeamDetail: {
-    screen: HomeTeamDetail,
-    navigationOptions: {
-      headerTitle: '战队详情'
-    }
-  },
-  HomeUserInfoDetail: {
-    screen: HomeUserInfoDetail,
-    navigationOptions: {
-      headerTitle: '个人详情'
-    }
-  }
-})
+import SignIn from '../screens/SignIn'
+import SignUp from '../screens/SignUp'
+import Welcome from '../screens/Welcome'
 
-const AccountStack = StackNavigator({
-  Account: {
-    screen: Account,
-    navigationOptions: {
-      headerTitle: '个人中心'
+const HomeStack = StackNavigator(
+  {
+    Home: {
+      screen: Home,
+      navigationOptions: {
+        headerTitle: 'OverWatchTeams'
+      }
+    },
+    HomeGroupOrders: {
+      screen: HomeGroupOrders,
+      navigationOptions: {
+        headerTitle: '组队上分'
+      }
+    },
+    HomeRecruitOrders: {
+      screen: HomeRecruitOrders,
+      navigationOptions: {
+        headerTitle: '战队招募'
+      }
+    },
+    HomeResumeOrders: {
+      screen: HomeResumeOrders,
+      navigationOptions: {
+        headerTitle: '寻找战队'
+      }
+    },
+    HomeWarOrders: {
+      screen: HomeWarOrders,
+      navigationOptions: {
+        headerTitle: '比赛约战'
+      }
+    },
+    HomeTeams: {
+      screen: HomeTeams,
+      navigationOptions: {
+        headerTitle: '战队列表'
+      }
+    },
+    HomeUserInfos: {
+      screen: HomeUserInfos,
+      navigationOptions: {
+        headerTitle: '个人列表'
+      }
+    },
+    HomeTeamDetail: {
+      screen: HomeTeamDetail,
+      navigationOptions: {
+        headerTitle: '战队详情'
+      }
+    },
+    HomeUserInfoDetail: {
+      screen: HomeUserInfoDetail,
+      navigationOptions: {
+        headerTitle: '个人详情'
+      }
     }
   },
-  AccountMime: {
-    screen: AccountMime,
-    navigationOptions: {
-      headerTitle: '基本信息'
-    }
-  },
-  AccountEmaiVerify: {
-    screen: AccountEmaiVerify,
-    navigationOptions: {
-      headerTitle: '邮箱验证'
-    }
-  },
-  AccountGroupOrders: {
-    screen: AccountGroupOrders,
-    navigationOptions: {
-      headerTitle: '组队上分'
-    }
-  },
-  AccountRecruitOrders: {
-    screen: AccountRecruitOrders,
-    navigationOptions: {
-      headerTitle: '战队招募'
-    }
-  },
-  AccountResumeOrders: {
-    screen: AccountResumeOrders,
-    navigationOptions: {
-      headerTitle: '寻找战队'
-    }
-  },
-  AccountWarOrders: {
-    screen: AccountWarOrders,
-    navigationOptions: {
-      headerTitle: '比赛约战'
-    }
-  },
-  AccountTeams: {
-    screen: AccountTeams,
-    navigationOptions: {
-      headerTitle: '战队列表'
-    }
+  {
+    headerBackTitle: null,
+    headerTruncatedBackTitle: null,
+    headerMode: 'screen'
   }
-})
+)
 
-export default TabNavigator(
+const AccountStack = StackNavigator(
+  {
+    Account: {
+      screen: Account,
+      navigationOptions: {
+        headerTitle: '个人中心'
+      }
+    },
+    AccountMime: {
+      screen: AccountMime,
+      navigationOptions: {
+        headerTitle: '基本信息'
+      }
+    },
+    AccountEmaiVerify: {
+      screen: AccountEmaiVerify,
+      navigationOptions: {
+        headerTitle: '邮箱验证'
+      }
+    },
+    AccountGroupOrders: {
+      screen: AccountGroupOrders,
+      navigationOptions: {
+        headerTitle: '组队上分'
+      }
+    },
+    AccountRecruitOrders: {
+      screen: AccountRecruitOrders,
+      navigationOptions: {
+        headerTitle: '战队招募'
+      }
+    },
+    AccountResumeOrders: {
+      screen: AccountResumeOrders,
+      navigationOptions: {
+        headerTitle: '寻找战队'
+      }
+    },
+    AccountWarOrders: {
+      screen: AccountWarOrders,
+      navigationOptions: {
+        headerTitle: '比赛约战'
+      }
+    },
+    AccountTeams: {
+      screen: AccountTeams,
+      navigationOptions: {
+        headerTitle: '战队列表'
+      }
+    }
+  },
+  {
+    headerBackTitle: null,
+    headerTruncatedBackTitle: null,
+    headerMode: 'screen'
+  }
+)
+
+const TabStack = TabNavigator(
   {
     Home: {
       screen: HomeStack,
@@ -155,6 +175,38 @@ export default TabNavigator(
   },
   {
     initialRouteName: 'Home',
-    animationEnabled: true
+    animationEnabled: true,
+    swipeEnabled: true,
+    tabBarPosition: 'bottom'
+  }
+)
+
+export default StackNavigator(
+  {
+    Tab: {
+      screen: TabStack
+    },
+    SignIn: {
+      screen: SignIn,
+      navigationOptions: {
+        headerTitle: '登录'
+      }
+    },
+    SignUp: {
+      screen: SignUp,
+      navigationOptions: {
+        headerTitle: '注册'
+      }
+    },
+    Welcome: {
+      screen: Welcome
+    }
+  },
+  {
+    initialRouteName: 'Tab',
+    mode: 'modal',
+    headerMode: 'none',
+    headerBackTitle: null,
+    headerTruncatedBackTitle: null
   }
 )
