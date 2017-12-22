@@ -34,8 +34,8 @@ class SignIn extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: '',
-      password: ''
+      username: 'zxjzxj',
+      password: '654321'
     }
     this.onUserNameChange = this.onUserNameChange.bind(this)
     this.onPasswordChange = this.onPasswordChange.bind(this)
@@ -88,7 +88,7 @@ class SignIn extends Component {
           <InputItem
             {...getFieldProps('username', {
               onChange: this.onUserNameChange,
-              validateFirst: true,
+              initialValue: this.state.username,
               rules: [
                 {
                   type: 'string',
@@ -115,7 +115,7 @@ class SignIn extends Component {
             type="password"
             {...getFieldProps('password', {
               onChange: this.onPasswordChange,
-              validateFirst: true,
+              initialValue: this.state.password,
               rules: [
                 {
                   type: 'string',
