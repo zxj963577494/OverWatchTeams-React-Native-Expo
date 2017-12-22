@@ -18,18 +18,20 @@ import { teamsService, userService } from '../services/leanclound'
 function* postTeamsWorker(payload) {
   try {
     yield put(action.fetchRequest({ text: '提交中' }))
-    const team = yield call(teamsService.getMyTeams, payload)
-    const usr = yield call(userService.getCurrentUser)
-    if(team.length < usr.get('teamLimit')) {
-      const response = yield call(teamsService.cerateTeam, payload)
+    const currentUser = yield call(userService.getCurrentUserAsync)
+    const team = yield call(teamsService.getMyTeams, currentUser)
+    if (team.length < currentUser.get('teamLimit')) {
+      const response = yield call(teamsService.cerateTeam, payload, currentUser)
       yield put(action.fetchSuccess())
       yield put(action.postTeamsSuccess(response))
       Toast.success('提交成功', 1)
       yield delay(1000)
       yield put(NavigationActions.back())
-    }
-    else {
-      Toast.fail('提交失败，每位用户最多可创建一支战队，若想创建多支战队，请联系管理员963577494@qq.com', 3)
+    } else {
+      Toast.fail(
+        '提交失败，每位用户最多可创建一支战队，若想创建多支战队，请联系管理员963577494@qq.com',
+        3
+      )
       yield put(action.fetchFailed())
       yield put(action.postTeamsFailed())
     }
@@ -59,7 +61,8 @@ function* putTeamsWorker(payload) {
 function* getInTeamsWorker() {
   try {
     yield put(action.fetchRequest({ text: '加载中' }))
-    const response = yield call(teamsService.getInTeams)
+    const currentUser = yield call(userService.getCurrentUserAsync)
+    const response = yield call(teamsService.getInTeams, currentUser)
     yield put(action.getInTeamsSuccess(response))
     yield put(action.fetchSuccess())
   } catch (error) {
@@ -71,7 +74,8 @@ function* getInTeamsWorker() {
 function* getMyTeamsWorker() {
   try {
     yield put(action.fetchRequest({ text: '加载中' }))
-    const response = yield call(teamsService.getMyTeams)
+    const currentUser = yield call(userService.getCurrentUserAsync)
+    const response = yield call(teamsService.getMyTeams, currentUser)
     yield put(action.getMyTeamsSuccess(response))
     yield put(action.fetchSuccess())
   } catch (error) {

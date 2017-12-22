@@ -156,7 +156,7 @@ const TabStack = TabNavigator(
       tabBarIcon: ({ tintColor, focused }) => (
         <Ionicons
           name={focused ? 'ios-home' : 'ios-home-outline'}
-          size={26}
+          size={24}
           style={{ color: tintColor }}
         />
       )
@@ -167,19 +167,45 @@ const TabStack = TabNavigator(
       tabBarIcon: ({ tintColor, focused }) => (
         <Ionicons
           name={focused ? 'ios-contact' : 'ios-contact-outline'}
-          size={26}
+          size={24}
           style={{ color: tintColor }}
         />
       )
     }
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'Account',
     animationEnabled: true,
     swipeEnabled: true,
     tabBarPosition: 'bottom'
   }
 )
+
+const SignInStack = StackNavigator({
+  SignIn: {
+    screen: SignIn,
+    navigationOptions: {
+      headerTitle: '登录'
+    }
+  }
+})
+const SignUpStack = StackNavigator({
+  SignUp: {
+    screen: SignUp,
+    navigationOptions: {
+      headerTitle: '注册'
+    }
+  }
+})
+
+const WelcomeStack = StackNavigator({
+  Welcome: {
+    screen: Welcome,
+    navigationOptions: {
+      header: () => null
+    }
+  }
+})
 
 export default StackNavigator(
   {
@@ -187,26 +213,18 @@ export default StackNavigator(
       screen: TabStack
     },
     SignIn: {
-      screen: SignIn,
-      navigationOptions: {
-        headerTitle: '登录'
-      }
+      screen: SignInStack
     },
     SignUp: {
-      screen: SignUp,
-      navigationOptions: {
-        headerTitle: '注册'
-      }
+      screen: SignUpStack
     },
     Welcome: {
-      screen: Welcome
+      screen: WelcomeStack
     }
   },
   {
     initialRouteName: 'Tab',
-    mode: 'modal',
-    headerMode: 'none',
-    headerBackTitle: null,
-    headerTruncatedBackTitle: null
+    mode: 'screen',
+    headerMode: 'none'
   }
 )

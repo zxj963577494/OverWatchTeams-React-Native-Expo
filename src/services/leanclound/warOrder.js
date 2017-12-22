@@ -1,10 +1,9 @@
 import AV from 'leancloud-storage'
-import { getCurrentUser } from './user'
+import { getCurrentUserAsync } from './user'
 import { getDayStart, getDayEnd } from '../../utils/utils'
 
 // 创建战队训练赛约战
-export function cerateWarOrder(payload, team) {
-  const user = getCurrentUser()
+export function cerateWarOrder(payload, team, currentUser) {
   const teamData = AV.Object.createWithoutData('Teams', payload.teamid)
   const warOrders = new AV.Object('WarOrders')
   warOrders.set('title', payload.title)
@@ -14,7 +13,7 @@ export function cerateWarOrder(payload, team) {
   warOrders.set('show', 1)
   const endDate = new Date(payload.endDate)
   warOrders.set('endDate', endDate)
-  warOrders.set('user', user)
+  warOrders.set('user', currentUser)
   warOrders.set('team', teamData)
 
   var acl = new AV.ACL()
@@ -28,8 +27,7 @@ export function cerateWarOrder(payload, team) {
   })
 }
 
-export function updateWarOrder(payload, team) {
-  const user = getCurrentUser()
+export function updateWarOrder(payload, team, currentUser) {
   const warOrders = AV.Object.createWithoutData(
     'WarOrders',
     payload.objectId
@@ -39,7 +37,7 @@ export function updateWarOrder(payload, team) {
   warOrders.set('contact', payload.contact)
   const endDate = new Date(payload.endDate)
   warOrders.set('endDate', endDate)
-  warOrders.set('user', user)
+  warOrders.set('user', currentUser)
   warOrders.set('team', team)
 
   return warOrders.save().then(function(result) {
@@ -57,13 +55,12 @@ export function removeWarOrder(payload) {
   })
 }
 
-export function getAccountWarOrderList(payload) {
+export function getAccountWarOrderList(payload, currentUser) {
   let list = []
   let { page, pagesize } = payload
   pagesize = pagesize || 20
-  const user = getCurrentUser()
   const query = new AV.Query('WarOrders')
-  query.equalTo('user', user)
+  query.equalTo('user', currentUser)
   query.greaterThanOrEqualTo('endDate', new Date())
   query.descending('updatedAt')
   query.limit(pagesize)
@@ -101,10 +98,9 @@ export function getHomeWarOrderList(payload) {
   })
 }
 
-export function getWarOrderCountOfToday(payload) {
-  const user = getCurrentUser()
+export function getWarOrderCountOfToday(payload, currentUser) {
   const query = new AV.Query('WarOrders')
-  query.equalTo('user', user)
+  query.equalTo('user', currentUser)
   query.lessThanOrEqualTo('createdAt', getDayEnd())
   query.greaterThanOrEqualTo('createdAt', getDayStart())
   return query.count().then(function(result) {

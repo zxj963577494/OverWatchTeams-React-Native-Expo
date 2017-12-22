@@ -1,22 +1,21 @@
 import AV from 'leancloud-storage'
-import { getCurrentUser } from './user'
+import { getCurrentUserAsync } from './user'
 import { getDayStart, getDayEnd } from '../../utils/utils'
 
 // 创建组队帖
-export function cerateGroupOrder(payload, userinfo) {
-  const user = getCurrentUser()
+export function cerateGroupOrder(payload, userinfo, currentUser) {
   const groupOrders = new AV.Object('GroupOrders')
   groupOrders.set('title', payload.title)
   groupOrders.set('description', payload.description)
   groupOrders.set('contact', payload.contact)
   const endDate = new Date(payload.endDate)
   groupOrders.set('endDate', endDate)
-  groupOrders.set('user', user)
+  groupOrders.set('user', currentUser)
   groupOrders.set('stick', 0)
   groupOrders.set('show', 1)
   var acl = new AV.ACL()
   acl.setPublicReadAccess(true)
-  acl.setWriteAccess(user, true)
+  acl.setWriteAccess(currentUser, true)
 
   groupOrders.setACL(acl)
 
@@ -25,8 +24,7 @@ export function cerateGroupOrder(payload, userinfo) {
   })
 }
 
-export function updateGroupOrder(payload) {
-  const user = getCurrentUser()
+export function updateGroupOrder(payload, currentUser) {
   const recruitOrders = AV.Object.createWithoutData(
     'GroupOrders',
     payload.objectId
@@ -36,7 +34,7 @@ export function updateGroupOrder(payload) {
   recruitOrders.set('contact', payload.contact)
   const endDate = new Date(payload.endDate)
   recruitOrders.set('endDate', endDate)
-  recruitOrders.set('user', user)
+  recruitOrders.set('user', currentUser)
 
   return recruitOrders.save().then(function(result) {
     return {
@@ -55,13 +53,12 @@ export function removeGroupOrder(payload) {
   })
 }
 
-export function getAccountGroupOrderList(payload) {
+export function getAccountGroupOrderList(payload, currentUser) {
   let list = []
   let { page, pagesize } = payload
   pagesize = pagesize || 20
-  const user = getCurrentUser()
   const query = new AV.Query('GroupOrders')
-  query.equalTo('user', user)
+  query.equalTo('user', currentUser)
   query.greaterThanOrEqualTo('endDate', new Date())
   query.descending('updatedAt')
   query.limit(pagesize)
@@ -95,10 +92,9 @@ export function getHomeGroupOrderList(payload) {
   })
 }
 
-export function getGroupOrderCountOfToday(payload) {
-  const user = getCurrentUser()
+export function getGroupOrderCountOfToday(payload, currentUser) {
   const query = new AV.Query('GroupOrders')
-  query.equalTo('user', user)
+  query.equalTo('user', currentUser)
   query.lessThanOrEqualTo('createdAt', getDayEnd())
   query.greaterThanOrEqualTo('createdAt', getDayStart())
   return query.count().then(function(result) {

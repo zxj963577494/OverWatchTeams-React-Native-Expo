@@ -15,20 +15,22 @@ import { resumeOrderService, userService } from '../services/leanclound'
 function* postResumeOrderWorker(payload) {
   try {
     yield put(action.fetchRequest({ text: '提交中' }))
-    const userinfo = yield call(userService.getUserInfoToJson)
+    const currentUser = yield call(userService.getCurrentUserAsync)
+    const userinfo = yield call(userService.getUserInfoToJson, currentUser)
     const count = yield call(resumeOrderService.getResumeOrderCountOfToday)
     const resumeOrderLimit = userinfo.resumeOrderLimit
     if (count <= resumeOrderLimit) {
       const response = yield call(
         resumeOrderService.cerateResumeOrder,
         payload,
-        userinfo
+        userinfo,
+        currentUser
       )
       yield put(action.postResumeOrderSuccess(response))
       yield put(action.fetchSuccess())
       Toast.success('提交成功', 1)
       yield delay(1000)
-      yield put(NavigationActions.navigate('AccountResumeOrders'))
+      yield put(NavigationActions.navigate({ routeName: 'AccountResumeOrders'}))
     } else {
       yield put(action.postResumeOrderFailed())
       yield put(action.fetchFailed())
@@ -44,12 +46,13 @@ function* postResumeOrderWorker(payload) {
 function* putResumeOrderWorker(payload) {
   try {
     yield put(action.fetchRequest({ text: '提交中' }))
-    const response = yield call(resumeOrderService.updateResumeOrder, payload)
+    const currentUser = yield call(userService.getCurrentUserAsync)
+    const response = yield call(resumeOrderService.updateResumeOrder, payload, currentUser)
     yield put(action.putResumeOrderSuccess(response))
     yield put(action.fetchSuccess())
     Toast.success('提交成功', 1)
     yield delay(1000)
-    yield put(NavigationActions.navigate('AccountResumeOrders'))
+    yield put(NavigationActions.navigate({ routeName: 'AccountResumeOrders'}))
   } catch (error) {
     yield put(action.putResumeOrderFailed(error))
     yield put(action.fetchFailed())
@@ -73,9 +76,11 @@ function* deleteResumeOrderWorker(payload) {
 
 function* getAccountResumeOrderListWorker(payload) {
   try {
+    const currentUser = yield call(userService.getCurrentUserAsync)
     const response = yield call(
       resumeOrderService.getAccountResumeOrderList,
-      payload
+      payload,
+      currentUser
     )
     yield put(action.getAccountResumeOrderListSuccess(response))
   } catch (error) {

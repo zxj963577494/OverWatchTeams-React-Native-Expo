@@ -20,7 +20,7 @@ function* postSignUpWorker(payload) {
     const response = yield call(userService.signUp, payload)
     yield put(action.fetchSuccess())
     yield put(action.postSignUpSuccess(response))
-    yield put(NavigationActions.navigate('Account'))
+    yield put(NavigationActions.navigate({ routeName: 'Account'}))
   } catch (error) {
     yield put(action.fetchFailed())
     yield put(action.postSignUpFailed(error))
@@ -33,7 +33,7 @@ function* postLoginWorker(payload) {
     const response = yield call(userService.logIn, payload)
     yield put(action.fetchSuccess())
     yield put(action.postLoginSuccess(response))
-    yield put(NavigationActions.navigate('Account'))
+    yield put(NavigationActions.navigate({ routeName: 'Account'}))
   } catch (error) {
     yield put(action.fetchFailed())
     yield put(action.postLoginFailed(error))
@@ -46,7 +46,7 @@ function* postLogoutWorker() {
     yield delay(1000)
     yield call(userService.logOut)
     yield put(action.fetchSuccess())
-    yield put(NavigationActions.navigate('Home'))
+    yield put(NavigationActions.navigate({ routeName: 'Home'}))
   } catch (error) {
     yield put(action.fetchFailed())
   }
@@ -70,9 +70,11 @@ function* putUserInfoWorker(payload) {
 
 function* getUserInfoWorker() {
   try {
-    const response = yield call(userService.getUserInfoToJson)
+    const currentUser = yield call(userService.getCurrentUserAsync)
+    const response = yield call(userService.getUserInfoToJson, currentUser)
     yield put(action.getUserInfoSuccess(response))
   } catch (error) {
+    console.warn(error)
     yield put(action.getUserInfoFailed(error))
   }
 }

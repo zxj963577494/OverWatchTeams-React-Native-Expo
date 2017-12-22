@@ -65,13 +65,13 @@ export function requestLoginSmsCode(payload) {
 }
 
 // 当前用户
-export function getCurrentUser() {
-  return AV.User.current()
+export function getCurrentUserAsync() {
+  return AV.User.currentAsync()
 }
 
 // 验证 SessionToken 是否在有效期内
 export function isAuthenticated() {
-  var currentUser = AV.User.current()
+  var currentUser = AV.User.currentAsync()
   return currentUser.isAuthenticated()
 }
 
@@ -86,7 +86,7 @@ export function logInWithSessionToken(payload) {
 export function logOut() {
   return AV.User.logOut()
   // 现在的 currentUser 是 null 了
-  // var currentUser = AV.User.current()
+  // var currentUser = AV.User.currentAsync()
 }
 
 export function putUserInfo(payload) {
@@ -101,10 +101,9 @@ export function putUserInfo(payload) {
   })
 }
 
-export function getUserInfoToJson() {
-  const current = AV.User.current()
+export function getUserInfoToJson(currentUser) {
   const user = new AV.Query('_User')
-  user.equalTo('objectId', current.id)
+  user.equalTo('objectId', currentUser.id)
   user.include('userinfo')
   return user.first().then(function(result) {
     return result.get('userinfo').toJSON()

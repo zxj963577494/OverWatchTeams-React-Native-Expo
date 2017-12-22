@@ -1,5 +1,5 @@
 import AV from 'leancloud-storage'
-import { getCurrentUser } from './user'
+import { getCurrentUserAsync } from './user'
 import config from '../../config'
 
 let members = [
@@ -66,7 +66,7 @@ let members = [
 ]
 
 // 创建战队
-export function cerateTeam(payload) {
+export function cerateTeam(payload, currentUser) {
   const teams = new AV.Object('Teams')
   for (let key of Object.keys(payload)) {
     teams.set(key, payload[key])
@@ -78,16 +78,14 @@ export function cerateTeam(payload) {
     teams.set('avatar', config.BASE_PIC_URL + '/logo.png')
   }
 
-  const user = getCurrentUser()
-
   const userTeamMap = new AV.Object('UserTeamMap')
-  userTeamMap.set('user', user)
+  userTeamMap.set('user', currentUser)
   userTeamMap.set('team', teams)
   userTeamMap.set('leader', true)
 
   var acl = new AV.ACL()
   acl.setPublicReadAccess(true)
-  acl.setWriteAccess(AV.User.current(), true)
+  acl.setWriteAccess(AV.User.currentAsync(), true)
 
   userTeamMap.setACL(acl)
 
@@ -97,10 +95,9 @@ export function cerateTeam(payload) {
 }
 
 // 1.获取我的战队
-export function getMyTeams() {
-  const user = getCurrentUser()
+export function getMyTeams(currentUser) {
   const query = new AV.Query('UserTeamMap')
-  query.equalTo('user', user)
+  query.equalTo('user', currentUser)
   query.equalTo('leader', true)
   query.descending('createdAt')
   query.include('team')
@@ -115,10 +112,9 @@ export function getMyTeams() {
 }
 
 // 1.获取我所在的战队
-export function getInTeams() {
-  const user = getCurrentUser()
+export function getInTeams(currentUser) {
   const query = new AV.Query('UserTeamMap')
-  query.equalTo('user', user)
+  query.equalTo('user', currentUser)
   query.equalTo('leader', false)
   query.descending('createdAt')
   query.include('team')
@@ -208,7 +204,7 @@ export function updateTeam(payload) {
 export function removeMember(payload) {
   const { teamid, memberid } = payload
   // 当前登录用户
-  // const currentUser = AV.User.current()
+  // const currentUser = AV.User.currentAsync()
   // const user = AV.Object.createWithoutData('_User', currentUser.id)
   const team = AV.Object.createWithoutData('Teams', teamid)
   const member = AV.Object.createWithoutData('_User', memberid)
@@ -229,7 +225,7 @@ export function removeMember(payload) {
 // 解散战队
 export function removeTeam(payload) {
   const { teamid } = payload
-  const currentUser = AV.User.current()
+  const currentUser = AV.User.currentAsync()
   const user = AV.Object.createWithoutData('_User', currentUser.id)
   const team = AV.Object.createWithoutData('Teams', teamid)
   const query = new AV.Query('UserTeamMap')

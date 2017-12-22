@@ -20,16 +20,18 @@ function* postWarOrderWorker(payload) {
   try {
     yield put(action.fetchRequest({ text: '提交中' }))
     const count = yield call(warOrderService.getWarOrderCountOfToday)
-    const userinfo = yield call(userService.getUserInfoToJson)
+    const currentUser = yield call(userService.getCurrentUserAsync)
+    const userinfo = yield call(userService.getUserInfoToJson, currentUser)
     const warOrderLimit = userinfo.warOrderLimit
     if (count <= warOrderLimit) {
       const team = yield call(teamsService.getTeamToJson, payload)
+      const userinfo = yield call(userService.getUserInfoToJson, currentUser)
       const response = yield call(warOrderService.cerateWarOrder, payload, team)
       yield put(action.fetchSuccess())
       yield put(action.postWarOrderSuccess(response))
       Toast.success('提交成功', 1)
       yield delay(1000)
-      yield put(NavigationActions.navigate('AccountWarOrders'))
+      yield put(NavigationActions.navigate({ routeName: 'AccountWarOrders' }))
     } else {
       yield put(action.postWarOrderFailed())
       yield put(action.fetchFailed())
@@ -45,13 +47,14 @@ function* postWarOrderWorker(payload) {
 function* putWarOrderWorker(payload) {
   try {
     yield put(action.fetchRequest({ text: '提交中' }))
+    const currentUser = yield call(userService.getCurrentUserAsync)
     const team = yield call(teamsService.getTeam, payload)
-    const response = yield call(warOrderService.updateWarOrder, payload, team)
+    const response = yield call(warOrderService.updateWarOrder, payload, team, currentUser)
     yield put(action.fetchSuccess())
     yield put(action.putWarOrderSuccess(response))
     Toast.success('提交成功', 1)
     yield delay(1000)
-    yield put(NavigationActions.navigate('AccountWarOrders'))
+    yield put(NavigationActions.navigate({ routeName: 'AccountWarOrders' }))
   } catch (error) {
     yield put(action.putWarOrderFailed(error))
     yield put(action.fetchFailed())
@@ -75,7 +78,8 @@ function* deleteWarOrderWorker(payload) {
 
 function* getAccountWarOrderListWorker(payload) {
   try {
-    const response = yield call(warOrderService.getAccountWarOrderList, payload)
+    const currentUser = yield call(userService.getCurrentUserAsync)
+    const response = yield call(warOrderService.getAccountWarOrderList, payload, currentUser)
     yield put(action.getAccountWarOrderListSuccess(response))
   } catch (error) {
     yield put(action.getAccountWarOrderListFailed(error))

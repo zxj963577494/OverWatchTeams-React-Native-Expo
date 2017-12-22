@@ -1,10 +1,9 @@
 import AV from 'leancloud-storage'
-import { getCurrentUser } from './user'
+import { getCurrentUserAsync } from './user'
 import { getDayStart, getDayEnd } from '../../utils/utils'
 
 // 创建招募令
-export function cerateRecruitOrder(payload, team) {
-  const user = getCurrentUser()
+export function cerateRecruitOrder(payload, team, currentUser) {
   const teamData = AV.Object.createWithoutData('Teams', payload.teamid)
   const recruitOrders = new AV.Object('RecruitOrders')
   recruitOrders.set('title', payload.title)
@@ -14,7 +13,7 @@ export function cerateRecruitOrder(payload, team) {
   recruitOrders.set('show', 1)
   const endDate = new Date(payload.endDate)
   recruitOrders.set('endDate', endDate)
-  recruitOrders.set('user', user)
+  recruitOrders.set('user', currentUser)
   recruitOrders.set('team', teamData)
 
   var acl = new AV.ACL()
@@ -28,8 +27,7 @@ export function cerateRecruitOrder(payload, team) {
   })
 }
 
-export function updateRecruitOrder(payload, team) {
-  const user = getCurrentUser()
+export function updateRecruitOrder(payload, team, currentUser) {
   const recruitOrders = AV.Object.createWithoutData(
     'RecruitOrders',
     payload.objectId
@@ -39,7 +37,7 @@ export function updateRecruitOrder(payload, team) {
   recruitOrders.set('contact', payload.contact)
   const endDate = new Date(payload.endDate)
   recruitOrders.set('endDate', endDate)
-  recruitOrders.set('user', user)
+  recruitOrders.set('user', currentUser)
   recruitOrders.set('team', team)
 
   return recruitOrders.save().then(function(result) {
@@ -60,13 +58,12 @@ export function removeRecruitOrder(payload) {
   })
 }
 
-export function getAccountRecruitOrderList(payload) {
+export function getAccountRecruitOrderList(payload, currentUser) {
   let list = []
   let { page, pagesize } = payload
   pagesize = pagesize || 20
-  const user = getCurrentUser()
   const query = new AV.Query('RecruitOrders')
-  query.equalTo('user', user)
+  query.equalTo('user', currentUser)
   query.greaterThanOrEqualTo('endDate', new Date())
   query.descending('updatedAt')
   query.limit(pagesize)
@@ -104,10 +101,9 @@ export function getHomeRecruitOrderList(payload) {
   })
 }
 
-export function getRecruitOrderCountOfToday(payload) {
-  const user = getCurrentUser()
+export function getRecruitOrderCountOfToday(payload, currentUser) {
   const query = new AV.Query('RecruitOrders')
-  query.equalTo('user', user)
+  query.equalTo('user', currentUser)
   console.log(getDayEnd())
   console.log(getDayStart())
   query.lessThanOrEqualTo('createdAt', getDayEnd())

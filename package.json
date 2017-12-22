@@ -6,6 +6,7 @@
     "expo": "^24.0.0",
     "leancloud-storage": "^3.4.2",
     "moment": "^2.20.1",
+    "rc-form": "^2.1.6",
     "react": "16.0.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-24.0.0.tar.gz",
     "react-native-extended-stylesheet": "^0.8.0",
