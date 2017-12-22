@@ -7,10 +7,6 @@ import TimeAgo from 'react-native-timeago'
 import { cutstr } from '../../utils/utils'
 
 export default class HomeGroupCard extends PureComponent {
-  layout = e => {
-    console.warn(e)
-  }
-
   render() {
     const { item, navigateTo } = this.props
     return (

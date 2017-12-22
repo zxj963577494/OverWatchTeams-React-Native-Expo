@@ -38,7 +38,7 @@ class Account extends Component {
   }
 
   componentDidMount() {
-    if (_.isEmpty(this.props.account.user)) {
+    if (!_.isEmpty(this.props.account.user)) {
       this.setState({
         logined: true
       })
@@ -98,7 +98,7 @@ class Account extends Component {
           <TouchableWithoutFeedback
             onPress={() => {
               if (logined) {
-                navigateTo('AccountEmailverify')
+                navigateTo('AccountEmaiVerify')
               } else {
                 Toast.info('请先登录', 1)
               }
@@ -307,7 +307,12 @@ class Account extends Component {
           <WingBlank>
             <Flex>
               <Flex.Item>
-                <Button onPress={() => postLogout()} type="warning">
+                <Button
+                  onClick={() => {
+                    postLogout()
+                  }}
+                  type="warning"
+                >
                   注 销
                 </Button>
               </Flex.Item>

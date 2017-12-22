@@ -2,6 +2,9 @@ import {
   POST_LOGIN_REQUEST,
   POST_LOGIN_SUCCESS,
   POST_LOGIN_FAILED,
+  POST_LOGOUT_REQUEST,
+  POST_LOGOUT_SUCCESS,
+  POST_LOGOUT_FAILED,
   POST_SIGNUP_REQUEST,
   POST_SIGNUP_SUCCESS,
   POST_SIGNUP_FAILED,
@@ -61,6 +64,24 @@ function userReducer(state = initialUserState, action) {
         ...state,
         home: { ...state.home, loginError: action.payload.rawMessage }
       }
+    case POST_LOGOUT_REQUEST:
+      return state
+    case POST_LOGOUT_SUCCESS:
+      return {
+        ...state,
+        account: {
+          ...state.account,
+          user: {},
+          userinfo: {
+            isLoaded: false,
+            position: 'DPS',
+            rank: 'top500',
+            pending: false
+          }
+        }
+      }
+    case POST_LOGOUT_FAILED:
+      return state
     case POST_SIGNUP_REQUEST:
       return {
         ...state,
@@ -77,6 +98,7 @@ function userReducer(state = initialUserState, action) {
         ...state,
         home: { ...state.home, signupError: action.payload.rawMessage }
       }
+
     case PUT_USERINFO_REQUEST:
       return {
         ...state,

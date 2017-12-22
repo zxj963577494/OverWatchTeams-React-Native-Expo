@@ -74,7 +74,6 @@ function* getUserInfoWorker() {
     const response = yield call(userService.getUserInfoToJson, currentUser)
     yield put(action.getUserInfoSuccess(response))
   } catch (error) {
-    console.warn(error)
     yield put(action.getUserInfoFailed(error))
   }
 }
