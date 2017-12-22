@@ -42,10 +42,9 @@ function* postLoginWorker(payload) {
 
 function* postLogoutWorker() {
   try {
-    yield put(action.fetchRequest({ text: '注销中' }))
-    yield delay(1000)
     yield call(userService.logOut)
-    yield put(action.fetchSuccess())
+    Toast.success('注销成功', 1)
+    yield delay(1000)
     yield put(NavigationActions.navigate({ routeName: 'Home'}))
   } catch (error) {
     yield put(action.fetchFailed())
