@@ -17,10 +17,20 @@ import Account from '../screens/Account'
 import AccountMime from '../screens/Account/Mime'
 import AccountEmaiVerify from '../screens/Account/EmaiVerify'
 import AccountGroupOrders from '../screens/Account/GroupOrders'
+import AccountGroupOrdersEdit from '../screens/Account/GroupOrders/Edit'
+import AccountGroupOrdersCreate from '../screens/Account/GroupOrders/Create'
 import AccountRecruitOrders from '../screens/Account/RecruitOrders'
+import AccountRecruitOrdersEdit from '../screens/Account/RecruitOrders/Edit'
+import AccountRecruitOrdersCreate from '../screens/Account/RecruitOrders/Create'
 import AccountResumeOrders from '../screens/Account/ResumeOrders'
+import AccountResumeOrdersEdit from '../screens/Account/ResumeOrders/Edit'
+import AccountResumeOrdersCreate from '../screens/Account/ResumeOrders/Create'
 import AccountWarOrders from '../screens/Account/WarOrders'
+import AccountWarOrdersEdit from '../screens/Account/WarOrders/Edit'
+import AccountWarOrdersCreate from '../screens/Account/WarOrders/Create'
 import AccountTeams from '../screens/Account/Teams'
+import AccountTeamsEdit from '../screens/Account/Teams/Edit'
+import AccountTeamsCreate from '../screens/Account/Teams/Create'
 
 import SignIn from '../screens/SignIn'
 import SignUp from '../screens/SignUp'
@@ -92,6 +102,18 @@ const HomeStack = StackNavigator(
 
 const AccountStack = StackNavigator(
   {
+    SignIn: {
+      screen: SignIn,
+      navigationOptions: {
+        headerTitle: '登录'
+      }
+    },
+    SignUp: {
+      screen: SignUp,
+      navigationOptions: {
+        headerTitle: '注册'
+      }
+    },
     Account: {
       screen: Account,
       navigationOptions: {
@@ -116,10 +138,34 @@ const AccountStack = StackNavigator(
         headerTitle: '组队上分'
       }
     },
+    AccountGroupOrdersEdit: {
+      screen: AccountGroupOrdersEdit,
+      navigationOptions: {
+        headerTitle: '编辑组队帖'
+      }
+    },
+    AccountGroupOrdersCreate: {
+      screen: AccountGroupOrdersCreate,
+      navigationOptions: {
+        headerTitle: '新建组队帖'
+      }
+    },
     AccountRecruitOrders: {
       screen: AccountRecruitOrders,
       navigationOptions: {
         headerTitle: '战队招募'
+      }
+    },
+    AccountRecruitOrdersEdit: {
+      screen: AccountRecruitOrdersEdit,
+      navigationOptions: {
+        headerTitle: '编辑招募令'
+      }
+    },
+    AccountRecruitOrdersCreate: {
+      screen: AccountRecruitOrdersCreate,
+      navigationOptions: {
+        headerTitle: '新建招募令'
       }
     },
     AccountResumeOrders: {
@@ -134,10 +180,34 @@ const AccountStack = StackNavigator(
         headerTitle: '比赛约战'
       }
     },
+    AccountWarOrdersEdit: {
+      screen: AccountWarOrdersEdit,
+      navigationOptions: {
+        headerTitle: '创建约战贴'
+      }
+    },
+    AccountWarOrdersCreate: {
+      screen: AccountWarOrdersCreate,
+      navigationOptions: {
+        headerTitle: '编辑约战贴'
+      }
+    },
     AccountTeams: {
       screen: AccountTeams,
       navigationOptions: {
         headerTitle: '战队列表'
+      }
+    },
+    AccountTeamsEdit: {
+      screen: AccountTeamsEdit,
+      navigationOptions: {
+        headerTitle: '战队编辑'
+      }
+    },
+    AccountTeamsCreate: {
+      screen: AccountTeamsCreate,
+      navigationOptions: {
+        headerTitle: '创建战队'
       }
     }
   },
@@ -181,23 +251,6 @@ const TabStack = TabNavigator(
   }
 )
 
-const SignInStack = StackNavigator({
-  SignIn: {
-    screen: SignIn,
-    navigationOptions: {
-      headerTitle: '登录'
-    }
-  }
-})
-const SignUpStack = StackNavigator({
-  SignUp: {
-    screen: SignUp,
-    navigationOptions: {
-      headerTitle: '注册'
-    }
-  }
-})
-
 const WelcomeStack = StackNavigator({
   Welcome: {
     screen: Welcome,
@@ -211,12 +264,6 @@ export default StackNavigator(
   {
     Tab: {
       screen: TabStack
-    },
-    SignIn: {
-      screen: SignInStack
-    },
-    SignUp: {
-      screen: SignUpStack
     },
     Welcome: {
       screen: WelcomeStack

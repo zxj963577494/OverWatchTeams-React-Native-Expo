@@ -35,7 +35,7 @@ function* postRecruitOrderWorker(payload) {
       yield put(action.fetchSuccess())
       Toast.success('提交成功', 1)
       yield delay(1000)
-      yield put(NavigationActions.navigate({ routeName: 'AccountRecruitOrders'}))
+      yield put(NavigationActions.back())
     } else {
       yield put(action.postRecruitOrderFailed())
       yield put(action.fetchFailed())
@@ -63,7 +63,7 @@ function* putRecruitOrderWorker(payload) {
     yield put(action.fetchSuccess())
     Toast.success('提交成功', 1)
     yield delay(1000)
-    yield put(NavigationActions.navigate({ routeName: 'AccountRecruitOrders'}))
+    yield put(NavigationActions.back())
   } catch (error) {
     yield put(action.putRecruitOrderFailed(error))
     yield put(action.fetchFailed())

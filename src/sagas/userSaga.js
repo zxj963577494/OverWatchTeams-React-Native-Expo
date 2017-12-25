@@ -20,7 +20,7 @@ function* postSignUpWorker(payload) {
     const response = yield call(userService.signUp, payload)
     yield put(action.fetchSuccess())
     yield put(action.postSignUpSuccess(response))
-    yield put(NavigationActions.navigate({ routeName: 'Account'}))
+    yield put(NavigationActions.navigate({ routeName: 'Account' }))
   } catch (error) {
     yield put(action.fetchFailed())
     yield put(action.postSignUpFailed(error))
@@ -33,7 +33,12 @@ function* postLoginWorker(payload) {
     const response = yield call(userService.logIn, payload)
     yield put(action.fetchSuccess())
     yield put(action.postLoginSuccess(response))
-    yield put(NavigationActions.navigate({ routeName: 'Account'}))
+    yield put(
+      NavigationActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName: 'Account' })]
+      })
+    )
   } catch (error) {
     yield put(action.fetchFailed())
     yield put(action.postLoginFailed(error))
@@ -45,7 +50,7 @@ function* postLogoutWorker() {
     yield call(userService.logOut)
     Toast.success('注销成功', 1)
     yield delay(1000)
-    yield put(NavigationActions.navigate({ routeName: 'Home'}))
+    yield put(NavigationActions.navigate({ routeName: 'Home' }))
   } catch (error) {
     yield put(action.fetchFailed())
   }
