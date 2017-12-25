@@ -16,6 +16,7 @@ function* postUploadWorker(payload) {
     yield put(action.postUploadSuccess(response))
     yield put(action.fetchSuccess())
   } catch (error) {
+    console.warn(error);
     yield put(action.postUploadFailed(error))
     yield put(action.fetchFailed())
   }

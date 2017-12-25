@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, View, Text, StyleSheet } from 'react-native'
+import { ScrollView, View, Text, StyleSheet, CameraRoll } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { createForm } from 'rc-form'
@@ -141,12 +141,27 @@ class AccountMime extends Component {
     if (type === 'add') {
       const { postUpload } = this.props
       const name = files[0].filename
-      const localFile = files[0].url
-      postUpload({ name, localFile })
+      postUpload({ name, image: files[0] })
     }
     this.setState({
       files
     })
+  }
+
+  onAddImageClick = () => {
+    CameraRoll.getPhotos({
+      first: 1
+    })
+      .then(data => {
+        const image = data.edges[0].node.image
+        this.setState({
+          files: [{ url: image.uri }]
+        })
+        this.props.postUpload({ name: image.filename, image })
+      })
+      .catch(err => {
+        console.warn(err)
+      })
   }
 
   onSubmit = () => {
@@ -198,7 +213,7 @@ class AccountMime extends Component {
           <ImagePicker
             files={files}
             onChange={this.onImagePickerChange}
-            onImageClick={(index, fs) => console.log(index, fs)}
+            onImageClick={(index, fs) => console.warn(index, fs)}
             selectable={files.length < 1}
           />
         </List>
