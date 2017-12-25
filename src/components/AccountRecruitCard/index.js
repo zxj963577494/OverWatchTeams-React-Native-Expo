@@ -34,6 +34,7 @@ export default class AccountRecruitCard extends PureComponent {
             extra={
               <View>
                 <Button
+                  style={{ height: 30, width: 60 }}
                   onClick={() => {
                     this.props.navigateTo('AccountRecruitOrdersEdit', {
                       objectId: item.objectId
@@ -47,6 +48,7 @@ export default class AccountRecruitCard extends PureComponent {
                 </Button>
                 <WhiteSpace size="xs" />
                 <Button
+                  style={{ height: 30, width: 60 }}
                   onClick={this.onRemove(item.objectId)}
                   type="warning"
                   size="small"
@@ -113,5 +115,5 @@ export default class AccountRecruitCard extends PureComponent {
 AccountRecruitCard.propTypes = {
   navigateTo: PropTypes.func,
   item: PropTypes.object,
-  deleteRecruitOrder: PropTypes.object,
+  deleteRecruitOrder: PropTypes.object
 }

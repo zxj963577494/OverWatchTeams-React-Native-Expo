@@ -34,6 +34,7 @@ export default class AccountWarCard extends PureComponent {
             extra={
               <View>
                 <Button
+                  style={{ height: 30, width: 60 }}
                   onClick={() => {
                     this.props.navigateTo('AccountWarOrdersEdit', {
                       objectId: item.objectId
@@ -47,6 +48,7 @@ export default class AccountWarCard extends PureComponent {
                 </Button>
                 <WhiteSpace size="xs" />
                 <Button
+                  style={{ height: 30, width: 60 }}
                   onClick={this.onRemove(item.objectId)}
                   type="warning"
                   size="small"
@@ -113,5 +115,5 @@ export default class AccountWarCard extends PureComponent {
 AccountWarCard.propTypes = {
   navigateTo: PropTypes.func,
   item: PropTypes.object,
-  deleteWarOrder: PropTypes.object,
+  deleteWarOrder: PropTypes.object
 }

@@ -34,6 +34,7 @@ export default class AccountResumeCard extends PureComponent {
             extra={
               <View>
                 <Button
+                  style={{ height: 30, width: 60 }}
                   onClick={() => {
                     navigateTo('AccountResumeOrdersEdit', {
                       objectId: item.objectId
@@ -47,6 +48,7 @@ export default class AccountResumeCard extends PureComponent {
                 </Button>
                 <WhiteSpace size="xs" />
                 <Button
+                  style={{ height: 30, width: 60 }}
                   onClick={this.onRemove(item.objectId)}
                   type="warning"
                   size="small"

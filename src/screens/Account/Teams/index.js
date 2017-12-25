@@ -81,6 +81,7 @@ class AccountTeams extends Component {
                 }}
                 extra={
                   <Button
+                    style={{ height: 30, width: 60 }}
                     onClick={() => {
                       navigateTo('AccountTeamsEdit', {
                         objectId: item.objectId
@@ -104,12 +105,13 @@ class AccountTeams extends Component {
               <Card.Footer
                 extra={
                   <Button
+                    style={{ height: 30, width: 60 }}
                     onClick={this.onRemoveTeam(item.objectId)}
                     type="warning"
                     size="small"
                     inline
                   >
-                    战队解散
+                    解散
                   </Button>
                 }
               />

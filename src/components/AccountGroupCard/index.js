@@ -34,6 +34,7 @@ export default class AccountGroupCard extends PureComponent {
             extra={
               <View>
                 <Button
+                  style={{ height: 30, width: 60 }}
                   onClick={() => {
                     this.props.navigateTo('AccountGroupOrdersEdit', {
                       objectId: item.objectId
@@ -47,6 +48,7 @@ export default class AccountGroupCard extends PureComponent {
                 </Button>
                 <WhiteSpace size="xs" />
                 <Button
+                  style={{ height: 30, width: 60 }}
                   onClick={this.onRemove(item.objectId)}
                   type="warning"
                   size="small"

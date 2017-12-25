@@ -3,6 +3,8 @@ import { Text, View, TouchableWithoutFeedback } from 'react-native'
 import PropTypes from 'prop-types'
 import { Card, Flex, WhiteSpace } from 'antd-mobile'
 import TimeAgo from 'react-native-timeago'
+
+import { CardStyle } from '../../components/CustomStyles'
 import { cutstr } from '../../utils/utils'
 
 export default class HomeTeamCard extends PureComponent {
@@ -15,7 +17,7 @@ export default class HomeTeamCard extends PureComponent {
         }
       >
         <View>
-          <Card full>
+          <Card styles={CardStyle} full>
             <Card.Header
               title={
                 item.englishFullName ||
