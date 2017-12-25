@@ -47,7 +47,6 @@ function* postRecruitOrderWorker(payload) {
       yield put(NavigationActions.back())
     }
   } catch (error) {
-    console.warn(error)
     yield put(action.postRecruitOrderFailed(error))
     yield put(action.fetchFailed())
     Toast.success('提交失败', 1)

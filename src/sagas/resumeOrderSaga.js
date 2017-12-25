@@ -22,7 +22,6 @@ function* postResumeOrderWorker(payload) {
       currentUser
     )
     const resumeOrderLimit = userinfo.resumeOrderLimit
-    console.warn(resumeOrderLimit)
     if (count < resumeOrderLimit) {
       const response = yield call(
         resumeOrderService.cerateResumeOrder,

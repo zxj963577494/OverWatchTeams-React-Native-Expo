@@ -22,7 +22,6 @@ export function cerateRecruitOrder(payload, team, currentUser) {
   recruitOrders.setACL(acl)
 
   return recruitOrders.save().then(function(result) {
-    console.warn(result)
     return { ...result.toJSON(), team }
   })
 }

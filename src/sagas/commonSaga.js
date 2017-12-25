@@ -12,12 +12,10 @@ import { commonService, userService } from '../services/leanclound'
 function* postUploadWorker(payload) {
   try {
     yield put(action.fetchRequest({ text: '上传中' }))
-    console.warn(payload)
     const response = yield call(commonService.uploadPic, payload)
     yield put(action.postUploadSuccess(response))
     yield put(action.fetchSuccess())
   } catch (error) {
-    console.warn(error)
     yield put(action.postUploadFailed(error))
     yield put(action.fetchFailed())
   }

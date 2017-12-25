@@ -59,7 +59,6 @@ function* putGroupOrderWorker(payload) {
       currentUser
     )
     yield put(action.fetchSuccess())
-    console.warn(response)
     yield put(action.putGroupOrderSuccess(response))
     Toast.success('提交成功', 1)
     yield delay(1000)

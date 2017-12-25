@@ -140,7 +140,6 @@ class AccountMime extends Component {
   onImagePickerChange(files, type, index) {
     if (type === 'add') {
       const { postUpload } = this.props
-      console.warn(files);
       const name = files[0].filename
       const localFile = files[0].url
       postUpload({ name, localFile })
@@ -454,7 +453,7 @@ class AccountMime extends Component {
                   initialValue: isPublic,
                   valuePropName: 'checked'
                 })}
-                onClick={checked => {
+                onChange={checked => {
                   this.onPublicChange(checked)
                 }}
               />
@@ -488,7 +487,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     putUserInfo: payload => {
       dispatch(putUserInfoRequest(payload))
-    },
+    }
   }
 }
 
