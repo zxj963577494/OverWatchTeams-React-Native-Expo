@@ -150,18 +150,6 @@ class Account extends Component {
               <Text>我的战队</Text>
             </List.Item>
           </TouchableWithoutFeedback>
-          {/* <List.Item
-            arrow="horizontal"
-            onClick={() => {
-              if (logined) {
-                navigateTo('/account/inteams')
-              } else {
-                Toast.info('请先登录', 1)
-              }
-            }}
-          >
-            所在战队
-          </List.Item> */}
         </List>
         <List renderHeader={() => '寻找战队'}>
           <TouchableWithoutFeedback

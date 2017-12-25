@@ -17,9 +17,13 @@ function* postResumeOrderWorker(payload) {
     yield put(action.fetchRequest({ text: '提交中' }))
     const currentUser = yield call(userService.getCurrentUserAsync)
     const userinfo = yield call(userService.getUserInfoToJson, currentUser)
-    const count = yield call(resumeOrderService.getResumeOrderCountOfToday)
+    const count = yield call(
+      resumeOrderService.getResumeOrderCountOfToday,
+      currentUser
+    )
     const resumeOrderLimit = userinfo.resumeOrderLimit
-    if (count <= resumeOrderLimit) {
+    console.warn(resumeOrderLimit)
+    if (count < resumeOrderLimit) {
       const response = yield call(
         resumeOrderService.cerateResumeOrder,
         payload,
@@ -30,11 +34,13 @@ function* postResumeOrderWorker(payload) {
       yield put(action.fetchSuccess())
       Toast.success('提交成功', 1)
       yield delay(1000)
-      yield put(NavigationActions.navigate({ routeName: 'AccountResumeOrders'}))
+      yield put(NavigationActions.back())
     } else {
       yield put(action.postResumeOrderFailed())
       yield put(action.fetchFailed())
-      Toast.success(`1天最多发布${resumeOrderLimit}条寻找队友帖`, 1)
+      Toast.success(`1天最多发布${resumeOrderLimit}条寻找战队帖`, 2)
+      yield delay(2000)
+      yield put(NavigationActions.back())
     }
   } catch (error) {
     yield put(action.postResumeOrderFailed(error))
@@ -47,12 +53,16 @@ function* putResumeOrderWorker(payload) {
   try {
     yield put(action.fetchRequest({ text: '提交中' }))
     const currentUser = yield call(userService.getCurrentUserAsync)
-    const response = yield call(resumeOrderService.updateResumeOrder, payload, currentUser)
+    const response = yield call(
+      resumeOrderService.updateResumeOrder,
+      payload,
+      currentUser
+    )
     yield put(action.putResumeOrderSuccess(response))
     yield put(action.fetchSuccess())
     Toast.success('提交成功', 1)
     yield delay(1000)
-    yield put(NavigationActions.navigate({ routeName: 'AccountResumeOrders'}))
+    yield put(NavigationActions.back())
   } catch (error) {
     yield put(action.putResumeOrderFailed(error))
     yield put(action.fetchFailed())

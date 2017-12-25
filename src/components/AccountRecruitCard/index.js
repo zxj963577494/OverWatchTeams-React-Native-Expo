@@ -115,5 +115,5 @@ export default class AccountRecruitCard extends PureComponent {
 AccountRecruitCard.propTypes = {
   navigateTo: PropTypes.func,
   item: PropTypes.object,
-  deleteRecruitOrder: PropTypes.object
+  deleteRecruitOrder: PropTypes.func
 }

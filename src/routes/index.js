@@ -174,6 +174,18 @@ const AccountStack = StackNavigator(
         headerTitle: '寻找战队'
       }
     },
+    AccountResumeOrdersEdit: {
+      screen: AccountResumeOrdersEdit,
+      navigationOptions: {
+        headerTitle: '编辑自荐贴'
+      }
+    },
+    AccountResumeOrdersCreate: {
+      screen: AccountResumeOrdersCreate,
+      navigationOptions: {
+        headerTitle: '创建自荐贴'
+      }
+    },
     AccountWarOrders: {
       screen: AccountWarOrders,
       navigationOptions: {

@@ -19,11 +19,14 @@ import {
 function* postRecruitOrderWorker(payload) {
   try {
     yield put(action.fetchRequest({ text: '提交中' }))
-    const count = yield call(recruitOrderService.getRecruitOrderCountOfToday)
     const currentUser = yield call(userService.getCurrentUserAsync)
     const userinfo = yield call(userService.getUserInfoToJson, currentUser)
+    const count = yield call(
+      recruitOrderService.getRecruitOrderCountOfToday,
+      currentUser
+    )
     const recruitOrderLimit = userinfo.recruitOrderLimit
-    if (count <= recruitOrderLimit) {
+    if (count < recruitOrderLimit) {
       const team = yield call(teamsService.getTeamToJson, payload)
       const response = yield call(
         recruitOrderService.cerateRecruitOrder,
@@ -39,9 +42,12 @@ function* postRecruitOrderWorker(payload) {
     } else {
       yield put(action.postRecruitOrderFailed())
       yield put(action.fetchFailed())
-      Toast.success(`1天最多发布${recruitOrderLimit}条战队招募令`, 1)
+      Toast.success(`1天最多发布${recruitOrderLimit}条战队招募令`, 2)
+      yield delay(2000)
+      yield put(NavigationActions.back())
     }
   } catch (error) {
+    console.warn(error)
     yield put(action.postRecruitOrderFailed(error))
     yield put(action.fetchFailed())
     Toast.success('提交失败', 1)

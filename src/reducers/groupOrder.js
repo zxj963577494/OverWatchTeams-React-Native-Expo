@@ -183,10 +183,7 @@ function groupOrderReducer(state = initialGroupOrderState, action) {
     case PUT_GROUP_ORDER_SUCCESS:
       const data = state.account.groupOrder.list.map(item => {
         if (item.objectId === action.payload.objectId) {
-          return {
-            ...item,
-            ...action.payload
-          }
+          return Object.assign(item, action.payload)
         } else {
           return item
         }

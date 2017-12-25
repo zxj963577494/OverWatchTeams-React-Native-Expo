@@ -18,11 +18,11 @@ export function cerateRecruitOrder(payload, team, currentUser) {
 
   var acl = new AV.ACL()
   acl.setPublicReadAccess(true)
-  acl.setWriteAccess(user, true)
-
+  acl.setWriteAccess(currentUser, true)
   recruitOrders.setACL(acl)
 
   return recruitOrders.save().then(function(result) {
+    console.warn(result)
     return { ...result.toJSON(), team }
   })
 }
@@ -101,7 +101,7 @@ export function getHomeRecruitOrderList(payload) {
   })
 }
 
-export function getRecruitOrderCountOfToday(payload, currentUser) {
+export function getRecruitOrderCountOfToday(currentUser) {
   const query = new AV.Query('RecruitOrders')
   query.equalTo('user', currentUser)
   console.log(getDayEnd())

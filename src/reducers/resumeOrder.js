@@ -97,7 +97,9 @@ function resumeOrderReducer(state = initialResumeOrderState, action) {
             ...state.account.resumeOrder,
             isFetching: true,
             isRefreshing: action.payload.isRefreshing || false,
-            list: action.payload.isRefreshing ? [] : state.account.resumeOrder.list,
+            list: action.payload.isRefreshing
+              ? []
+              : state.account.resumeOrder.list,
             page: action.payload.page ? action.payload.page : 1
           }
         }
@@ -154,7 +156,7 @@ function resumeOrderReducer(state = initialResumeOrderState, action) {
           ...state.home,
           resumeOrder: {
             ...state.home.resumeOrder,
-            list: [...state.home.resumeOrder.list, action.payload],
+            list: [...state.home.resumeOrder.list, action.payload]
           }
         }
       }
@@ -183,10 +185,7 @@ function resumeOrderReducer(state = initialResumeOrderState, action) {
     case PUT_RESUME_ORDER_SUCCESS:
       const data = state.account.resumeOrder.list.map(item => {
         if (item.objectId === action.payload.objectId) {
-          return {
-            ...item,
-            ...action.payload
-          }
+          return Object.assign(item, action.payload)
         } else {
           return item
         }

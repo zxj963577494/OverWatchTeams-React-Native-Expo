@@ -1,10 +1,4 @@
 import {
-  GET_ARTICLES_REQUEST,
-  GET_ARTICLES_SUCCESS,
-  GET_ARTICLES_FAILED,
-  GET_STICKY_ARTICLES_REQUEST,
-  GET_STICKY_ARTICLES_SUCCESS,
-  GET_STICKY_ARTICLES_FAILED,
   POST_LOGIN_REQUEST,
   POST_LOGIN_SUCCESS,
   POST_LOGIN_FAILED,
@@ -20,7 +14,6 @@ import {
   FETCH_REQUEST,
   FETCH_SUCCESS,
   FETCH_FAILED,
-  SET_NAVBAR,
   GET_USERINFO_REQUEST,
   GET_USERINFO_SUCCESS,
   GET_USERINFO_FAILED,
@@ -219,10 +212,6 @@ export const fetchSuccess = function() {
 
 export const fetchFailed = function() {
   return { type: FETCH_FAILED }
-}
-
-export const setNavBar = function(payload) {
-  return { type: SET_NAVBAR, payload }
 }
 
 export const getUserInfoRequest = function() {

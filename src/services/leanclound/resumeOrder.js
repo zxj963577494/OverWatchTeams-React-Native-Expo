@@ -12,6 +12,7 @@ export function cerateResumeOrder(payload, userinfo, currentUser) {
   resumeOrders.set('user', currentUser)
   resumeOrders.set('stick', 0)
   resumeOrders.set('show', 1)
+  
   var acl = new AV.ACL()
   acl.setPublicReadAccess(true)
   acl.setWriteAccess(currentUser, true)
@@ -91,7 +92,7 @@ export function getHomeResumeOrderList(payload) {
   })
 }
 
-export function getResumeOrderCountOfToday(payload, currentUser) {
+export function getResumeOrderCountOfToday(currentUser) {
   const query = new AV.Query('ResumeOrders')
   query.equalTo('user', currentUser)
   query.lessThanOrEqualTo('createdAt', getDayEnd())

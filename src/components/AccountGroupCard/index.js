@@ -111,5 +111,6 @@ export default class AccountGroupCard extends PureComponent {
 
 AccountGroupCard.propTypes = {
   navigateTo: PropTypes.func,
-  item: PropTypes.object
+  item: PropTypes.object,
+  deleteGroupOrder: PropTypes.func
 }

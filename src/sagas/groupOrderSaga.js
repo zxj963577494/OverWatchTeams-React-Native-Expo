@@ -17,17 +17,30 @@ function* postGroupOrderWorker(payload) {
     yield put(action.fetchRequest({ text: '提交中' }))
     const currentUser = yield call(userService.getCurrentUserAsync)
     const userinfo = yield call(userService.getUserInfoToJson, currentUser)
-    const response = yield call(
-      groupOrderService.cerateGroupOrder,
-      payload,
-      userinfo,
+    const count = yield call(
+      groupOrderService.getGroupOrderCountOfToday,
       currentUser
     )
-    yield put(action.fetchSuccess())
-    yield put(action.postGroupOrderSuccess(response))
-    Toast.success('提交成功', 1)
-    yield delay(1000)
-    yield put(NavigationActions.navigate({ routeName: 'AccountGroupOrders' }))
+    const groupOrderLimit = userinfo.groupOrderLimit
+    if (count < groupOrderLimit) {
+      const response = yield call(
+        groupOrderService.cerateGroupOrder,
+        payload,
+        userinfo,
+        currentUser
+      )
+      yield put(action.fetchSuccess())
+      yield put(action.postGroupOrderSuccess(response))
+      Toast.success('提交成功', 1)
+      yield delay(1000)
+      yield put(NavigationActions.back())
+    } else {
+      yield put(action.putGroupOrderFailed())
+      yield put(action.fetchFailed())
+      Toast.success(`1天最多发布${groupOrderLimit}条组队上分帖`, 2)
+      yield delay(2000)
+      yield put(NavigationActions.back())
+    }
   } catch (error) {
     yield put(action.postGroupOrderFailed(error))
     yield put(action.fetchFailed())
@@ -38,22 +51,19 @@ function* postGroupOrderWorker(payload) {
 function* putGroupOrderWorker(payload) {
   try {
     yield put(action.fetchRequest({ text: '提交中' }))
-    const count = yield call(groupOrderService.getGroupOrderCountOfToday, currentUser)
     const currentUser = yield call(userService.getCurrentUserAsync)
     const userinfo = yield call(userService.getUserInfoToJson, currentUser)
-    const groupOrderLimit = userinfo.groupOrderLimit
-    if (count <= groupOrderLimit) {
-      const response = yield call(groupOrderService.updateGroupOrder, payload, currentUser)
-      yield put(action.fetchSuccess())
-      yield put(action.putGroupOrderSuccess(response))
-      Toast.success('提交成功', 1)
-      yield delay(1000)
-      yield put(NavigationActions.navigate({ routeName: 'AccountGroupOrders' }))
-    } else {
-      yield put(action.putGroupOrderFailed())
-      yield put(action.fetchFailed())
-      Toast.success(`1天最多发布${groupOrderLimit}条组队上分帖`, 1)
-    }
+    const response = yield call(
+      groupOrderService.updateGroupOrder,
+      payload,
+      currentUser
+    )
+    yield put(action.fetchSuccess())
+    console.warn(response)
+    yield put(action.putGroupOrderSuccess(response))
+    Toast.success('提交成功', 1)
+    yield delay(1000)
+    yield put(NavigationActions.back())
   } catch (error) {
     yield put(action.putGroupOrderFailed(error))
     yield put(action.fetchFailed())

@@ -19,23 +19,27 @@ import {
 function* postWarOrderWorker(payload) {
   try {
     yield put(action.fetchRequest({ text: '提交中' }))
-    const count = yield call(warOrderService.getWarOrderCountOfToday)
     const currentUser = yield call(userService.getCurrentUserAsync)
     const userinfo = yield call(userService.getUserInfoToJson, currentUser)
+    const count = yield call(
+      warOrderService.getWarOrderCountOfToday,
+      currentUser
+    )
     const warOrderLimit = userinfo.warOrderLimit
-    if (count <= warOrderLimit) {
+    if (count < warOrderLimit) {
       const team = yield call(teamsService.getTeamToJson, payload)
-      const userinfo = yield call(userService.getUserInfoToJson, currentUser)
-      const response = yield call(warOrderService.cerateWarOrder, payload, team)
+      const response = yield call(warOrderService.cerateWarOrder, payload, team, currentUser)
       yield put(action.fetchSuccess())
       yield put(action.postWarOrderSuccess(response))
       Toast.success('提交成功', 1)
       yield delay(1000)
-      yield put(NavigationActions.navigate({ routeName: 'AccountWarOrders' }))
+      yield put(NavigationActions.back())
     } else {
       yield put(action.postWarOrderFailed())
       yield put(action.fetchFailed())
-      Toast.success(`1天最多发布${warOrderLimit}条比赛约战帖`, 1)
+      Toast.success(`1天最多发布${warOrderLimit}条比赛约战帖`, 2)
+      yield delay(2000)
+      yield put(NavigationActions.back())
     }
   } catch (error) {
     yield put(action.postWarOrderFailed(error))
@@ -49,12 +53,17 @@ function* putWarOrderWorker(payload) {
     yield put(action.fetchRequest({ text: '提交中' }))
     const currentUser = yield call(userService.getCurrentUserAsync)
     const team = yield call(teamsService.getTeam, payload)
-    const response = yield call(warOrderService.updateWarOrder, payload, team, currentUser)
+    const response = yield call(
+      warOrderService.updateWarOrder,
+      payload,
+      team,
+      currentUser
+    )
     yield put(action.fetchSuccess())
     yield put(action.putWarOrderSuccess(response))
     Toast.success('提交成功', 1)
     yield delay(1000)
-    yield put(NavigationActions.navigate({ routeName: 'AccountWarOrders' }))
+    yield put(NavigationActions.back())
   } catch (error) {
     yield put(action.putWarOrderFailed(error))
     yield put(action.fetchFailed())
@@ -79,7 +88,11 @@ function* deleteWarOrderWorker(payload) {
 function* getAccountWarOrderListWorker(payload) {
   try {
     const currentUser = yield call(userService.getCurrentUserAsync)
-    const response = yield call(warOrderService.getAccountWarOrderList, payload, currentUser)
+    const response = yield call(
+      warOrderService.getAccountWarOrderList,
+      payload,
+      currentUser
+    )
     yield put(action.getAccountWarOrderListSuccess(response))
   } catch (error) {
     yield put(action.getAccountWarOrderListFailed(error))

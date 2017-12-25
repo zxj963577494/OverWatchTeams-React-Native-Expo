@@ -13,10 +13,10 @@ export function cerateGroupOrder(payload, userinfo, currentUser) {
   groupOrders.set('user', currentUser)
   groupOrders.set('stick', 0)
   groupOrders.set('show', 1)
+  
   var acl = new AV.ACL()
   acl.setPublicReadAccess(true)
   acl.setWriteAccess(currentUser, true)
-
   groupOrders.setACL(acl)
 
   return groupOrders.save().then(function(result) {
@@ -92,7 +92,7 @@ export function getHomeGroupOrderList(payload) {
   })
 }
 
-export function getGroupOrderCountOfToday(payload, currentUser) {
+export function getGroupOrderCountOfToday(currentUser) {
   const query = new AV.Query('GroupOrders')
   query.equalTo('user', currentUser)
   query.lessThanOrEqualTo('createdAt', getDayEnd())

@@ -115,5 +115,5 @@ export default class AccountWarCard extends PureComponent {
 AccountWarCard.propTypes = {
   navigateTo: PropTypes.func,
   item: PropTypes.object,
-  deleteWarOrder: PropTypes.object
+  deleteWarOrder: PropTypes.func
 }

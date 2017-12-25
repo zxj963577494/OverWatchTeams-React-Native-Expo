@@ -185,10 +185,7 @@ function recruitOrderReducer(state = initialRecruitOrderState, action) {
     case PUT_RECRUIT_ORDER_SUCCESS:
       const data = state.account.recruitOrder.list.map(item => {
         if (item.objectId === action.payload.objectId) {
-          return {
-            ...item,
-            ...action.payload
-          }
+          return Object.assign(item, action.payload)
         } else {
           return item
         }

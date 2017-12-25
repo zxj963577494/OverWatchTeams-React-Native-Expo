@@ -97,7 +97,9 @@ function warOrderReducer(state = initialWarOrderState, action) {
             ...state.account.warOrder,
             isFetching: true,
             isRefreshing: action.payload.isRefreshing || false,
-            list: action.payload.isRefreshing ? [] : state.account.warOrder.list,
+            list: action.payload.isRefreshing
+              ? []
+              : state.account.warOrder.list,
             page: action.payload.page ? action.payload.page : 1
           }
         }
@@ -154,7 +156,7 @@ function warOrderReducer(state = initialWarOrderState, action) {
           ...state.home,
           warOrder: {
             ...state.home.warOrder,
-            list: [...state.home.warOrder.list, action.payload],
+            list: [...state.home.warOrder.list, action.payload]
           }
         }
       }
@@ -183,10 +185,7 @@ function warOrderReducer(state = initialWarOrderState, action) {
     case PUT_WAR_ORDER_SUCCESS:
       const data = state.account.warOrder.list.map(item => {
         if (item.objectId === action.payload.objectId) {
-          return {
-            ...item,
-            ...action.payload
-          }
+          return Object.assign(item, action.payload)
         } else {
           return item
         }

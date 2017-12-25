@@ -18,8 +18,7 @@ export function cerateWarOrder(payload, team, currentUser) {
 
   var acl = new AV.ACL()
   acl.setPublicReadAccess(true)
-  acl.setWriteAccess(user, true)
-
+  acl.setWriteAccess(currentUser, true)
   warOrders.setACL(acl)
 
   return warOrders.save().then(function(result) {
@@ -98,7 +97,7 @@ export function getHomeWarOrderList(payload) {
   })
 }
 
-export function getWarOrderCountOfToday(payload, currentUser) {
+export function getWarOrderCountOfToday(currentUser) {
   const query = new AV.Query('WarOrders')
   query.equalTo('user', currentUser)
   query.lessThanOrEqualTo('createdAt', getDayEnd())
