@@ -267,7 +267,7 @@ class Account extends Component {
           <TouchableWithoutFeedback
             onPress={() => {
               Linking.openURL(
-                'https://github.com/zxj963577494/OverWatchTeams'
+                'https://github.com/zxj963577494/OverWatchTeams-React-Native'
               ).catch(err => Toast.fail('无法找到该网址', 1))
             }}
           >
