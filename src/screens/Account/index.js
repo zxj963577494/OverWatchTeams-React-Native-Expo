@@ -22,6 +22,7 @@ import {
 } from 'antd-mobile'
 import _ from 'lodash'
 import {
+  getCurrentUserRequest,
   postLogoutRequest,
   getUserInfoRequest,
   sendPasswordResetRequest
@@ -32,24 +33,20 @@ import { userService } from '../../services/leanclound'
 class Account extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      logined: false
-    }
   }
 
   componentDidMount() {
+    this.props.getCurrentUser()
+  }
+
+  render() {
+    let logined = false
     if (!_.isEmpty(this.props.account.user)) {
-      this.setState({
-        logined: true
-      })
+      logined = true
     }
     if (!this.props.account.userinfo.isLoaded) {
       this.props.getUserInfo()
     }
-  }
-
-  render() {
-    const { logined } = this.state
     const { postLogout, navigateTo, userinfo } = this.props
     return (
       <ScrollView>
@@ -321,6 +318,9 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
+    getCurrentUser: () => {
+      dispatch(getCurrentUserRequest())
+    },
     getUserInfo: () => {
       dispatch(getUserInfoRequest())
     },

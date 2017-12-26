@@ -1,4 +1,7 @@
 import {
+  GET_CURRENTUSER_REQUEST,
+  GET_CURRENTUSER_SUCCESS,
+  GET_CURRENTUSER_FAILED,
   POST_LOGIN_REQUEST,
   POST_LOGIN_SUCCESS,
   POST_LOGIN_FAILED,
@@ -130,28 +133,16 @@ import {
   SEND_PASSWORD_RESET_FAILED,
 } from '../constants/actionTypes'
 
-export const getArticlesRequest = function(payload) {
-  return { type: GET_ARTICLES_REQUEST, payload }
+export const getCurrentUserRequest = function() {
+  return { type: GET_CURRENTUSER_REQUEST }
 }
 
-export const getArticlesSuccess = function(payload) {
-  return { type: GET_ARTICLES_SUCCESS, payload }
+export const getCurrentUserSuccess = function(payload) {
+  return { type: GET_CURRENTUSER_SUCCESS, payload }
 }
 
-export const getArticlesFailed = function(payload) {
-  return { type: GET_ARTICLES_FAILED, payload }
-}
-
-export const getStickyArticlesRequest = function() {
-  return { type: GET_STICKY_ARTICLES_REQUEST }
-}
-
-export const getStickyArticlesSuccess = function(payload) {
-  return { type: GET_STICKY_ARTICLES_SUCCESS, payload }
-}
-
-export const getStickyArticlesFailed = function(payload) {
-  return { type: GET_STICKY_ARTICLES_FAILED, payload }
+export const getCurrentUserFailed = function(payload) {
+  return { type: GET_CURRENTUSER_FAILED, payload }
 }
 
 export const postLoginRequest = function(payload) {

@@ -91,6 +91,12 @@ const HomeStack = StackNavigator(
       navigationOptions: {
         headerTitle: '个人详情'
       }
+    },
+    Welcome: {
+      screen: Welcome,
+      navigationOptions: {
+        header: () => null
+      }
     }
   },
   {
@@ -102,18 +108,6 @@ const HomeStack = StackNavigator(
 
 const AccountStack = StackNavigator(
   {
-    SignIn: {
-      screen: SignIn,
-      navigationOptions: {
-        headerTitle: '登录'
-      }
-    },
-    SignUp: {
-      screen: SignUp,
-      navigationOptions: {
-        headerTitle: '注册'
-      }
-    },
     Account: {
       screen: Account,
       navigationOptions: {
@@ -221,6 +215,18 @@ const AccountStack = StackNavigator(
       navigationOptions: {
         headerTitle: '创建战队'
       }
+    },
+    SignIn: {
+      screen: SignIn,
+      navigationOptions: {
+        headerTitle: '登录'
+      }
+    },
+    SignUp: {
+      screen: SignUp,
+      navigationOptions: {
+        headerTitle: '注册'
+      }
     }
   },
   {
@@ -230,7 +236,7 @@ const AccountStack = StackNavigator(
   }
 )
 
-const TabStack = TabNavigator(
+export default TabNavigator(
   {
     Home: {
       screen: HomeStack,
@@ -256,34 +262,9 @@ const TabStack = TabNavigator(
     }
   },
   {
-    initialRouteName: 'Account',
+    initialRouteName: 'Home',
     animationEnabled: true,
     swipeEnabled: true,
     tabBarPosition: 'bottom'
-  }
-)
-
-const WelcomeStack = StackNavigator({
-  Welcome: {
-    screen: Welcome,
-    navigationOptions: {
-      header: () => null
-    }
-  }
-})
-
-export default StackNavigator(
-  {
-    Tab: {
-      screen: TabStack
-    },
-    Welcome: {
-      screen: WelcomeStack
-    }
-  },
-  {
-    initialRouteName: 'Tab',
-    mode: 'screen',
-    headerMode: 'none'
   }
 )

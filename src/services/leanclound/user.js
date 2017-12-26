@@ -66,13 +66,14 @@ export function requestLoginSmsCode(payload) {
 
 // 当前用户
 export function getCurrentUserAsync() {
+  console.log('service getCurrentUserAsync');
   return AV.User.currentAsync()
 }
 
 // 验证 SessionToken 是否在有效期内
 export function isAuthenticated() {
-  var currentUser = AV.User.currentAsync()
-  return currentUser.isAuthenticated()
+  // var currentUser = AV.User.currentAsync()
+  // return currentUser.isAuthenticated()
 }
 
 // 使用 SessionToken 登录

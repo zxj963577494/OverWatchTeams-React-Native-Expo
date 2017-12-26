@@ -3,6 +3,7 @@ import { delay } from 'redux-saga'
 import { NavigationActions } from 'react-navigation'
 import { Toast } from 'antd-mobile'
 import {
+  GET_CURRENTUSER_REQUEST,
   POST_SIGNUP_REQUEST,
   POST_LOGIN_REQUEST,
   POST_LOGOUT_REQUEST,
@@ -14,13 +15,27 @@ import {
 import * as action from '../actions'
 import { userService } from '../services/leanclound'
 
+function* getCurrentUserWorker() {
+  try {
+    const response = yield call(userService.getCurrentUserAsync)
+    yield put(action.getCurrentUserSuccess(response))
+  } catch (error) {
+    yield put(action.getCurrentUserFailed())
+  }
+}
+
 function* postSignUpWorker(payload) {
   try {
     yield put(action.fetchRequest({ text: '注册中' }))
     const response = yield call(userService.signUp, payload)
     yield put(action.fetchSuccess())
     yield put(action.postSignUpSuccess(response))
-    yield put(NavigationActions.navigate({ routeName: 'Account' }))
+    yield put(
+      NavigationActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName: 'Account' })]
+      })
+    )
   } catch (error) {
     yield put(action.fetchFailed())
     yield put(action.postSignUpFailed(error))
@@ -50,7 +65,12 @@ function* postLogoutWorker() {
     yield call(userService.logOut)
     Toast.success('注销成功', 1)
     yield delay(1000)
-    yield put(NavigationActions.navigate({ routeName: 'Home' }))
+    yield put(
+      NavigationActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName: 'Account' })]
+      })
+    )
   } catch (error) {
     yield put(action.fetchFailed())
   }
@@ -152,6 +172,13 @@ function* watchGetHomeUserDetail() {
   }
 }
 
+function* watchGetCurrentUser() {
+  while (true) {
+    yield take(GET_CURRENTUSER_REQUEST)
+    yield fork(getCurrentUserWorker)
+  }
+}
+
 export {
   watchSignUp,
   watchLogin,
@@ -159,5 +186,6 @@ export {
   watchGetUserInfo,
   watchPutUserInfo,
   watchGetHomeUserList,
-  watchGetHomeUserDetail
+  watchGetHomeUserDetail,
+  watchGetCurrentUser
 }

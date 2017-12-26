@@ -127,7 +127,6 @@ class AccountTeamsCreate extends Component {
   }
 
   onRecruitChange(value) {
-    console.warn(value)
     this.setState({
       isRecruit: value
     })

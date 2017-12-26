@@ -6,7 +6,8 @@ import {
   watchPutUserInfo,
   watchGetUserInfo,
   watchGetHomeUserList,
-  watchGetHomeUserDetail
+  watchGetHomeUserDetail,
+  watchGetCurrentUser
 } from './userSaga'
 import {
   watchPostTeams,
@@ -54,6 +55,7 @@ import {
 
 export default function* rootSaga() {
   yield all([
+    fork(watchGetCurrentUser),
     fork(watchLogin),
     fork(watchLogout),
     fork(watchSignUp),
@@ -91,6 +93,6 @@ export default function* rootSaga() {
     fork(watchPutResumeOrder),
     fork(watchDeleteResumeOrder),
     fork(watchSendEmail),
-    fork(watchSendPasswordReset)
+    fork(watchSendPasswordReset),
   ])
 }

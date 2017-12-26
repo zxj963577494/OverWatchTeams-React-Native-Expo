@@ -1,4 +1,7 @@
 import {
+  GET_CURRENTUSER_REQUEST,
+  GET_CURRENTUSER_SUCCESS,
+  GET_CURRENTUSER_FAILED,
   POST_LOGIN_REQUEST,
   POST_LOGIN_SUCCESS,
   POST_LOGIN_FAILED,
@@ -51,6 +54,15 @@ const initialUserState = {
 
 function userReducer(state = initialUserState, action) {
   switch (action.type) {
+    case GET_CURRENTUSER_REQUEST:
+      return state
+    case GET_CURRENTUSER_SUCCESS:
+      return {
+        ...state,
+        account: { ...state.account, user: action.payload }
+      }
+    case GET_CURRENTUSER_FAILED:
+      return state
     case POST_LOGIN_REQUEST:
       return { ...state, home: { ...state.home, loginError: '' } }
     case POST_LOGIN_SUCCESS:
