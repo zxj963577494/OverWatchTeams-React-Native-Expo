@@ -1,7 +1,7 @@
 import React from 'react'
 import { StatusBar } from 'react-native'
 import { TabNavigator, StackNavigator } from 'react-navigation'
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import { Ionicons } from '@expo/vector-icons'
 
 import Home from '../screens/Home'
 import HomeGroupOrders from '../screens/Home/GroupOrders'
@@ -41,7 +41,7 @@ const HomeStack = StackNavigator(
     Home: {
       screen: Home,
       navigationOptions: {
-        headerTitle: 'OverWatchTeams'
+        headerTitle: 'OW Teams'
       }
     },
     HomeGroupOrders: {

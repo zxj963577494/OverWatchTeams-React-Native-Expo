@@ -12,7 +12,7 @@ import {
   ActivityIndicator,
   Toast
 } from 'antd-mobile'
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import { Ionicons } from '@expo/vector-icons'
 import { NavigationActions } from 'react-navigation'
 import { postLoginRequest } from '../../actions'
 import { MyActivityIndicator } from '../../components'

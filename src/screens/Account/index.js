@@ -63,14 +63,17 @@ class Account extends Component {
           <View>
             <Result
               img={
-                <Image
-                  style={{ width: 60, height: 60, borderRadius: 30 }}
-                  source={
-                    logined
-                      ? { uri: userinfo.avatar }
-                      : { uri: config.BASE_DEFAULT_PIC_URL }
-                  }
-                />
+                logined ? (
+                  <Image
+                    style={{ width: 60, height: 60, borderRadius: 30 }}
+                    source={{ uri: userinfo.avatar }}
+                  />
+                ) : (
+                  <Image
+                    style={{ width: 60, height: 60, borderRadius: 30 }}
+                    source={require('../../../assets/images/avatarLogo.png')}
+                  />
+                )
               }
               title={logined ? userinfo.nickname : '登录/注册'}
               message={logined ? userinfo.introduction : '个人介绍'}

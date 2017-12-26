@@ -26,14 +26,17 @@ class HomeUserInfoDetail extends Component {
         <WhiteSpace />
         <Result
           img={
-            <Image
-              style={{ width: 60, height: 60, borderRadius: 30 }}
-              source={{
-                uri: userinfo.avatar
-                  ? userinfo.avatar
-                  : config.BASE_DEFAULT_PIC_URL
-              }}
-            />
+            userinfo.avatar ? (
+              <Image
+                style={{ width: 60, height: 60, borderRadius: 30 }}
+                source={{ uri: userinfo.avatar }}
+              />
+            ) : (
+              <Image
+                style={{ width: 60, height: 60, borderRadius: 30 }}
+                source={require('../../../../../assets/images/avatarLogo.png')}
+              />
+            )
           }
           title={userinfo.nickname}
           message={userinfo.introduction}
@@ -96,7 +99,7 @@ class HomeUserInfoDetail extends Component {
                   height: 60,
                   margin: 10
                 }}
-                source={{ uri: config.BASE_DEFAULT_PIC_URL }}
+                source={require('../../../../../assets/images/avatarLogo.png')}
               />
             )}
           </View>

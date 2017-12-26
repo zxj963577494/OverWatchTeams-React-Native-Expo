@@ -17,37 +17,36 @@ import {
   getHomeRecruitOrderListRequest
 } from '../../actions'
 import { HomeGroupCard, HomeRecruitCard } from '../../components'
-import config from '../../config'
 
 const data = [
   {
     path: 'HomeResumeOrders',
-    icon: config.BASE_DEFAULT_PIC_URL,
+    icon: require('../../../assets/images/homeIcon.png'),
     text: '寻找战队'
   },
   {
     path: 'HomeRecruitOrders',
-    icon: config.BASE_DEFAULT_PIC_URL,
+    icon: require('../../../assets/images/homeIcon.png'),
     text: '战队招募'
   },
   {
     path: 'HomeWarOrders',
-    icon: config.BASE_DEFAULT_PIC_URL,
+    icon: require('../../../assets/images/homeIcon.png'),
     text: '比赛约战'
   },
   {
     path: 'HomeGroupOrders',
-    icon: config.BASE_DEFAULT_PIC_URL,
+    icon: require('../../../assets/images/homeIcon.png'),
     text: '组队上分'
   },
   {
     path: 'HomeTeams',
-    icon: config.BASE_DEFAULT_PIC_URL,
+    icon: require('../../../assets/images/homeIcon.png'),
     text: '战队列表'
   },
   {
     path: 'HomeUserInfos',
-    icon: config.BASE_DEFAULT_PIC_URL,
+    icon: require('../../../assets/images/homeIcon.png'),
     text: '个人列表'
   }
 ]
@@ -88,7 +87,7 @@ class Home extends Component {
           <Flex direction="column" justify="center">
             <Flex.Item>
               <Image
-                source={{ uri: config.BASE_PIC_HOME_LOGO_URL }}
+                source={require('../../../assets/images/home.png')}
                 style={{ height: 150, width: 300 }}
               />
               <Flex direction="column" justify="center">
@@ -109,9 +108,9 @@ class Home extends Component {
               <TouchableWithoutFeedback
                 onPress={this._onPressButton(dataItem.path)}
               >
-                <View style={{ alignItems: 'center', marginTop: 15}}>
+                <View style={{ alignItems: 'center', marginTop: 15 }}>
                   <Image
-                    source={{ uri: dataItem.icon }}
+                    source={dataItem.icon}
                     style={{ width: 40, height: 40 }}
                   />
                   <Text style={{ marginTop: 8 }}>{dataItem.text}</Text>
