@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, View, Text, StyleSheet, CameraRoll } from 'react-native'
+import { ScrollView, View, Text, StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { createForm } from 'rc-form'
@@ -20,6 +20,7 @@ import {
 } from 'antd-mobile'
 import { postUploadRequest, putUserInfoRequest } from '../../../actions'
 import { TEAMPOSITIONS, RANKS, HEROS } from '../../../constants'
+import { ImagePickerStyle } from '../../../components/CustomStyles'
 
 class AccountMime extends Component {
   constructor(props) {
@@ -192,14 +193,15 @@ class AccountMime extends Component {
     const headphonesErrors = getFieldError('headphones')
     return (
       <ScrollView>
-        <ActivityIndicator toast text={app.text} animating={app.isFetching} />
         <List renderHeader={() => '上传头像'}>
           <ImagePicker
+            styles={ImagePickerStyle}
             files={files}
             onChange={this.onImagePickerChange}
             selectable={files.length < 1}
           />
         </List>
+        <ActivityIndicator toast text={app.text} animating={app.isFetching} />
         <List renderHeader={() => '基本信息'}>
           <InputItem
             {...getFieldProps('nickname', {

@@ -1,4 +1,5 @@
 import { put, fork, take, call } from 'redux-saga/effects'
+import { delay } from 'redux-saga'
 import { Toast } from 'antd-mobile'
 import { NavigationActions } from 'react-navigation'
 import {
@@ -12,11 +13,11 @@ import { commonService, userService } from '../services/leanclound'
 function* postUploadWorker(payload) {
   try {
     yield put(action.fetchRequest({ text: '上传中' }))
+    yield delay(3000)
     const response = yield call(commonService.uploadPic, payload)
     yield put(action.postUploadSuccess(response))
     yield put(action.fetchSuccess())
   } catch (error) {
-    console.warn(error);
     yield put(action.postUploadFailed(error))
     yield put(action.fetchFailed())
   }

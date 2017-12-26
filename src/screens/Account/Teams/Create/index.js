@@ -20,6 +20,7 @@ import {
 
 import { RANKS } from '../../../../constants'
 import { postTeamsRequest, postUploadRequest } from '../../../../actions'
+import { ImagePickerStyle } from '../../../../components/CustomStyles'
 
 class AccountTeamsCreate extends Component {
   constructor(props) {
@@ -126,6 +127,7 @@ class AccountTeamsCreate extends Component {
   }
 
   onRecruitChange(value) {
+    console.warn(value)
     this.setState({
       isRecruit: value
     })
@@ -176,6 +178,7 @@ class AccountTeamsCreate extends Component {
         <ActivityIndicator toast text={app.text} animating={app.isFetching} />
         <List renderHeader={() => '上传Logo'}>
           <ImagePicker
+            styles={ImagePickerStyle}
             files={files}
             onChange={this.onImagePickerChange}
             selectable={files.length < 1}
@@ -440,7 +443,7 @@ class AccountTeamsCreate extends Component {
                   initialValue: isRecruit,
                   valuePropName: 'checked'
                 })}
-                onClick={checked => {
+                onChange={checked => {
                   this.onRecruitChange(checked)
                 }}
               />
@@ -481,7 +484,7 @@ AccountTeamsCreate.propTypes = {
   app: PropTypes.object,
   postUpload: PropTypes.func,
   postTeam: PropTypes.func,
-  form: PropTypes.object,
+  form: PropTypes.object
 }
 
 const styles = StyleSheet.create({

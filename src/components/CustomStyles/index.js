@@ -1,3 +1,4 @@
 import CardStyle from './Card'
+import ImagePickerStyle from './ImagePicker'
 
-export { CardStyle }
+export { CardStyle, ImagePickerStyle }

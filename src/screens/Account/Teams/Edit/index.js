@@ -20,6 +20,7 @@ import {
 import { NavigationActions } from 'react-navigation'
 import { RANKS } from '../../../../constants'
 import { putTeamsRequest, postUploadRequest } from '../../../../actions'
+import { ImagePickerStyle } from '../../../../components/CustomStyles'
 
 class AccountTeamsEdit extends Component {
   constructor(props) {
@@ -61,10 +62,9 @@ class AccountTeamsEdit extends Component {
 
   onImagePickerChange(files, type, index) {
     if (type === 'add') {
-      const { postUpload } = this.props
-      const name = files[0].file.name
-      const base64 = files[0].url
-      postUpload({ name, base64 })
+      const image = { ...files[0], uri: files[0].url }
+      const name = files[0].filename
+      this.props.postUpload({ name, image })
     }
     this.setState({
       files
@@ -163,8 +163,7 @@ class AccountTeamsEdit extends Component {
     })
   }
 
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
   render() {
     const { getFieldProps, getFieldError } = this.props.form
@@ -184,6 +183,7 @@ class AccountTeamsEdit extends Component {
         <ActivityIndicator toast text={app.text} animating={app.isFetching} />
         <List renderHeader={() => '上传Logo'}>
           <ImagePicker
+            styles={ImagePickerStyle}
             files={files}
             onChange={this.onImagePickerChange}
             selectable={files.length < 1}
@@ -455,7 +455,7 @@ class AccountTeamsEdit extends Component {
                   initialValue: isRecruit,
                   valuePropName: 'checked'
                 })}
-                onClick={checked => {
+                onChange={checked => {
                   this.onRecruitChange(checked)
                 }}
               />

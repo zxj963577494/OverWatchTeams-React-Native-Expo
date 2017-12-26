@@ -39,7 +39,6 @@ export function resetPasswordBySmsCode(payload) {
 // 上传图片
 export function uploadPic(payload) {
   const { image, name } = payload
-  console.warn(name)
   const file = new AV.File(name, { blob: image })
   return file.save().then(function(result) {
     return result.toJSON()
