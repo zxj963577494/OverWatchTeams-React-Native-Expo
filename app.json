@@ -2,7 +2,7 @@
   "expo": {
     "name": "OW Teams",
     "description": "OverWatch Teams",
-    "slug": "OverWatchTeams",
+    "slug": "https://expo.io/@linq/OverWatchTeams",
     "privacy": "public",
     "sdkVersion": "24.0.0",
     "platforms": ["ios", "android"],
