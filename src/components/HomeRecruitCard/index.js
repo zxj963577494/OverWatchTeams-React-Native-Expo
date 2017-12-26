@@ -77,6 +77,7 @@ export default class HomeRecruitCard extends PureComponent {
               style={{ paddingBottom: 5 }}
             />
           </Card>
+          <WhiteSpace size="xs" />
         </View>
       </TouchableWithoutFeedback>
     )

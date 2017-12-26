@@ -74,6 +74,7 @@ export default class HomeGroupCard extends PureComponent {
               style={{ paddingBottom: 5 }}
             />
           </Card>
+          <WhiteSpace size="xs" />
         </View>
       </TouchableWithoutFeedback>
     )
