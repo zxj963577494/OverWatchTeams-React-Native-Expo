@@ -11,23 +11,9 @@ import {
   WingBlank,
   ActivityIndicator
 } from 'antd-mobile'
-import { Ionicons } from '@expo/vector-icons'
 import { postSignUpRequest } from '../../actions'
 
 class SignUp extends Component {
-  static navigationOptions = ({ navigation, screenProps }) => ({
-    headerLeft: (
-      <Text
-        onPress={() => {
-          navigation.navigate('SignIn')
-        }}
-        style={{ marginLeft: 5, width: 30, textAlign: 'center' }}
-      >
-        <Ionicons name="ios-arrow-back" size={24} />
-      </Text>
-    )
-  })
-
   constructor(props) {
     super(props)
     this.state = {

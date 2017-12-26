@@ -98,11 +98,6 @@ const HomeStack = StackNavigator(
         header: () => null
       }
     }
-  },
-  {
-    headerBackTitle: null,
-    headerTruncatedBackTitle: null,
-    headerMode: 'screen'
   }
 )
 
@@ -228,11 +223,6 @@ const AccountStack = StackNavigator(
         headerTitle: '注册'
       }
     }
-  },
-  {
-    headerBackTitle: null,
-    headerTruncatedBackTitle: null,
-    headerMode: 'screen'
   }
 )
 
