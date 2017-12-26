@@ -16,7 +16,11 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.zhengxujiang.overwatchteams"
+    },
+    "android": {
+      "package": "com.zhengxujiang.overwatchteams"
     }
   }
 }
