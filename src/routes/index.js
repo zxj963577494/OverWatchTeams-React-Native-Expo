@@ -1,6 +1,7 @@
 import React from 'react'
 import { StatusBar, StyleSheet, Text, Image } from 'react-native'
 import { TabNavigator, StackNavigator } from 'react-navigation'
+import { Ionicons } from '@expo/vector-icons'
 
 import Home from '../screens/Home'
 import HomeGroupOrders from '../screens/Home/GroupOrders'
@@ -225,39 +226,29 @@ const Tab = TabNavigator(
   {
     Home: {
       screen: HomeStack,
-      tabBarLabel: '主页',
-      tabBarIcon: ({ tintColor, focused }) => (
-        <View
-          style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
-        >
-          <Image
-            style={[styles.icon, { tintColor: tintColor }]}
-            source={
-              focused
-                ? require('../../assets/images/tar_home_on.png')
-                : require('../../assets/images/tar_home.png')
-            }
+      navigationOptions: ({ navigation }) => ({
+        tabBarLabel: '主页',
+        tabBarIcon: ({ tintColor, focused }) => (
+          <Ionicons
+            name={focused ? 'ios-home' : 'ios-home-outline'}
+            size={26}
+            style={{ color: tintColor }}
           />
-        </View>
-      )
+        )
+      })
     },
     Account: {
       screen: AccountStack,
-      tabBarLabel: '我的',
-      tabBarIcon: ({ tintColor, focused }) => (
-        <View
-          style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
-        >
-          <Image
-            style={[styles.icon, { tintColor: tintColor }]}
-            source={
-              focused
-                ? require('../../assets/images/tar_me_on.png')
-                : require('../../assets/images/tar_me.png')
-            }
+      navigationOptions: ({ navigation }) => ({
+        tabBarLabel: '我的',
+        tabBarIcon: ({ tintColor, focused }) => (
+          <Ionicons
+            name={focused ? 'ios-contact' : 'ios-contact-outline'}
+            size={26}
+            style={{ color: tintColor }}
           />
-        </View>
-      )
+        )
+      })
     }
   },
   {
@@ -267,12 +258,5 @@ const Tab = TabNavigator(
     tabBarPosition: 'bottom'
   }
 )
-
-const styles = StyleSheet.create({
-  icon: {
-    width: 26,
-    height: 26
-  }
-})
 
 export default Tab

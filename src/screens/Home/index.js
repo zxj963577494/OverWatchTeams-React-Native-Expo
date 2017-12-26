@@ -5,8 +5,7 @@ import {
   Text,
   StyleSheet,
   TouchableWithoutFeedback,
-  ScrollView,
-  Alert
+  ScrollView
 } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
