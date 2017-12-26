@@ -21,32 +21,32 @@ import { HomeGroupCard, HomeRecruitCard } from '../../components'
 const data = [
   {
     path: 'HomeResumeOrders',
-    icon: require('../../../assets/images/homeIcon.png'),
+    icon: require('../../../assets/images/home_icon.png'),
     text: '寻找战队'
   },
   {
     path: 'HomeRecruitOrders',
-    icon: require('../../../assets/images/homeIcon.png'),
+    icon: require('../../../assets/images/home_icon.png'),
     text: '战队招募'
   },
   {
     path: 'HomeWarOrders',
-    icon: require('../../../assets/images/homeIcon.png'),
+    icon: require('../../../assets/images/home_icon.png'),
     text: '比赛约战'
   },
   {
     path: 'HomeGroupOrders',
-    icon: require('../../../assets/images/homeIcon.png'),
+    icon: require('../../../assets/images/home_icon.png'),
     text: '组队上分'
   },
   {
     path: 'HomeTeams',
-    icon: require('../../../assets/images/homeIcon.png'),
+    icon: require('../../../assets/images/home_icon.png'),
     text: '战队列表'
   },
   {
     path: 'HomeUserInfos',
-    icon: require('../../../assets/images/homeIcon.png'),
+    icon: require('../../../assets/images/home_icon.png'),
     text: '个人列表'
   }
 ]

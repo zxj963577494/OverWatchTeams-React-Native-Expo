@@ -71,7 +71,7 @@ class Account extends Component {
                 ) : (
                   <Image
                     style={{ width: 60, height: 60, borderRadius: 30 }}
-                    source={require('../../../assets/images/avatarLogo.png')}
+                    source={require('../../../assets/images/avatar_logo.png')}
                   />
                 )
               }

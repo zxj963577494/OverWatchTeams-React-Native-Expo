@@ -28,8 +28,8 @@ class App extends Component {
   async _loadAssetsAsync() {
     const imageAssets = cacheImages([
       require('../assets/images/home.png'),
-      require('../assets/images/homeIcon.png'),
-      require('../assets/images/avatarLogo.png')
+      require('../assets/images/home_icon.png'),
+      require('../assets/images/avatar_logo.png')
     ])
     const fontAssets = cacheFonts([Ionicons.font])
     await Promise.all([...imageAssets, ...fontAssets])

@@ -104,7 +104,7 @@ ansi@^0.3.0, ansi@~0.3.1:
   version "0.3.1"
   resolved "http://registry.npm.taobao.org/ansi/download/ansi-0.3.1.tgz#0c42d4fb17160d5a9af1e484bace1c66922c1b21"
 
-antd-mobile@^2.1.1:
+antd-mobile@^2.1.2:
   version "2.1.2"
   resolved "http://registry.npm.taobao.org/antd-mobile/download/antd-mobile-2.1.2.tgz#a974a3328e67f5fb0c4532df21f7150b622d0b5d"
   dependencies:
