@@ -139,29 +139,13 @@ class AccountMime extends Component {
 
   onImagePickerChange(files, type, index) {
     if (type === 'add') {
-      const { postUpload } = this.props
+      const image = { ...files[0], uri: files[0].url }
       const name = files[0].filename
-      postUpload({ name, image: files[0] })
+      this.props.postUpload({ name, image })
     }
     this.setState({
       files
     })
-  }
-
-  onAddImageClick = () => {
-    CameraRoll.getPhotos({
-      first: 1
-    })
-      .then(data => {
-        const image = data.edges[0].node.image
-        this.setState({
-          files: [{ url: image.uri }]
-        })
-        this.props.postUpload({ name: image.filename, image })
-      })
-      .catch(err => {
-        console.warn(err)
-      })
   }
 
   onSubmit = () => {
@@ -213,7 +197,6 @@ class AccountMime extends Component {
           <ImagePicker
             files={files}
             onChange={this.onImagePickerChange}
-            onImageClick={(index, fs) => console.warn(index, fs)}
             selectable={files.length < 1}
           />
         </List>

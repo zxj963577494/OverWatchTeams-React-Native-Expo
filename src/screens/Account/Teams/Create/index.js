@@ -56,10 +56,9 @@ class AccountTeamsCreate extends Component {
 
   onImagePickerChange(files, type, index) {
     if (type === 'add') {
-      const { postUpload } = this.props
-      const name = files[0].file.name
-      const base64 = files[0].url
-      postUpload({ name, base64 })
+      const image = { ...files[0], uri: files[0].url }
+      const name = files[0].filename
+      this.props.postUpload({ name, image })
     }
     this.setState({
       files
