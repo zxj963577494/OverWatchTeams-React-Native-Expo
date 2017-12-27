@@ -1,6 +1,10 @@
 import React from 'react'
-import { StatusBar, StyleSheet, Text, Image } from 'react-native'
-import { TabNavigator, StackNavigator } from 'react-navigation'
+import { StatusBar, StyleSheet, Text, Image, Platform, TouchableWithoutFeedback } from 'react-native'
+import {
+  TabNavigator,
+  StackNavigator,
+  NavigationActions
+} from 'react-navigation'
 import { Ionicons } from '@expo/vector-icons'
 
 import Home from '../screens/Home'
@@ -36,59 +40,173 @@ import SignIn from '../screens/SignIn'
 import SignUp from '../screens/SignUp'
 import Welcome from '../screens/Welcome'
 
+import { STATUS_BAR_HEIGHT } from '../constants'
+
 const HomeStack = StackNavigator({
   Home: {
     screen: Home,
     navigationOptions: {
-      headerTitle: 'OW Teams'
+      headerTitle: 'OW Teams',
+      headerStyle: {
+        height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
+        backgroundColor: '#2196F3'
+      },
+      headerTitleStyle: {
+        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+        color: 'white'
+      }
     }
   },
   HomeGroupOrders: {
     screen: HomeGroupOrders,
     navigationOptions: {
-      headerTitle: '组队上分'
+      headerTitle: '组队上分',
+      headerTintColor: 'white',
+      headerStyle: {
+        height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
+        backgroundColor: '#2196F3'
+      },
+      headerBackTitleStyle: {
+        color: 'white'
+      },
+      headerTitleStyle: {
+        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+        color: 'white'
+      },
+      // headerLeft: (
+      //   <TouchableWithoutFeedback onPress={() => NavigationActions.back()}>
+      //     <Image
+      //       style={{ width: 28, height: 28, marginTop: 20, marginLeft: 10 }}
+      //       source={require('../../assets/images/android_arrow_back.png')}
+      //     />
+      //   </TouchableWithoutFeedback>
+      // )
     }
   },
   HomeRecruitOrders: {
     screen: HomeRecruitOrders,
     navigationOptions: {
-      headerTitle: '战队招募'
+      headerTitle: '战队招募',
+      headerTintColor: 'white',
+      headerStyle: {
+        height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
+        backgroundColor: '#2196F3'
+      },
+      headerBackTitleStyle: {
+        color: 'white'
+      },
+      headerTitleStyle: {
+        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+        color: 'white'
+      }
     }
   },
   HomeResumeOrders: {
     screen: HomeResumeOrders,
     navigationOptions: {
-      headerTitle: '寻找战队'
+      headerTitle: '寻找战队',
+      headerTintColor: 'white',
+      headerStyle: {
+        height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
+        backgroundColor: '#2196F3'
+      },
+      headerBackTitleStyle: {
+        color: 'white'
+      },
+      headerTitleStyle: {
+        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+        color: 'white'
+      }
     }
   },
   HomeWarOrders: {
     screen: HomeWarOrders,
     navigationOptions: {
-      headerTitle: '比赛约战'
+      headerTitle: '比赛约战',
+      headerTintColor: 'white',
+      headerStyle: {
+        height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
+        backgroundColor: '#2196F3'
+      },
+      headerBackTitleStyle: {
+        color: 'white'
+      },
+      headerTitleStyle: {
+        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+        color: 'white'
+      }
     }
   },
   HomeTeams: {
     screen: HomeTeams,
     navigationOptions: {
-      headerTitle: '战队列表'
+      headerTitle: '战队列表',
+      headerTintColor: 'white',
+      headerStyle: {
+        height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
+        backgroundColor: '#2196F3'
+      },
+      headerBackTitleStyle: {
+        color: 'white'
+      },
+      headerTitleStyle: {
+        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+        color: 'white'
+      }
     }
   },
   HomeUserInfos: {
     screen: HomeUserInfos,
     navigationOptions: {
-      headerTitle: '个人列表'
+      headerTitle: '个人列表',
+      headerTintColor: 'white',
+      headerStyle: {
+        height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
+        backgroundColor: '#2196F3'
+      },
+      headerBackTitleStyle: {
+        color: 'white'
+      },
+      headerTitleStyle: {
+        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+        color: 'white'
+      }
     }
   },
   HomeTeamDetail: {
     screen: HomeTeamDetail,
     navigationOptions: {
-      headerTitle: '战队详情'
+      headerTitle: '战队详情',
+      headerTintColor: 'white',
+      headerStyle: {
+        height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
+        backgroundColor: '#2196F3'
+      },
+      headerBackTitleStyle: {
+        color: 'white'
+      },
+      headerTitleStyle: {
+        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+        color: 'white'
+      }
     }
   },
   HomeUserInfoDetail: {
     screen: HomeUserInfoDetail,
     navigationOptions: {
-      headerTitle: '个人详情'
+      headerTitle: '个人详情',
+      headerTintColor: 'white',
+      headerStyle: {
+        height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
+        backgroundColor: '#2196F3'
+      },
+      headerBackTitleStyle: {
+        color: 'white'
+      },
+      headerTitleStyle: {
+        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+        color: 'white'
+      }
     }
   },
   Welcome: {
@@ -103,121 +221,361 @@ const AccountStack = StackNavigator({
   Account: {
     screen: Account,
     navigationOptions: {
-      headerTitle: '个人中心'
+      headerTitle: '个人中心',
+      headerTintColor: 'white',
+      headerStyle: {
+        height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
+        backgroundColor: '#2196F3'
+      },
+      headerBackTitleStyle: {
+        color: 'white'
+      },
+      headerTitleStyle: {
+        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+        color: 'white'
+      }
     }
   },
   AccountMime: {
     screen: AccountMime,
     navigationOptions: {
-      headerTitle: '基本信息'
+      headerTitle: '基本信息',
+      headerTintColor: 'white',
+      headerStyle: {
+        height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
+        backgroundColor: '#2196F3'
+      },
+      headerBackTitleStyle: {
+        color: 'white'
+      },
+      headerTitleStyle: {
+        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+        color: 'white'
+      }
     }
   },
   AccountEmaiVerify: {
     screen: AccountEmaiVerify,
     navigationOptions: {
-      headerTitle: '邮箱验证'
+      headerTitle: '邮箱验证',
+      headerTintColor: 'white',
+      headerStyle: {
+        height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
+        backgroundColor: '#2196F3'
+      },
+      headerBackTitleStyle: {
+        color: 'white'
+      },
+      headerTitleStyle: {
+        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+        color: 'white'
+      }
     }
   },
   AccountGroupOrders: {
     screen: AccountGroupOrders,
     navigationOptions: {
-      headerTitle: '组队上分'
+      headerTitle: '组队上分',
+      headerTintColor: 'white',
+      headerStyle: {
+        height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
+        backgroundColor: '#2196F3'
+      },
+      headerBackTitleStyle: {
+        color: 'white'
+      },
+      headerTitleStyle: {
+        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+        color: 'white'
+      }
     }
   },
   AccountGroupOrdersEdit: {
     screen: AccountGroupOrdersEdit,
     navigationOptions: {
-      headerTitle: '编辑组队帖'
+      headerTitle: '编辑组队帖',
+      headerTintColor: 'white',
+      headerStyle: {
+        height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
+        backgroundColor: '#2196F3'
+      },
+      headerBackTitleStyle: {
+        color: 'white'
+      },
+      headerTitleStyle: {
+        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+        color: 'white'
+      }
     }
   },
   AccountGroupOrdersCreate: {
     screen: AccountGroupOrdersCreate,
     navigationOptions: {
-      headerTitle: '新建组队帖'
+      headerTitle: '新建组队帖',
+      headerTintColor: 'white',
+      headerStyle: {
+        height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
+        backgroundColor: '#2196F3'
+      },
+      headerBackTitleStyle: {
+        color: 'white'
+      },
+      headerTitleStyle: {
+        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+        color: 'white'
+      }
     }
   },
   AccountRecruitOrders: {
     screen: AccountRecruitOrders,
     navigationOptions: {
-      headerTitle: '战队招募'
+      headerTitle: '战队招募',
+      headerTintColor: 'white',
+      headerStyle: {
+        height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
+        backgroundColor: '#2196F3'
+      },
+      headerBackTitleStyle: {
+        color: 'white'
+      },
+      headerTitleStyle: {
+        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+        color: 'white'
+      }
     }
   },
   AccountRecruitOrdersEdit: {
     screen: AccountRecruitOrdersEdit,
+    headerTintColor: 'white',
     navigationOptions: {
-      headerTitle: '编辑招募令'
+      headerTitle: '编辑招募令',
+      headerStyle: {
+        height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
+        backgroundColor: '#2196F3'
+      },
+      headerBackTitleStyle: {
+        color: 'white'
+      },
+      headerTitleStyle: {
+        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+        color: 'white'
+      }
     }
   },
   AccountRecruitOrdersCreate: {
     screen: AccountRecruitOrdersCreate,
     navigationOptions: {
-      headerTitle: '新建招募令'
+      headerTitle: '新建招募令',
+      headerTintColor: 'white',
+      headerStyle: {
+        height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
+        backgroundColor: '#2196F3'
+      },
+      headerBackTitleStyle: {
+        color: 'white'
+      },
+      headerTitleStyle: {
+        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+        color: 'white'
+      }
     }
   },
   AccountResumeOrders: {
     screen: AccountResumeOrders,
     navigationOptions: {
-      headerTitle: '寻找战队'
+      headerTitle: '寻找战队',
+      headerTintColor: 'white',
+      headerStyle: {
+        height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
+        backgroundColor: '#2196F3'
+      },
+      headerBackTitleStyle: {
+        color: 'white'
+      },
+      headerTitleStyle: {
+        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+        color: 'white'
+      }
     }
   },
   AccountResumeOrdersEdit: {
     screen: AccountResumeOrdersEdit,
     navigationOptions: {
-      headerTitle: '编辑自荐贴'
+      headerTitle: '编辑自荐贴',
+      headerTintColor: 'white',
+      headerStyle: {
+        height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
+        backgroundColor: '#2196F3'
+      },
+      headerBackTitleStyle: {
+        color: 'white'
+      },
+      headerTitleStyle: {
+        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+        color: 'white'
+      }
     }
   },
   AccountResumeOrdersCreate: {
     screen: AccountResumeOrdersCreate,
     navigationOptions: {
-      headerTitle: '创建自荐贴'
+      headerTitle: '创建自荐贴',
+      headerTintColor: 'white',
+      headerStyle: {
+        height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
+        backgroundColor: '#2196F3'
+      },
+      headerBackTitleStyle: {
+        color: 'white'
+      },
+      headerTitleStyle: {
+        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+        color: 'white'
+      }
     }
   },
   AccountWarOrders: {
     screen: AccountWarOrders,
     navigationOptions: {
-      headerTitle: '比赛约战'
+      headerTitle: '比赛约战',
+      headerTintColor: 'white',
+      headerStyle: {
+        height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
+        backgroundColor: '#2196F3'
+      },
+      headerBackTitleStyle: {
+        color: 'white'
+      },
+      headerTitleStyle: {
+        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+        color: 'white'
+      }
     }
   },
   AccountWarOrdersEdit: {
     screen: AccountWarOrdersEdit,
     navigationOptions: {
-      headerTitle: '创建约战贴'
+      headerTitle: '创建约战贴',
+      headerTintColor: 'white',
+      headerStyle: {
+        height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
+        backgroundColor: '#2196F3'
+      },
+      headerBackTitleStyle: {
+        color: 'white'
+      },
+      headerTitleStyle: {
+        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+        color: 'white'
+      }
     }
   },
   AccountWarOrdersCreate: {
     screen: AccountWarOrdersCreate,
     navigationOptions: {
-      headerTitle: '编辑约战贴'
+      headerTitle: '编辑约战贴',
+      headerTintColor: 'white',
+      headerStyle: {
+        height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
+        backgroundColor: '#2196F3'
+      },
+      headerBackTitleStyle: {
+        color: 'white'
+      },
+      headerTitleStyle: {
+        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+        color: 'white'
+      }
     }
   },
   AccountTeams: {
     screen: AccountTeams,
     navigationOptions: {
-      headerTitle: '战队列表'
+      headerTitle: '战队列表',
+      headerTintColor: 'white',
+      headerStyle: {
+        height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
+        backgroundColor: '#2196F3'
+      },
+      headerBackTitleStyle: {
+        color: 'white'
+      },
+      headerTitleStyle: {
+        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+        color: 'white'
+      }
     }
   },
   AccountTeamsEdit: {
     screen: AccountTeamsEdit,
     navigationOptions: {
-      headerTitle: '战队编辑'
+      headerTitle: '战队编辑',
+      headerTintColor: 'white',
+      headerStyle: {
+        height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
+        backgroundColor: '#2196F3'
+      },
+      headerBackTitleStyle: {
+        color: 'white'
+      },
+      headerTitleStyle: {
+        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+        color: 'white'
+      }
     }
   },
   AccountTeamsCreate: {
     screen: AccountTeamsCreate,
     navigationOptions: {
-      headerTitle: '创建战队'
+      headerTitle: '创建战队',
+      headerTintColor: 'white',
+      headerStyle: {
+        height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
+        backgroundColor: '#2196F3'
+      },
+      headerBackTitleStyle: {
+        color: 'white'
+      },
+      headerTitleStyle: {
+        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+        color: 'white'
+      }
     }
   },
   SignIn: {
     screen: SignIn,
     navigationOptions: {
-      headerTitle: '登录'
+      headerTitle: '登录',
+      headerTintColor: 'white',
+      headerStyle: {
+        height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
+        backgroundColor: '#2196F3'
+      },
+      headerBackTitleStyle: {
+        color: 'white'
+      },
+      headerTitleStyle: {
+        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+        color: 'white'
+      }
     }
   },
   SignUp: {
     screen: SignUp,
     navigationOptions: {
-      headerTitle: '注册'
+      headerTitle: '注册',
+      headerTintColor: 'white',
+      headerStyle: {
+        height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
+        backgroundColor: '#2196F3'
+      },
+      headerBackTitleStyle: {
+        color: 'white'
+      },
+      headerTitleStyle: {
+        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
+        color: 'white'
+      }
     }
   }
 })

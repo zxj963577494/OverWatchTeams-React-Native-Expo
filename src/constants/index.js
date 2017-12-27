@@ -1,3 +1,7 @@
+import { Constants } from 'expo';
+
+export const STATUS_BAR_HEIGHT = Constants.statusBarHeight
+
 export const TEAMPOSITIONS = [
   {
     value: 'DPS',
@@ -273,3 +277,4 @@ export const HEROS = [
     checked: false
   }
 ]
+

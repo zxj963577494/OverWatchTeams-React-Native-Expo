@@ -21,13 +21,11 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.zhengxujiang.overwatchteams",
-      "buildNumber": "1.0.0",
-      "appStoreUrl": ""
+      "buildNumber": "1.0.0"
     },
     "android": {
       "package": "com.zhengxujiang.overwatchteams",
-      "playStoreUrl": "",
-      "versionCode": "1"
+      "versionCode": 1
     }
   }
 }

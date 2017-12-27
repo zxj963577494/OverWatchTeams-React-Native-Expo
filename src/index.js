@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { Provider, connect } from 'react-redux'
-import { addNavigationHelpers } from 'react-navigation'
+import { BackHandler, Platform, StatusBar, View } from 'react-native'
+import { addNavigationHelpers, NavigationActions } from 'react-navigation'
 import { AppLoading, Asset, Font } from 'expo'
 import { Ionicons } from '@expo/vector-icons'
+import { Toast } from 'antd-mobile'
 import Navigator from './routes'
 import configureStore from './store'
 import rootSaga from './sagas'
@@ -35,6 +37,32 @@ class App extends Component {
     await Promise.all([...imageAssets, ...fontAssets])
   }
 
+  onBackPress = () => {
+    const { dispatch, nav } = this.props
+    if (nav.routes[0].index === 0) {
+      if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
+        BackHandler.exitApp()
+        return true
+      }
+      this.lastBackPressed = Date.now()
+      Toast.show('再按一次退出应用')
+      return true
+    } else {
+      dispatch(NavigationActions.back())
+      return true
+    }
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.onBackPress)
+  }
+
+  componentDidMount() {
+    if (Platform.OS === 'android') {
+      BackHandler.addEventListener('hardwareBackPress', this.onBackPress)
+    }
+  }
+
   render() {
     const { dispatch, nav } = this.props
     if (!this.state.isReady) {
@@ -47,12 +75,15 @@ class App extends Component {
       )
     }
     return (
-      <Navigator
-        navigation={addNavigationHelpers({
-          dispatch,
-          state: nav
-        })}
-      />
+      <View style={{ flex: 1 }}>
+        <StatusBar barStyle="light-content" />
+        <Navigator
+          navigation={addNavigationHelpers({
+            dispatch,
+            state: nav
+          })}
+        />
+      </View>
     )
   }
 }

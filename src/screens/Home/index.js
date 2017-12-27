@@ -5,7 +5,8 @@ import {
   Text,
   StyleSheet,
   TouchableWithoutFeedback,
-  ScrollView
+  ScrollView,
+  StatusBar
 } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -76,6 +77,7 @@ class Home extends Component {
     const { navigateTo, groupOrder, recruitOrder } = this.props
     return (
       <ScrollView>
+        <StatusBar barStyle="light-content" />
         <ActivityIndicator
           toast
           text={groupOrder.fetchingText}

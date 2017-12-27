@@ -29,7 +29,7 @@ class HomeGroupOrders extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    groupOrder: state.groupOrder.home.groupOrder,
+    groupOrder: state.groupOrder.home.groupOrder
   }
 }
 
