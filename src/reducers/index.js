@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux'
 import { userReducer } from './user'
 import { appReducer } from './app'
 import { navReducer } from './nav'
@@ -8,7 +7,7 @@ import { groupOrderReducer } from './groupOrder'
 import { warOrderReducer } from './warOrder'
 import { resumeOrderReducer } from './resumeOrder'
 
-export default combineReducers({
+export default {
   app: appReducer,
   nav: navReducer,
   user: userReducer,
@@ -17,4 +16,4 @@ export default combineReducers({
   groupOrder: groupOrderReducer,
   warOrder: warOrderReducer,
   resumeOrder: resumeOrderReducer
-})
+}

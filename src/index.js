@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Provider, connect } from 'react-redux'
+import { PersistGate } from 'redux-persist/es/integration/react'
 import { BackHandler, Platform, StatusBar, View } from 'react-native'
 import { addNavigationHelpers, NavigationActions } from 'react-navigation'
 import { AppLoading, Asset, Font } from 'expo'
@@ -97,11 +98,15 @@ const mapStateToProps = state => ({
 const AppWithNavigator = connect(mapStateToProps)(App)
 
 export default () => {
-  const store = configureStore({})
+  const { persistor, store } = configureStore({})
+
   store.runSaga(rootSaga)
+
   return (
     <Provider store={store}>
-      <AppWithNavigator />
+      <PersistGate persistor={persistor}>
+        <AppWithNavigator />
+      </PersistGate>
     </Provider>
   )
 }
