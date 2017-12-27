@@ -10,6 +10,9 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "githubUrl": "https://github.com/zxj963577494/OverWatchTeams-React-Native",
+    "notification": {
+      "icon": "./assets/notification _icon.png"
+    },
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -17,10 +20,14 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.zhengxujiang.overwatchteams"
+      "bundleIdentifier": "com.zhengxujiang.overwatchteams",
+      "buildNumber": "1.0.0",
+      "appStoreUrl": ""
     },
     "android": {
-      "package": "com.zhengxujiang.overwatchteams"
+      "package": "com.zhengxujiang.overwatchteams",
+      "playStoreUrl": "",
+      "versionCode": "1"
     }
   }
 }
