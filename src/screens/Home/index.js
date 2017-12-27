@@ -77,7 +77,6 @@ class Home extends Component {
     const { navigateTo, groupOrder, recruitOrder } = this.props
     return (
       <ScrollView>
-        <StatusBar barStyle="light-content" />
         <ActivityIndicator
           toast
           text={groupOrder.fetchingText}

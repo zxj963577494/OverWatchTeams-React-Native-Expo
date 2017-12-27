@@ -16,20 +16,18 @@ class HomeResumeOrders extends Component {
   render() {
     const { resumeOrder, navigateTo, getHomeResumeOrderList } = this.props
     return (
-      <View>
-        <HomeResumeOrderList
-          resumeOrder={resumeOrder}
-          navigateTo={navigateTo}
-          getHomeResumeOrderList={getHomeResumeOrderList}
-        />
-      </View>
+      <HomeResumeOrderList
+        resumeOrder={resumeOrder}
+        navigateTo={navigateTo}
+        getHomeResumeOrderList={getHomeResumeOrderList}
+      />
     )
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    resumeOrder: state.resumeOrder.home.resumeOrder,
+    resumeOrder: state.resumeOrder.home.resumeOrder
   }
 }
 

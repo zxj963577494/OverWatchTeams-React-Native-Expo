@@ -69,7 +69,9 @@ class App extends Component {
       return (
         <AppLoading
           startAsync={this._loadAssetsAsync}
-          onFinish={() => this.setState({ isReady: true })}
+          onFinish={() => {
+            this.setState({ isReady: true })
+          }}
           onError={console.warn}
         />
       )
