@@ -20,8 +20,8 @@ class SignIn extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: 'zxjzxj',
-      password: '654321'
+      username: '',
+      password: ''
     }
     this.onUserNameChange = this.onUserNameChange.bind(this)
     this.onPasswordChange = this.onPasswordChange.bind(this)
