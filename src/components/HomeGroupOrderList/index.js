@@ -64,7 +64,7 @@ export default class HomeGroupOrderList extends PureComponent {
         ListFooterComponent={this._renderFonter}
         ItemSeparatorComponent={this._renderSeparator}
         renderItem={this._renderItem}
-        initialNumToRender={4}
+        initialNumToRender={20}
         initialScrollIndex={0}
         maxToRenderPerBatch={20}
         onEndReached={this._onEndReached}

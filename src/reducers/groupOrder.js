@@ -56,10 +56,12 @@ function groupOrderReducer(state = initialGroupOrderState, action) {
           ...state.home,
           groupOrder: {
             ...state.home.groupOrder,
-            isFetching: action.payload.isRefreshing ? false : true,
+            isFetching: true,
             isRefreshing: action.payload.isRefreshing || false,
             list: action.payload.isRefreshing ? [] : state.home.groupOrder.list,
-            page: action.payload.page ? action.payload.page : 1
+            page: action.payload.isRefreshing
+              ? 1
+              : action.payload.page ? action.payload.page : 1
           }
         }
       }
@@ -98,7 +100,10 @@ function groupOrderReducer(state = initialGroupOrderState, action) {
             ...state.account.groupOrder,
             isFetching: true,
             isRefreshing: action.payload.isRefreshing || false,
-            page: action.payload.page ? action.payload.page : 1
+            list: action.payload.isRefreshing
+              ? []
+              : state.account.groupOrder.list,
+            page: action.payload.isRefreshing ? 1 : action.payload.page ? action.payload.page : 1
           }
         }
       }

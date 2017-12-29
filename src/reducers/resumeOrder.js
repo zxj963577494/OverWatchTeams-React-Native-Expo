@@ -58,7 +58,12 @@ function resumeOrderReducer(state = initialResumeOrderState, action) {
             ...state.home.resumeOrder,
             isFetching: true,
             isRefreshing: action.payload.isRefreshing || false,
-            page: action.payload.page ? action.payload.page : 1
+            list: action.payload.isRefreshing
+              ? []
+              : state.home.resumeOrder.list,
+            page: action.payload.isRefreshing
+              ? 1
+              : action.payload.page ? action.payload.page : 1
           }
         }
       }
@@ -100,7 +105,7 @@ function resumeOrderReducer(state = initialResumeOrderState, action) {
             list: action.payload.isRefreshing
               ? []
               : state.account.resumeOrder.list,
-            page: action.payload.page ? action.payload.page : 1
+            page: action.payload.isRefreshing ? 1 : action.payload.page ? action.payload.page : 1
           }
         }
       }

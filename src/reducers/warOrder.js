@@ -58,7 +58,10 @@ function warOrderReducer(state = initialWarOrderState, action) {
             ...state.home.warOrder,
             isFetching: true,
             isRefreshing: action.payload.isRefreshing || false,
-            page: action.payload.page ? action.payload.page : 1
+            list: action.payload.isRefreshing ? [] : state.home.warOrder.list,
+            page: action.payload.isRefreshing
+              ? 1
+              : action.payload.page ? action.payload.page : 1
           }
         }
       }
@@ -100,7 +103,7 @@ function warOrderReducer(state = initialWarOrderState, action) {
             list: action.payload.isRefreshing
               ? []
               : state.account.warOrder.list,
-            page: action.payload.page ? action.payload.page : 1
+            page: action.payload.isRefreshing ? 1 : action.payload.page ? action.payload.page : 1
           }
         }
       }

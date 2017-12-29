@@ -3,7 +3,7 @@ import { View } from 'react-native'
 import PropTypes from 'prop-types'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
-import { getHomeRecruitOrderList } from '../../../actions'
+import { getHomeRecruitOrderListRequest } from '../../../actions'
 import { HomeRecruitOrderList } from '../../../components'
 
 class HomeRecruitOrders extends Component {
@@ -36,7 +36,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getHomeRecruitOrderList: payload => {
-      dispatch(getHomeRecruitOrderList(payload))
+      dispatch(getHomeRecruitOrderListRequest(payload))
     },
     navigateTo: (path, params) => {
       dispatch(NavigationActions.navigate({ routeName: path, params: params }))
