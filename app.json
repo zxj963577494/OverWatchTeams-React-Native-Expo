@@ -11,7 +11,7 @@
     "icon": "./assets/icon.png",
     "githubUrl": "https://github.com/zxj963577494/OverWatchTeams-React-Native",
     "notification": {
-      "icon": "./assets/notification _icon.png"
+      "icon": "./assets/notification_icon.png"
     },
     "splash": {
       "image": "./assets/splash.png",
