@@ -35,9 +35,7 @@ class Account extends Component {
     super(props)
   }
 
-  componentDidMount() {
-    this.props.getCurrentUser()
-  }
+  componentDidMount() {}
 
   render() {
     let logined = false

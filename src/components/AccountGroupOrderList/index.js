@@ -77,6 +77,7 @@ export default class AccountGroupOrderList extends PureComponent {
         onEndReachedThreshold={0.5}
         onRefresh={this._onRefresh}
         keyExtractor={this._keyExtractor}
+        refreshing={isRefreshing}
       />
     )
   }
