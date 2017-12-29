@@ -9,7 +9,6 @@ import {
   Card,
   Modal,
   List,
-  ActivityIndicator
 } from 'antd-mobile'
 import { NavigationActions } from 'react-navigation'
 import _ from 'lodash'
@@ -57,10 +56,9 @@ class AccountTeams extends Component {
   }
 
   render() {
-    const { teams, app, navigateTo } = this.props
+    const { teams, navigateTo } = this.props
     return (
       <ScrollView>
-        <ActivityIndicator toast text={app.text} animating={app.isFetching} />
         {teams.map((item, index) => (
           <View key={index}>
             <WhiteSpace />
@@ -131,7 +129,6 @@ class AccountTeams extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    app: state.app,
     teams: state.team.account.team.myTeams,
     user: state.user.account.user
   }
@@ -152,7 +149,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 AccountTeams.propTypes = {
-  app: PropTypes.object,
   teams: PropTypes.array,
   getMyTeams: PropTypes.func,
   navigateTo: PropTypes.func

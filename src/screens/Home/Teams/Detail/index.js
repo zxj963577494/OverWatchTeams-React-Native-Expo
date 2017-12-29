@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Text, ScrollView, View, Image } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { List, Card, WhiteSpace, ActivityIndicator } from 'antd-mobile'
+import { List, Card, WhiteSpace } from 'antd-mobile'
 import { setNavBar, getHomeTeamDetailRequest } from '../../../../actions'
 import { RANKS } from '../../../../constants'
 
@@ -31,7 +31,7 @@ class HomeTeamDetail extends Component {
   }
 
   render() {
-    let { team, current, app } = this.props
+    let { team, current } = this.props
     if ((team == null && current != null) || this.state.isGetMember) {
       team = current
     }
@@ -40,7 +40,6 @@ class HomeTeamDetail extends Component {
     }
     return (
       <ScrollView>
-        <ActivityIndicator toast text={app.text} animating={app.isFetching} />
         <WhiteSpace />
         <Card full>
           <Card.Header
@@ -116,7 +115,6 @@ class HomeTeamDetail extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    app: state.app,
     current: state.team.home.team.current,
     team: state.team.home.team.list.filter(
       x => x.objectId === ownProps.navigation.state.params.objectId
@@ -133,7 +131,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 HomeTeamDetail.propTypes = {
-  app: PropTypes.object,
   current: PropTypes.object,
   team: PropTypes.object
 }

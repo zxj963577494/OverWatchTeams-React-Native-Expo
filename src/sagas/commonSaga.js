@@ -12,30 +12,31 @@ import { commonService, userService } from '../services/leanclound'
 
 function* postUploadWorker(payload) {
   try {
-    yield put(action.fetchRequest({ text: '上传中' }))
+    Toast.loading('上传中')
     const response = yield call(commonService.uploadPic, payload)
     yield put(action.postUploadSuccess(response))
-    yield put(action.fetchSuccess())
+    Toast.success('上传成功', 1)
   } catch (error) {
     yield put(action.postUploadFailed(error))
-    yield put(action.fetchFailed())
+    Toast.fail('上传失败', 1)
   }
 }
 
 function* sendEmailWorker(payload) {
   try {
-    yield put(action.fetchRequest({ text: '提交中' }))
+    Toast.loading('邮件发送中')
     const response = yield call(commonService.requestEmailVerify, payload)
     yield put(action.sendEmailSuccess(response))
-    yield put(action.fetchSuccess())
+    Toast.success('发送成功', 1)
   } catch (error) {
     yield put(action.sendEmailFailed(error))
-    yield put(action.fetchFailed())
+    Toast.fail('发送失败', 1)
   }
 }
 
 function* sendPasswordResetWorker(payload) {
   try {
+    Toast.loading('上传中')
     const response = yield call(commonService.requestPasswordReset, payload)
     yield put(action.sendPasswordResetSuccess(response))
     yield call(userService.logOut)

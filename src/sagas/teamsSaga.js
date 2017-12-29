@@ -17,26 +17,23 @@ import { teamsService, userService } from '../services/leanclound'
 
 function* postTeamsWorker(payload) {
   try {
-    yield put(action.fetchRequest({ text: '提交中' }))
+    Toast.loading('提交中')
     const currentUser = yield call(userService.getCurrentUserAsync)
     const team = yield call(teamsService.getMyTeams, currentUser)
     if (team.length < currentUser.get('teamLimit')) {
       const response = yield call(teamsService.cerateTeam, payload, currentUser)
-      yield put(action.fetchSuccess())
       yield put(action.postTeamsSuccess(response))
       Toast.success('提交成功', 1)
       yield delay(1000)
       yield put(NavigationActions.back())
     } else {
+      yield put(action.postTeamsFailed())
       Toast.fail(
         '提交失败，每位用户最多可创建一支战队，若想创建多支战队，请联系管理员963577494@qq.com',
         3
       )
-      yield put(action.fetchFailed())
-      yield put(action.postTeamsFailed())
     }
   } catch (error) {
-    yield put(action.fetchFailed())
     yield put(action.postTeamsFailed())
     Toast.fail('提交失败', 1)
   }
@@ -44,15 +41,13 @@ function* postTeamsWorker(payload) {
 
 function* putTeamsWorker(payload) {
   try {
-    yield put(action.fetchRequest({ text: '提交中' }))
+    Toast.loading('提交中')
     const response = yield call(teamsService.updateTeam, payload)
-    yield put(action.fetchSuccess())
     yield put(action.putTeamsSuccess(response))
     Toast.success('提交成功', 1)
     yield delay(1000)
     yield put(NavigationActions.back())
   } catch (error) {
-    yield put(action.fetchFailed())
     yield put(action.putTeamsFailed())
     Toast.fail('提交失败', 1)
   }
@@ -60,41 +55,39 @@ function* putTeamsWorker(payload) {
 
 function* getInTeamsWorker() {
   try {
-    yield put(action.fetchRequest({ text: '加载中' }))
+    Toast.loading('加载中')
     const currentUser = yield call(userService.getCurrentUserAsync)
     const response = yield call(teamsService.getInTeams, currentUser)
     yield put(action.getInTeamsSuccess(response))
-    yield put(action.fetchSuccess())
+    Toast.hide()
   } catch (error) {
-    yield put(action.fetchFailed())
     yield put(action.getInTeamsFailed(error))
+    Toast.hide()
   }
 }
 
 function* getMyTeamsWorker() {
   try {
-    yield put(action.fetchRequest({ text: '加载中' }))
+    Toast.loading('加载中')
     const currentUser = yield call(userService.getCurrentUserAsync)
     const response = yield call(teamsService.getMyTeams, currentUser)
     yield put(action.getMyTeamsSuccess(response))
-    yield put(action.fetchSuccess())
+    Toast.hide()
   } catch (error) {
-    yield put(action.fetchFailed())
     yield put(action.getMyTeamsFailed(error))
+    Toast.hide()
   }
 }
 
 function* deleteTeamMemberWorker(payload) {
   try {
-    yield put(action.fetchRequest({ text: '提交中' }))
+    Toast.loading('提交中')
     const response = yield call(teamsService.removeMember, payload)
     yield put(action.deleteTeamMemberSuccess(response))
-    yield put(action.fetchSuccess())
     Toast.success('移除队员成功', 1.5)
     yield delay(1500)
     yield put(NavigationActions.back())
   } catch (error) {
-    yield put(action.fetchFailed())
     yield put(action.deleteTeamMemberFailed(error))
     Toast.fail(error.message, 1.5)
   }
@@ -102,14 +95,12 @@ function* deleteTeamMemberWorker(payload) {
 
 function* deleteTeamWorker(payload) {
   try {
-    yield put(action.fetchRequest({ text: '提交中' }))
+    Toast.loading('提交中')
     const response = yield call(teamsService.removeTeam, payload)
     yield put(action.deleteTeamSuccess(response))
-    yield put(action.fetchSuccess())
     Toast.success('解散队伍成功', 1.5)
     yield delay(1500)
   } catch (error) {
-    yield put(action.fetchFailed())
     yield put(action.deleteTeamFailed(error))
     Toast.fail(error.message, 1.5)
   }
@@ -117,22 +108,25 @@ function* deleteTeamWorker(payload) {
 
 function* getHomeTeamListWorker(payload) {
   try {
+    Toast.loading('加载中')
     const response = yield call(teamsService.getHomeTeamsList, payload)
     yield put(action.getHomeTeamListSuccess(response))
+    Toast.hide()
   } catch (error) {
     yield put(action.getHomeTeamListFailed(error))
+    Toast.hide()
   }
 }
 
 function* getHomeTeamDetailWorker(payload) {
   try {
-    yield put(action.fetchRequest({ text: '加载中' }))
+    Toast.loading('加载中')
     const response = yield call(teamsService.getHomeTeamDetail, payload)
     yield put(action.getHomeTeamDetailSuccess(response))
-    yield put(action.fetchSuccess())
+    Toast.hide()
   } catch (error) {
     yield put(action.getHomeTeamDetailFailed(error))
-    yield put(action.fetchFailed())
+    Toast.hide()
   }
 }
 

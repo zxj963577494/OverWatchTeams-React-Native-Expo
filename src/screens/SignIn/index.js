@@ -9,12 +9,10 @@ import {
   WhiteSpace,
   Flex,
   WingBlank,
-  ActivityIndicator,
   Toast
 } from 'antd-mobile'
 import { NavigationActions } from 'react-navigation'
 import { postLoginRequest } from '../../actions'
-import { MyActivityIndicator } from '../../components'
 
 class SignIn extends Component {
   constructor(props) {
@@ -63,12 +61,11 @@ class SignIn extends Component {
 
   render() {
     const { getFieldProps, getFieldError } = this.props.form
-    const { app, user_home, goBack } = this.props
+    const { user_home, goBack } = this.props
     const usernameErrors = getFieldError('username')
     const passwordErrors = getFieldError('password')
     return (
       <View style={{ backgroundColor: '#fff' }}>
-        <ActivityIndicator toast text={app.text} animating={app.isFetching} />
         <WhiteSpace />
         <View>
           <InputItem
@@ -159,7 +156,6 @@ class SignIn extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    app: state.app,
     user_home: state.user.home
   }
 }
@@ -176,7 +172,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 SignIn.propTypes = {
-  app: PropTypes.object,
   user_home: PropTypes.object,
   postLogin: PropTypes.func,
   navigateTo: PropTypes.func,

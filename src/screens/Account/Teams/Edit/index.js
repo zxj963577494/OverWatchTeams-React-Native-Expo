@@ -15,7 +15,6 @@ import {
   TextareaItem,
   ImagePicker,
   Toast,
-  ActivityIndicator
 } from 'antd-mobile'
 import _ from 'lodash'
 import { NavigationActions } from 'react-navigation'
@@ -196,7 +195,6 @@ class AccountTeamsEdit extends Component {
     const matchErrors = getFieldError('match')
     return (
       <ScrollView>
-        <ActivityIndicator toast text={app.text} animating={app.isFetching} />
         <List renderHeader={() => '上传Logo'}>
           <ImagePicker
             styles={ImagePickerStyle}

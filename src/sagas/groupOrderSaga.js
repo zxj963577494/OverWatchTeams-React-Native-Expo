@@ -14,7 +14,7 @@ import { groupOrderService, userService } from '../services/leanclound'
 
 function* postGroupOrderWorker(payload) {
   try {
-    yield put(action.fetchRequest({ text: '提交中' }))
+    Toast.loading('提交中')
     const currentUser = yield call(userService.getCurrentUserAsync)
     const userinfo = yield call(userService.getUserInfoToJson, currentUser)
     const count = yield call(
@@ -29,28 +29,25 @@ function* postGroupOrderWorker(payload) {
         userinfo,
         currentUser
       )
-      yield put(action.fetchSuccess())
       yield put(action.postGroupOrderSuccess(response))
       Toast.success('提交成功', 1)
       yield delay(1000)
       yield put(NavigationActions.back())
     } else {
       yield put(action.putGroupOrderFailed())
-      yield put(action.fetchFailed())
-      Toast.success(`1天最多发布${groupOrderLimit}条组队上分帖`, 2)
+      Toast.fail(`1天最多发布${groupOrderLimit}条组队上分帖`, 2)
       yield delay(2000)
       yield put(NavigationActions.back())
     }
   } catch (error) {
     yield put(action.postGroupOrderFailed(error))
-    yield put(action.fetchFailed())
-    Toast.success('提交失败', 1)
+    Toast.fail('提交失败', 1)
   }
 }
 
 function* putGroupOrderWorker(payload) {
   try {
-    yield put(action.fetchRequest({ text: '提交中' }))
+    Toast.loading('提交中')
     const currentUser = yield call(userService.getCurrentUserAsync)
     const userinfo = yield call(userService.getUserInfoToJson, currentUser)
     const response = yield call(
@@ -58,34 +55,31 @@ function* putGroupOrderWorker(payload) {
       payload,
       userinfo
     )
-    yield put(action.fetchSuccess())
     yield put(action.putGroupOrderSuccess(response))
     Toast.success('提交成功', 1)
     yield delay(1000)
     yield put(NavigationActions.back())
   } catch (error) {
     yield put(action.putGroupOrderFailed(error))
-    yield put(action.fetchFailed())
-    Toast.success('提交失败', 1)
+    Toast.fail('提交失败', 1)
   }
 }
 
 function* deleteGroupOrderWorker(payload) {
   try {
-    yield put(action.fetchRequest({ text: '提交中' }))
+    Toast.loading('提交中')
     const response = yield call(groupOrderService.removeGroupOrder, payload)
     yield put(action.deleteGroupOrderSuccess(response))
-    yield put(action.fetchSuccess())
     Toast.success('删除成功', 1)
   } catch (error) {
     yield put(action.deleteGroupOrderFailed(error))
-    yield put(action.fetchFailed())
-    Toast.success('删除失败', 1)
+    Toast.fail('删除失败', 1)
   }
 }
 
 function* getAccountGroupOrderListWorker(payload) {
   try {
+    Toast.loading('加载中')
     const currentUser = yield call(userService.getCurrentUserAsync)
     const response = yield call(
       groupOrderService.getAccountGroupOrderList,
@@ -93,20 +87,25 @@ function* getAccountGroupOrderListWorker(payload) {
       currentUser
     )
     yield put(action.getAccountGroupOrderListSuccess(response))
+    Toast.hide()
   } catch (error) {
     yield put(action.getAccountGroupOrderListFailed(error))
+    Toast.hide()
   }
 }
 
 function* getHomeGroupOrderListWorker(payload) {
   try {
+    Toast.loading('加载中')
     const response = yield call(
       groupOrderService.getHomeGroupOrderList,
       payload
     )
     yield put(action.getHomeGroupOrderListSuccess(response))
+    Toast.hide()
   } catch (error) {
     yield put(action.getHomeGroupOrderListFailed(error))
+    Toast.hide()
   }
 }
 

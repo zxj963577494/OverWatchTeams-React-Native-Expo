@@ -14,7 +14,6 @@ import {
   TextareaItem,
   Toast,
   DatePicker,
-  ActivityIndicator
 } from 'antd-mobile'
 import { putGroupOrderRequest, getMyTeamsRequest } from '../../../../actions'
 
@@ -76,7 +75,7 @@ class AccountGroupOrdersEdit extends Component {
 
   render() {
     const { getFieldProps, getFieldError } = this.props.form
-    const { app, pending, navigateTo } = this.props
+    const { pending, navigateTo } = this.props
     const { title, description, contact, endDate } = this.state
     const titleErrors = getFieldError('title')
     const descriptionErrors = getFieldError('description')
@@ -84,7 +83,6 @@ class AccountGroupOrdersEdit extends Component {
     const endDateErrors = getFieldError('endDate')
     return (
       <ScrollView>
-        <ActivityIndicator toast text={app.text} animating={app.isFetching} />
         <List renderHeader={() => '组队标题'}>
           <InputItem
             {...getFieldProps('title', {
@@ -201,7 +199,6 @@ class AccountGroupOrdersEdit extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    app: state.app,
     userinfo: state.user.account.userinfo,
     pending: state.groupOrder.account.groupOrder.pending,
     groupOrder: state.groupOrder.account.groupOrder.list.filter(
@@ -225,7 +222,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 AccountGroupOrdersEdit.propTypes = {
-  app: PropTypes.object,
   userinfo: PropTypes.object,
   groupOrder: PropTypes.object,
   putGroup: PropTypes.func,

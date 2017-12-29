@@ -14,7 +14,6 @@ import {
   Toast,
   DatePicker,
   Radio,
-  ActivityIndicator
 } from 'antd-mobile'
 import { NavigationActions } from 'react-navigation'
 import { postWarOrderRequest, getMyTeamsRequest } from '../../../../actions'
@@ -91,7 +90,7 @@ class AccountWarOrdersCreate extends Component {
 
   render() {
     const { getFieldProps, getFieldError } = this.props.form
-    const { app, teams, navigateTo } = this.props
+    const { teams, navigateTo } = this.props
     const { pending } = this.props.warOrder
     const { teamid, title, description, contact, endDate } = this.state
     const titleErrors = getFieldError('title')
@@ -100,7 +99,6 @@ class AccountWarOrdersCreate extends Component {
     const endDateErrors = getFieldError('endDate')
     return (
       <ScrollView>
-        <ActivityIndicator toast text={app.text} animating={app.isFetching} />
         <List renderHeader={() => '约战标题'}>
           <InputItem
             {...getFieldProps('title', {
@@ -240,7 +238,6 @@ class AccountWarOrdersCreate extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    app: state.app,
     teams: state.team.account.team.myTeams,
     userinfo: state.user.account.userinfo,
     warOrder: state.warOrder.account.warOrder
@@ -262,7 +259,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 AccountWarOrdersCreate.propTypes = {
-  app: PropTypes.object,
   userinfo: PropTypes.object,
   warOrder: PropTypes.object,
   postWar: PropTypes.func,

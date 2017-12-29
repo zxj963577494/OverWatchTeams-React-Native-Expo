@@ -18,7 +18,7 @@ import {
 
 function* postWarOrderWorker(payload) {
   try {
-    yield put(action.fetchRequest({ text: '提交中' }))
+    Toast.loading('提交中')
     const currentUser = yield call(userService.getCurrentUserAsync)
     const userinfo = yield call(userService.getUserInfoToJson, currentUser)
     const count = yield call(
@@ -28,51 +28,47 @@ function* postWarOrderWorker(payload) {
     const warOrderLimit = userinfo.warOrderLimit
     if (count < warOrderLimit) {
       const team = yield call(teamsService.getTeamToJson, payload)
-      const response = yield call(warOrderService.cerateWarOrder, payload, team, currentUser)
-      yield put(action.fetchSuccess())
+      const response = yield call(
+        warOrderService.cerateWarOrder,
+        payload,
+        team,
+        currentUser
+      )
       yield put(action.postWarOrderSuccess(response))
       Toast.success('提交成功', 1)
       yield delay(1000)
       yield put(NavigationActions.back())
     } else {
       yield put(action.postWarOrderFailed())
-      yield put(action.fetchFailed())
-      Toast.success(`1天最多发布${warOrderLimit}条比赛约战帖`, 2)
+      Toast.fail(`1天最多发布${warOrderLimit}条比赛约战帖`, 2)
       yield delay(2000)
       yield put(NavigationActions.back())
     }
   } catch (error) {
     yield put(action.postWarOrderFailed(error))
-    yield put(action.fetchFailed())
-    Toast.success('提交失败', 1)
+    Toast.fail('提交失败', 1)
   }
 }
 
 function* putWarOrderWorker(payload) {
   try {
-    yield put(action.fetchRequest({ text: '提交中' }))
+    Toast.loading('提交中')
     const currentUser = yield call(userService.getCurrentUserAsync)
     const team = yield call(teamsService.getTeam, payload)
-    const response = yield call(
-      warOrderService.updateWarOrder,
-      payload,
-      team,
-    )
-    yield put(action.fetchSuccess())
+    const response = yield call(warOrderService.updateWarOrder, payload, team)
     yield put(action.putWarOrderSuccess(response))
     Toast.success('提交成功', 1)
     yield delay(1000)
     yield put(NavigationActions.back())
   } catch (error) {
     yield put(action.putWarOrderFailed(error))
-    yield put(action.fetchFailed())
-    Toast.success('提交失败', 1)
+    Toast.fail('提交失败', 1)
   }
 }
 
 function* deleteWarOrderWorker(payload) {
   try {
-    yield put(action.fetchRequest({ text: '提交中' }))
+    Toast.loading('提交中')
     const response = yield call(warOrderService.removeWarOrder, payload)
     yield put(action.deleteWarOrderSuccess(response))
     yield put(action.fetchSuccess())
@@ -80,12 +76,13 @@ function* deleteWarOrderWorker(payload) {
   } catch (error) {
     yield put(action.deleteWarOrderFailed(error))
     yield put(action.fetchFailed())
-    Toast.success('删除失败', 1)
+    Toast.fail('删除失败', 1)
   }
 }
 
 function* getAccountWarOrderListWorker(payload) {
   try {
+    Toast.loading('加载中')
     const currentUser = yield call(userService.getCurrentUserAsync)
     const response = yield call(
       warOrderService.getAccountWarOrderList,
@@ -93,17 +90,22 @@ function* getAccountWarOrderListWorker(payload) {
       currentUser
     )
     yield put(action.getAccountWarOrderListSuccess(response))
+    Toast.hide()
   } catch (error) {
     yield put(action.getAccountWarOrderListFailed(error))
+    Toast.hide()
   }
 }
 
 function* getHomeWarOrderListWorker(payload) {
   try {
+    Toast.loading('加载中')
     const response = yield call(warOrderService.getHomeWarOrderList, payload)
     yield put(action.getHomeWarOrderListSuccess(response))
+    Toast.hide()
   } catch (error) {
     yield put(action.getHomeWarOrderListFailed(error))
+    Toast.hide()
   }
 }
 

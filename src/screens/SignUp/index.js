@@ -9,7 +9,6 @@ import {
   WhiteSpace,
   Flex,
   WingBlank,
-  ActivityIndicator
 } from 'antd-mobile'
 import { postSignUpRequest } from '../../actions'
 
@@ -64,14 +63,13 @@ class SignUp extends Component {
 
   render() {
     const { getFieldProps, getFieldError } = this.props.form
-    const { app, user_home } = this.props
+    const { user_home } = this.props
     const usernameErrors = getFieldError('username')
     const passwordErrors = getFieldError('password')
     const emailErrors = getFieldError('email')
     return (
       <View>
         <WhiteSpace />
-        <ActivityIndicator toast text={app.text} animating={app.isFetching} />
         <InputItem
           {...getFieldProps('username', {
             onChange: this.onUserNameChange,
@@ -165,7 +163,6 @@ class SignUp extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    app: state.app,
     user_home: state.user.home
   }
 }
@@ -179,7 +176,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 SignUp.propTypes = {
-  app: PropTypes.object,
   user_home: PropTypes.object,
   postSignUp: PropTypes.func,
   form: PropTypes.object

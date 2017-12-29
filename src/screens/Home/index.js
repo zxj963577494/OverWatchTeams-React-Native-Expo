@@ -10,7 +10,7 @@ import {
 } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Flex, WhiteSpace, Grid, List, ActivityIndicator } from 'antd-mobile'
+import { Flex, WhiteSpace, Grid, List } from 'antd-mobile'
 import { NavigationActions } from 'react-navigation'
 import {
   getHomeGroupOrderListRequest,
@@ -77,11 +77,6 @@ class Home extends Component {
     const { navigateTo, groupOrder, recruitOrder } = this.props
     return (
       <ScrollView>
-        <ActivityIndicator
-          toast
-          text={groupOrder.fetchingText}
-          animating={groupOrder.isFetching}
-        />
         <WhiteSpace size="md" />
         <View style={styles.headerer}>
           <Flex direction="column" justify="center">

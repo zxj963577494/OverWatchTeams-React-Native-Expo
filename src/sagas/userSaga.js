@@ -26,10 +26,10 @@ function* getCurrentUserWorker() {
 
 function* postSignUpWorker(payload) {
   try {
-    yield put(action.fetchRequest({ text: '注册中' }))
+    Toast.loading('注册中')
     const response = yield call(userService.signUp, payload)
-    yield put(action.fetchSuccess())
     yield put(action.postSignUpSuccess(response))
+    Toast.success('注册成功', 1)
     yield put(
       NavigationActions.reset({
         index: 0,
@@ -37,17 +37,17 @@ function* postSignUpWorker(payload) {
       })
     )
   } catch (error) {
-    yield put(action.fetchFailed())
+    Toast.fail('注册失败', 1)
     yield put(action.postSignUpFailed(error))
   }
 }
 
 function* postLoginWorker(payload) {
   try {
-    yield put(action.fetchRequest({ text: '登录中' }))
+    Toast.loading('登录中')
     const response = yield call(userService.logIn, payload)
-    yield put(action.fetchSuccess())
     yield put(action.postLoginSuccess(response))
+    Toast.success('登录成功', 1)
     yield put(
       NavigationActions.reset({
         index: 0,
@@ -55,7 +55,7 @@ function* postLoginWorker(payload) {
       })
     )
   } catch (error) {
-    yield put(action.fetchFailed())
+    Toast.fail('登录失败', 1)
     yield put(action.postLoginFailed(error))
   }
 }
@@ -72,21 +72,19 @@ function* postLogoutWorker() {
       })
     )
   } catch (error) {
-    yield put(action.fetchFailed())
+    Toast.success('注销失败', 1)
   }
 }
 
 function* putUserInfoWorker(payload) {
   try {
-    yield put(action.fetchRequest({ text: '提交中' }))
+    Toast.loading('提交中')
     const response = yield call(userService.putUserInfo, payload)
-    yield put(action.fetchSuccess())
     yield put(action.putUserInfoSuccess(response))
     Toast.success('提交成功', 1.5)
     yield delay(1500)
     yield put(NavigationActions.back())
   } catch (error) {
-    yield put(action.fetchFailed())
     yield put(action.putUserInfoFailed(error))
     Toast.fail('提交失败', 1.5)
   }
@@ -113,13 +111,13 @@ function* getHomeUserInfoListWorker(payload) {
 
 function* getHomeUserInfoDetailWorker(payload) {
   try {
-    yield put(action.fetchRequest({ text: '加载中' }))
+    Toast.loading('加载中')
     const response = yield call(userService.getHomeUserInfoDetail, payload)
     yield put(action.getHomeUserInfoDetailSuccess(response))
-    yield put(action.fetchSuccess())
+    Toast.hide()
   } catch (error) {
     yield put(action.getHomeUserInfoDetailFailed(error))
-    yield put(action.fetchFailed())
+    Toast.hide()
   }
 }
 

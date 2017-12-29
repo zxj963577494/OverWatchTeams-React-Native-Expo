@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Text, ScrollView, View, Image } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { WhiteSpace, List, Result, ActivityIndicator } from 'antd-mobile'
+import { WhiteSpace, List, Result } from 'antd-mobile'
 import { RANKS, TEAMPOSITIONS } from '../../../../constants'
 import { getHomeUserInfoDetailRequest } from '../../../../actions'
 import config from '../../../../config'
@@ -16,13 +16,12 @@ class HomeUserInfoDetail extends Component {
   }
 
   render() {
-    let { userinfo, current, app } = this.props
+    let { userinfo, current } = this.props
     if (userinfo == null && current != null) {
       userinfo = current
     }
     return (
       <ScrollView>
-        <ActivityIndicator toast text={app.text} animating={app.isFetching} />
         <WhiteSpace />
         <Result
           img={
@@ -128,7 +127,6 @@ class HomeUserInfoDetail extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    app: state.app,
     current: state.user.home.userinfo.current,
     userinfo: state.user.home.userinfo.list.filter(
       x => x.objectId === ownProps.navigation.state.params.objectId
@@ -145,7 +143,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 HomeUserInfoDetail.propTypes = {
-  app: PropTypes.object,
   current: PropTypes.object,
   user: PropTypes.object,
   getUserById: PropTypes.func

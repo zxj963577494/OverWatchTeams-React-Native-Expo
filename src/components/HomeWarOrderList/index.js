@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { FlatList, View, Text } from 'react-native'
 import PropTypes from 'prop-types'
-import { WhiteSpace, ActivityIndicator } from 'antd-mobile'
+import { WhiteSpace } from 'antd-mobile'
 import HomeWarCard from '../HomeWarCard'
 
 export default class HomeWarOrderList extends PureComponent {
@@ -15,10 +15,7 @@ export default class HomeWarOrderList extends PureComponent {
   }
 
   _onEndReached() {
-    if (
-      this.props.warOrder.isFetching ||
-      !this.props.warOrder.isLoadMore
-    ) {
+    if (this.props.warOrder.isFetching || !this.props.warOrder.isLoadMore) {
       return
     }
     const page = this.props.warOrder.page + 1
@@ -55,30 +52,22 @@ export default class HomeWarOrderList extends PureComponent {
   _keyExtractor = (item, index) => item.objectId
 
   render() {
-    const {
-      list,
-      isRefreshing,
-      fetchingText,
-      isFetching
-    } = this.props.warOrder
+    const { list, isRefreshing, fetchingText, isFetching } = this.props.warOrder
     return (
-      <View>
-        <ActivityIndicator toast text={fetchingText} animating={isFetching} />
-        <FlatList
-          data={list}
-          ListFooterComponent={this._renderFonter}
-          ItemSeparatorComponent={this._renderSeparator}
-          renderItem={this._renderItem}
-          initialNumToRender={4}
-          initialScrollIndex={0}
-          maxToRenderPerBatch={20}
-          onEndReached={this._onEndReached}
-          onEndReachedThreshold={0.5}
-          onRefresh={this._onRefresh}
-          keyExtractor={this._keyExtractor}
-          refreshing={isRefreshing}
-        />
-      </View>
+      <FlatList
+        data={list}
+        ListFooterComponent={this._renderFonter}
+        ItemSeparatorComponent={this._renderSeparator}
+        renderItem={this._renderItem}
+        initialNumToRender={4}
+        initialScrollIndex={0}
+        maxToRenderPerBatch={20}
+        onEndReached={this._onEndReached}
+        onEndReachedThreshold={0.5}
+        onRefresh={this._onRefresh}
+        keyExtractor={this._keyExtractor}
+        refreshing={isRefreshing}
+      />
     )
   }
 }

@@ -14,7 +14,6 @@ import {
   TextareaItem,
   Toast,
   DatePicker,
-  ActivityIndicator
 } from 'antd-mobile'
 import { putResumeOrderRequest, getMyTeamsRequest } from '../../../../actions'
 
@@ -76,7 +75,7 @@ class AccountResumeOrdersEdit extends Component {
 
   render() {
     const { getFieldProps, getFieldError } = this.props.form
-    const { app, pending, navigateTo } = this.props
+    const { pending, navigateTo } = this.props
     const { title, description, contact, endDate } = this.state
     const titleErrors = getFieldError('title')
     const descriptionErrors = getFieldError('description')
@@ -84,7 +83,6 @@ class AccountResumeOrdersEdit extends Component {
     const endDateErrors = getFieldError('endDate')
     return (
       <ScrollView>
-        <ActivityIndicator toast text={app.text} animating={app.isFetching} />
         <List renderHeader={() => '自荐标题'}>
           <InputItem
             {...getFieldProps('title', {
@@ -201,7 +199,6 @@ class AccountResumeOrdersEdit extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    app: state.app,
     userinfo: state.user.account.userinfo,
     pending: state.resumeOrder.account.resumeOrder.pending,
     resumeOrder: state.resumeOrder.account.resumeOrder.list.filter(

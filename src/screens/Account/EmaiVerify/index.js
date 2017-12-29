@@ -14,7 +14,6 @@ import {
 } from 'antd-mobile'
 import _ from 'lodash'
 import { setNavBar, sendEmailRequest } from '../../../actions'
-import { MyActivityIndicator } from '../../../components'
 import { userService } from '../../../services/leanclound'
 
 class AccountEmaiVerify extends Component {

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { FlatList, View, Text } from 'react-native'
 import PropTypes from 'prop-types'
-import { WhiteSpace, ActivityIndicator } from 'antd-mobile'
+import { WhiteSpace } from 'antd-mobile'
 import HomeUserInfoCard from '../HomeUserInfoCard'
 
 export default class HomeUserInfoList extends PureComponent {
@@ -54,23 +54,20 @@ export default class HomeUserInfoList extends PureComponent {
   render() {
     const { list, isRefreshing, fetchingText, isFetching } = this.props.userinfo
     return (
-      <View>
-        <ActivityIndicator toast text={fetchingText} animating={isFetching} />
-        <FlatList
-          data={list}
-          ListFooterComponent={this._renderFonter}
-          ItemSeparatorComponent={this._renderSeparator}
-          renderItem={this._renderItem}
-          initialNumToRender={3}
-          initialScrollIndex={0}
-          maxToRenderPerBatch={20}
-          onEndReached={this._onEndReached}
-          onEndReachedThreshold={0.5}
-          onRefresh={this._onRefresh}
-          keyExtractor={this._keyExtractor}
-          refreshing={isRefreshing}
-        />
-      </View>
+      <FlatList
+        data={list}
+        ListFooterComponent={this._renderFonter}
+        ItemSeparatorComponent={this._renderSeparator}
+        renderItem={this._renderItem}
+        initialNumToRender={3}
+        initialScrollIndex={0}
+        maxToRenderPerBatch={20}
+        onEndReached={this._onEndReached}
+        onEndReachedThreshold={0.5}
+        onRefresh={this._onRefresh}
+        keyExtractor={this._keyExtractor}
+        refreshing={isRefreshing}
+      />
     )
   }
 }

@@ -15,7 +15,6 @@ import {
   Toast,
   DatePicker,
   Radio,
-  ActivityIndicator
 } from 'antd-mobile'
 import { putRecruitOrderRequest, getMyTeamsRequest } from '../../../../actions'
 
@@ -93,7 +92,7 @@ class AccountRecruitOrdersEdit extends Component {
 
   render() {
     const { getFieldProps, getFieldError } = this.props.form
-    const { app, pending, teams, navigateTo } = this.props
+    const { pending, teams, navigateTo } = this.props
     const { teamid, title, description, contact, endDate } = this.state
     const titleErrors = getFieldError('title')
     const descriptionErrors = getFieldError('description')
@@ -101,7 +100,6 @@ class AccountRecruitOrdersEdit extends Component {
     const endDateErrors = getFieldError('endDate')
     return (
       <ScrollView>
-        <ActivityIndicator toast text={app.text} animating={app.isFetching} />
         <List renderHeader={() => '招募令标题'}>
           <InputItem
             {...getFieldProps('title', {
@@ -241,7 +239,6 @@ class AccountRecruitOrdersEdit extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    app: state.app,
     teams: state.team.account.team.myTeams,
     userinfo: state.user.account.userinfo,
     pending: state.recruitOrder.account.recruitOrder.pending,
@@ -266,7 +263,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 AccountRecruitOrdersEdit.propTypes = {
-  app: PropTypes.object,
   userinfo: PropTypes.object,
   recruitOrder: PropTypes.object,
   putRecruit: PropTypes.func,

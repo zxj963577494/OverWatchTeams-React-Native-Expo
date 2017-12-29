@@ -14,7 +14,7 @@ import { resumeOrderService, userService } from '../services/leanclound'
 
 function* postResumeOrderWorker(payload) {
   try {
-    yield put(action.fetchRequest({ text: '提交中' }))
+    Toast.loading('提交中')
     const currentUser = yield call(userService.getCurrentUserAsync)
     const userinfo = yield call(userService.getUserInfoToJson, currentUser)
     const count = yield call(
@@ -30,62 +30,56 @@ function* postResumeOrderWorker(payload) {
         currentUser
       )
       yield put(action.postResumeOrderSuccess(response))
-      yield put(action.fetchSuccess())
       Toast.success('提交成功', 1)
       yield delay(1000)
       yield put(NavigationActions.back())
     } else {
       yield put(action.postResumeOrderFailed())
-      yield put(action.fetchFailed())
-      Toast.success(`1天最多发布${resumeOrderLimit}条寻找战队帖`, 2)
+      Toast.fail(`1天最多发布${resumeOrderLimit}条寻找战队帖`, 2)
       yield delay(2000)
       yield put(NavigationActions.back())
     }
   } catch (error) {
     yield put(action.postResumeOrderFailed(error))
-    yield put(action.fetchFailed())
-    Toast.success('提交失败', 1)
+    Toast.fail('提交失败', 1)
   }
 }
 
 function* putResumeOrderWorker(payload) {
   try {
-    yield put(action.fetchRequest({ text: '提交中' }))
+    Toast.loading('提交中')
     const currentUser = yield call(userService.getCurrentUserAsync)
     const userinfo = yield call(userService.getUserInfoToJson, currentUser)
     const response = yield call(
       resumeOrderService.updateResumeOrder,
       payload,
-      userinfo,
+      userinfo
     )
     yield put(action.putResumeOrderSuccess(response))
-    yield put(action.fetchSuccess())
     Toast.success('提交成功', 1)
     yield delay(1000)
     yield put(NavigationActions.back())
   } catch (error) {
     yield put(action.putResumeOrderFailed(error))
-    yield put(action.fetchFailed())
-    Toast.success('提交失败', 1)
+    Toast.fail('提交失败', 1)
   }
 }
 
 function* deleteResumeOrderWorker(payload) {
   try {
-    yield put(action.fetchRequest({ text: '提交中' }))
+    Toast.loading('提交中')
     const response = yield call(resumeOrderService.removeResumeOrder, payload)
     yield put(action.deleteResumeOrderSuccess(response))
-    yield put(action.fetchSuccess())
     Toast.success('删除成功', 1)
   } catch (error) {
     yield put(action.deleteResumeOrderFailed(error))
-    yield put(action.fetchFailed())
-    Toast.success('删除失败', 1)
+    Toast.fail('删除失败', 1)
   }
 }
 
 function* getAccountResumeOrderListWorker(payload) {
   try {
+    Toast.loading('加载中')
     const currentUser = yield call(userService.getCurrentUserAsync)
     const response = yield call(
       resumeOrderService.getAccountResumeOrderList,
@@ -93,20 +87,25 @@ function* getAccountResumeOrderListWorker(payload) {
       currentUser
     )
     yield put(action.getAccountResumeOrderListSuccess(response))
+    Toast.hide()
   } catch (error) {
     yield put(action.getAccountResumeOrderListFailed(error))
+    Toast.hide()
   }
 }
 
 function* getHomeResumeOrderListWorker(payload) {
   try {
+    Toast.loading('加载中')
     const response = yield call(
       resumeOrderService.getHomeResumeOrderList,
       payload
     )
     yield put(action.getHomeResumeOrderListSuccess(response))
+    Toast.hide()
   } catch (error) {
     yield put(action.getHomeResumeOrderListFailed(error))
+    Toast.hide()
   }
 }
 
