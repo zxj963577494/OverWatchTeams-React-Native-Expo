@@ -24,19 +24,18 @@ export function cerateResumeOrder(payload, userinfo, currentUser) {
   })
 }
 
-export function updateResumeOrder(payload, userinfo, currentUser) {
-  const recruitOrders = AV.Object.createWithoutData(
+export function updateResumeOrder(payload, userinfo) {
+  const resumeOrders = AV.Object.createWithoutData(
     'ResumeOrders',
     payload.objectId
   )
-  recruitOrders.set('title', payload.title)
-  recruitOrders.set('description', payload.description)
-  recruitOrders.set('contact', payload.contact)
+  resumeOrders.set('title', payload.title)
+  resumeOrders.set('description', payload.description)
+  resumeOrders.set('contact', payload.contact)
   const endDate = new Date(payload.endDate)
-  recruitOrders.set('endDate', endDate)
-  recruitOrders.set('user', currentUser)
+  resumeOrders.set('endDate', endDate)
 
-  return recruitOrders.save().then(function(result) {
+  return resumeOrders.save().then(function(result) {
     return {
       ...result.toJSON(),
       user: { userinfo }
@@ -45,11 +44,11 @@ export function updateResumeOrder(payload, userinfo, currentUser) {
 }
 
 export function removeResumeOrder(payload) {
-  var recruitOrders = AV.Object.createWithoutData(
+  var resumeOrders = AV.Object.createWithoutData(
     'ResumeOrders',
     payload.objectId
   )
-  return recruitOrders.destroy().then(function(success) {
+  return resumeOrders.destroy().then(function(success) {
     return success.toJSON()
   })
 }

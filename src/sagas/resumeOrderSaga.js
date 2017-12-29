@@ -57,7 +57,6 @@ function* putResumeOrderWorker(payload) {
       resumeOrderService.updateResumeOrder,
       payload,
       userinfo,
-      currentUser
     )
     yield put(action.putResumeOrderSuccess(response))
     yield put(action.fetchSuccess())

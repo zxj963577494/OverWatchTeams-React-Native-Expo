@@ -57,7 +57,6 @@ function* putWarOrderWorker(payload) {
       warOrderService.updateWarOrder,
       payload,
       team,
-      currentUser
     )
     yield put(action.fetchSuccess())
     yield put(action.putWarOrderSuccess(response))

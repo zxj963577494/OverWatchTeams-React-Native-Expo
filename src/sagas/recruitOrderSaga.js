@@ -61,8 +61,7 @@ function* putRecruitOrderWorker(payload) {
     const response = yield call(
       recruitOrderService.updateRecruitOrder,
       payload,
-      team,
-      currentUser
+      team
     )
     yield put(action.putRecruitOrderSuccess(response))
     yield put(action.fetchSuccess())
