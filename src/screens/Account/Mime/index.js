@@ -483,6 +483,7 @@ class AccountMime extends Component {
             保 存
           </Button>
         </WingBlank>
+        <WhiteSpace size="lg" />
       </ScrollView>
     )
   }
