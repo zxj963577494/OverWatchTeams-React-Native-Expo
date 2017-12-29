@@ -238,6 +238,7 @@ const AccountStack = StackNavigator({
         color: 'white'
       },
       headerTitleStyle: {
+        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         color: 'white'
       }
     }
@@ -339,6 +340,7 @@ const AccountStack = StackNavigator({
       headerTitle: '战队招募',
       headerTintColor: 'white',
       headerStyle: {
+        paddingTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
         backgroundColor: '#2196F3'
       },
@@ -346,7 +348,6 @@ const AccountStack = StackNavigator({
         color: 'white'
       },
       headerTitleStyle: {
-        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         color: 'white'
       }
     }
