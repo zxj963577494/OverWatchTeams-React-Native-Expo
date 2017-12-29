@@ -67,9 +67,9 @@ Expo是一个围绕React Native构建的免费开源工具链，可帮助您使�
 
 使用Expo，```build:ios/build:android```命令生成的是JS Bundle文件，Expo会将该文件上传到Expo云端，由Expo构建APP，使用```build:status```可以得到APP在云端构建的进度，构建完成后，会返回APP地址
 
-使用build:ios时必须有$99的开发者账户(我没有，所以没构建iOS版本)，如果apple id开启了两步验证，需要加```--local-auth```
+使用build:ios时必须有$99的开发者账户(我没有，所以没构建iOS版本)，如果apple id开启了两步验证，需要加```--local-auth```
 
-Expo无法像原生React Native一样，可以对本地模块进行操作，当然``` react-native link ``` 命令也是无法使用的，但你可以使用Expo开放的操作本地功能的API，[SDK API参考](https://docs.expo.io/versions/latest/sdk/index.html)
+Expo无法像原生React Native一样，可以对本地模块进行操作，当然``` react-native link ``` 命令也是无法使用的，但你可以使用Expo开放的操作本地功能的API，[SDK API参考](https://docs.expo.io/versions/latest/sdk/index.html)
 
 ## 开源协议
 
