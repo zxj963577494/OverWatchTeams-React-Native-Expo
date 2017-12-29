@@ -48,12 +48,9 @@ function* postGroupOrderWorker(payload) {
 function* putGroupOrderWorker(payload) {
   try {
     Toast.loading('提交中')
-    const currentUser = yield call(userService.getCurrentUserAsync)
-    const userinfo = yield call(userService.getUserInfoToJson, currentUser)
     const response = yield call(
       groupOrderService.updateGroupOrder,
       payload,
-      userinfo
     )
     yield put(action.putGroupOrderSuccess(response))
     Toast.success('提交成功', 1)

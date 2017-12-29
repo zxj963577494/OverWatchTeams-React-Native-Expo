@@ -48,12 +48,9 @@ function* postResumeOrderWorker(payload) {
 function* putResumeOrderWorker(payload) {
   try {
     Toast.loading('提交中')
-    const currentUser = yield call(userService.getCurrentUserAsync)
-    const userinfo = yield call(userService.getUserInfoToJson, currentUser)
     const response = yield call(
       resumeOrderService.updateResumeOrder,
       payload,
-      userinfo
     )
     yield put(action.putResumeOrderSuccess(response))
     Toast.success('提交成功', 1)

@@ -24,7 +24,7 @@ export function cerateGroupOrder(payload, userinfo, currentUser) {
   })
 }
 
-export function updateGroupOrder(payload, userinfo) {
+export function updateGroupOrder(payload) {
   const groupOrders = AV.Object.createWithoutData(
     'GroupOrders',
     payload.objectId
@@ -37,8 +37,7 @@ export function updateGroupOrder(payload, userinfo) {
 
   return groupOrders.save().then(function(result) {
     return {
-      ...result.toJSON(),
-      user: { userinfo }
+      ...result.toJSON()
     }
   })
 }

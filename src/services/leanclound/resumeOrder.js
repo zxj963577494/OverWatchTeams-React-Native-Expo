@@ -24,7 +24,7 @@ export function cerateResumeOrder(payload, userinfo, currentUser) {
   })
 }
 
-export function updateResumeOrder(payload, userinfo) {
+export function updateResumeOrder(payload) {
   const resumeOrders = AV.Object.createWithoutData(
     'ResumeOrders',
     payload.objectId
@@ -37,8 +37,7 @@ export function updateResumeOrder(payload, userinfo) {
 
   return resumeOrders.save().then(function(result) {
     return {
-      ...result.toJSON(),
-      user: { userinfo }
+      ...result.toJSON()
     }
   })
 }
