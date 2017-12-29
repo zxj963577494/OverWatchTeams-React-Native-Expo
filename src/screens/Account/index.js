@@ -305,6 +305,7 @@ class Account extends Component {
             </Flex>
           </WingBlank>
         ) : null}
+        <WhiteSpace size="lg" />
       </ScrollView>
     )
   }
