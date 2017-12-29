@@ -80,14 +80,6 @@ const HomeStack = StackNavigator({
       headerTitleStyle: {
         color: 'white'
       }
-      // headerLeft: (
-      //   <TouchableWithoutFeedback onPress={() => NavigationActions.back()}>
-      //     <Image
-      //       style={{ width: 28, height: 28, marginTop: 20, marginLeft: 10 }}
-      //       source={require('../../assets/images/android_arrow_back.png')}
-      //     />
-      //   </TouchableWithoutFeedback>
-      // )
     }
   },
   HomeRecruitOrders: {
