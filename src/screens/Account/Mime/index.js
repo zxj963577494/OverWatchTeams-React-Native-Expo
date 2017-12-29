@@ -15,9 +15,10 @@ import {
   TextareaItem,
   ImagePicker,
   Toast,
-  Switch,
-  ActivityIndicator
+  Switch
 } from 'antd-mobile'
+import { ImagePicker as ExpoImagePicker } from 'expo'
+import _ from 'lodash'
 import { postUploadRequest, putUserInfoRequest } from '../../../actions'
 import { TEAMPOSITIONS, RANKS, HEROS } from '../../../constants'
 import { ImagePickerStyle } from '../../../components/CustomStyles'
@@ -52,6 +53,7 @@ class AccountMime extends Component {
     this.onKeyboardChange = this.onKeyboardChange.bind(this)
     this.onHeadPhonesChange = this.onHeadPhonesChange.bind(this)
     this.onImagePickerChange = this.onImagePickerChange.bind(this)
+    this.onAddImageClick = this.onAddImageClick.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
   }
 
@@ -139,13 +141,26 @@ class AccountMime extends Component {
   }
 
   onImagePickerChange(files, type, index) {
-    if (type === 'add') {
-      const image = { ...files[0], uri: files[0].url }
-      const name = files[0].filename
-      this.props.postUpload({ name, image })
-    }
     this.setState({
       files
+    })
+  }
+
+  onAddImageClick() {
+    ExpoImagePicker.launchImageLibraryAsync({
+      allowsEditing: true,
+      mediaTypes: ExpoImagePicker.MediaTypeOptions.Images,
+      aspect: [1, 1],
+      quality: 0.5
+    }).then(image => {
+      const name = 'avatar_' + _.random(10000, 9999999)
+      this.setState({
+        files: this.state.files.concat([{
+          url: image.uri,
+          id: name
+        }])
+      })
+      this.props.postUpload({ name, image })
     })
   }
 
@@ -199,9 +214,9 @@ class AccountMime extends Component {
             files={files}
             onChange={this.onImagePickerChange}
             selectable={files.length < 1}
+            onAddImageClick={this.onAddImageClick}
           />
         </List>
-        <ActivityIndicator toast text={app.text} animating={app.isFetching} />
         <List renderHeader={() => '基本信息'}>
           <InputItem
             {...getFieldProps('nickname', {

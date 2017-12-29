@@ -13,7 +13,6 @@ import { commonService, userService } from '../services/leanclound'
 function* postUploadWorker(payload) {
   try {
     yield put(action.fetchRequest({ text: '上传中' }))
-    yield delay(3000)
     const response = yield call(commonService.uploadPic, payload)
     yield put(action.postUploadSuccess(response))
     yield put(action.fetchSuccess())

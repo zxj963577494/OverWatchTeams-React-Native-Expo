@@ -17,7 +17,8 @@ import {
   Toast,
   ActivityIndicator
 } from 'antd-mobile'
-
+import _ from 'lodash'
+import { ImagePicker as ExpoImagePicker } from 'expo'
 import { RANKS } from '../../../../constants'
 import { postTeamsRequest, postUploadRequest } from '../../../../actions'
 import { ImagePickerStyle } from '../../../../components/CustomStyles'
@@ -56,13 +57,26 @@ class AccountTeamsCreate extends Component {
   }
 
   onImagePickerChange(files, type, index) {
-    if (type === 'add') {
-      const image = { ...files[0], uri: files[0].url }
-      const name = files[0].filename
-      this.props.postUpload({ name, image })
-    }
     this.setState({
       files
+    })
+  }
+
+  onAddImageClick() {
+    ExpoImagePicker.launchImageLibraryAsync({
+      allowsEditing: true,
+      mediaTypes: ExpoImagePicker.MediaTypeOptions.Images,
+      aspect: [1, 1],
+      quality: 0.5
+    }).then(image => {
+      const name = 'team_avatar_' + _.random(10000, 9999999)
+      this.setState({
+        files: this.state.files.concat([{
+          url: image.uri,
+          id: name
+        }])
+      })
+      this.props.postUpload({ name, image })
     })
   }
 
@@ -181,6 +195,7 @@ class AccountTeamsCreate extends Component {
             files={files}
             onChange={this.onImagePickerChange}
             selectable={files.length < 1}
+            onAddImageClick={this.onAddImageClick}
           />
         </List>
         <List renderHeader={() => '基本信息'}>
