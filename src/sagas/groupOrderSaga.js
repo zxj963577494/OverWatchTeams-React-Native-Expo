@@ -56,6 +56,7 @@ function* putGroupOrderWorker(payload) {
     const response = yield call(
       groupOrderService.updateGroupOrder,
       payload,
+      userinfo,
       currentUser
     )
     yield put(action.fetchSuccess())

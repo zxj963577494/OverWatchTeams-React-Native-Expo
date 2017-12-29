@@ -12,7 +12,7 @@ export function cerateResumeOrder(payload, userinfo, currentUser) {
   resumeOrders.set('user', currentUser)
   resumeOrders.set('stick', 0)
   resumeOrders.set('show', 1)
-  
+
   var acl = new AV.ACL()
   acl.setPublicReadAccess(true)
   acl.setWriteAccess(currentUser, true)
@@ -24,7 +24,7 @@ export function cerateResumeOrder(payload, userinfo, currentUser) {
   })
 }
 
-export function updateResumeOrder(payload, currentUser) {
+export function updateResumeOrder(payload, userinfo, currentUser) {
   const recruitOrders = AV.Object.createWithoutData(
     'ResumeOrders',
     payload.objectId
@@ -38,7 +38,8 @@ export function updateResumeOrder(payload, currentUser) {
 
   return recruitOrders.save().then(function(result) {
     return {
-      ...result.toJSON()
+      ...result.toJSON(),
+      user: { userinfo }
     }
   })
 }

@@ -52,9 +52,11 @@ function* putResumeOrderWorker(payload) {
   try {
     yield put(action.fetchRequest({ text: '提交中' }))
     const currentUser = yield call(userService.getCurrentUserAsync)
+    const userinfo = yield call(userService.getUserInfoToJson, currentUser)
     const response = yield call(
       resumeOrderService.updateResumeOrder,
       payload,
+      userinfo,
       currentUser
     )
     yield put(action.putResumeOrderSuccess(response))

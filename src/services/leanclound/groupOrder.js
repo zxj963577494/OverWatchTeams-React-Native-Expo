@@ -13,7 +13,7 @@ export function cerateGroupOrder(payload, userinfo, currentUser) {
   groupOrders.set('user', currentUser)
   groupOrders.set('stick', 0)
   groupOrders.set('show', 1)
-  
+
   var acl = new AV.ACL()
   acl.setPublicReadAccess(true)
   acl.setWriteAccess(currentUser, true)
@@ -24,7 +24,7 @@ export function cerateGroupOrder(payload, userinfo, currentUser) {
   })
 }
 
-export function updateGroupOrder(payload, currentUser) {
+export function updateGroupOrder(payload, userinfo, currentUser) {
   const recruitOrders = AV.Object.createWithoutData(
     'GroupOrders',
     payload.objectId
@@ -38,7 +38,8 @@ export function updateGroupOrder(payload, currentUser) {
 
   return recruitOrders.save().then(function(result) {
     return {
-      ...result.toJSON()
+      ...result.toJSON(),
+      user: { userinfo }
     }
   })
 }
