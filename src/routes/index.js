@@ -1,5 +1,12 @@
 import React from 'react'
-import { StatusBar, StyleSheet, Text, Image, Platform, TouchableWithoutFeedback } from 'react-native'
+import {
+  StatusBar,
+  StyleSheet,
+  Text,
+  Image,
+  Platform,
+  TouchableWithoutFeedback
+} from 'react-native'
 import {
   TabNavigator,
   StackNavigator,
@@ -63,6 +70,7 @@ const HomeStack = StackNavigator({
       headerTitle: '组队上分',
       headerTintColor: 'white',
       headerStyle: {
+        paddingTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
         backgroundColor: '#2196F3'
       },
@@ -70,9 +78,8 @@ const HomeStack = StackNavigator({
         color: 'white'
       },
       headerTitleStyle: {
-        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         color: 'white'
-      },
+      }
       // headerLeft: (
       //   <TouchableWithoutFeedback onPress={() => NavigationActions.back()}>
       //     <Image
@@ -89,6 +96,7 @@ const HomeStack = StackNavigator({
       headerTitle: '战队招募',
       headerTintColor: 'white',
       headerStyle: {
+        paddingTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
         backgroundColor: '#2196F3'
       },
@@ -96,7 +104,6 @@ const HomeStack = StackNavigator({
         color: 'white'
       },
       headerTitleStyle: {
-        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         color: 'white'
       }
     }
@@ -107,6 +114,7 @@ const HomeStack = StackNavigator({
       headerTitle: '寻找战队',
       headerTintColor: 'white',
       headerStyle: {
+        paddingTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
         backgroundColor: '#2196F3'
       },
@@ -114,7 +122,6 @@ const HomeStack = StackNavigator({
         color: 'white'
       },
       headerTitleStyle: {
-        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         color: 'white'
       }
     }
@@ -125,6 +132,7 @@ const HomeStack = StackNavigator({
       headerTitle: '比赛约战',
       headerTintColor: 'white',
       headerStyle: {
+        paddingTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
         backgroundColor: '#2196F3'
       },
@@ -132,7 +140,6 @@ const HomeStack = StackNavigator({
         color: 'white'
       },
       headerTitleStyle: {
-        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         color: 'white'
       }
     }
@@ -143,6 +150,7 @@ const HomeStack = StackNavigator({
       headerTitle: '战队列表',
       headerTintColor: 'white',
       headerStyle: {
+        paddingTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
         backgroundColor: '#2196F3'
       },
@@ -150,7 +158,6 @@ const HomeStack = StackNavigator({
         color: 'white'
       },
       headerTitleStyle: {
-        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         color: 'white'
       }
     }
@@ -161,6 +168,7 @@ const HomeStack = StackNavigator({
       headerTitle: '个人列表',
       headerTintColor: 'white',
       headerStyle: {
+        paddingTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
         backgroundColor: '#2196F3'
       },
@@ -168,7 +176,6 @@ const HomeStack = StackNavigator({
         color: 'white'
       },
       headerTitleStyle: {
-        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         color: 'white'
       }
     }
@@ -179,6 +186,7 @@ const HomeStack = StackNavigator({
       headerTitle: '战队详情',
       headerTintColor: 'white',
       headerStyle: {
+        paddingTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
         backgroundColor: '#2196F3'
       },
@@ -186,7 +194,6 @@ const HomeStack = StackNavigator({
         color: 'white'
       },
       headerTitleStyle: {
-        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         color: 'white'
       }
     }
@@ -197,6 +204,7 @@ const HomeStack = StackNavigator({
       headerTitle: '个人详情',
       headerTintColor: 'white',
       headerStyle: {
+        paddingTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
         backgroundColor: '#2196F3'
       },
@@ -204,7 +212,6 @@ const HomeStack = StackNavigator({
         color: 'white'
       },
       headerTitleStyle: {
-        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         color: 'white'
       }
     }
@@ -231,7 +238,6 @@ const AccountStack = StackNavigator({
         color: 'white'
       },
       headerTitleStyle: {
-        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         color: 'white'
       }
     }
@@ -242,6 +248,7 @@ const AccountStack = StackNavigator({
       headerTitle: '基本信息',
       headerTintColor: 'white',
       headerStyle: {
+        paddingTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
         backgroundColor: '#2196F3'
       },
@@ -249,7 +256,6 @@ const AccountStack = StackNavigator({
         color: 'white'
       },
       headerTitleStyle: {
-        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         color: 'white'
       }
     }
@@ -260,6 +266,7 @@ const AccountStack = StackNavigator({
       headerTitle: '邮箱验证',
       headerTintColor: 'white',
       headerStyle: {
+        paddingTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
         backgroundColor: '#2196F3'
       },
@@ -267,7 +274,6 @@ const AccountStack = StackNavigator({
         color: 'white'
       },
       headerTitleStyle: {
-        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         color: 'white'
       }
     }
@@ -278,6 +284,7 @@ const AccountStack = StackNavigator({
       headerTitle: '组队上分',
       headerTintColor: 'white',
       headerStyle: {
+        paddingTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
         backgroundColor: '#2196F3'
       },
@@ -285,7 +292,6 @@ const AccountStack = StackNavigator({
         color: 'white'
       },
       headerTitleStyle: {
-        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         color: 'white'
       }
     }
@@ -296,6 +302,7 @@ const AccountStack = StackNavigator({
       headerTitle: '编辑组队帖',
       headerTintColor: 'white',
       headerStyle: {
+        paddingTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
         backgroundColor: '#2196F3'
       },
@@ -303,7 +310,6 @@ const AccountStack = StackNavigator({
         color: 'white'
       },
       headerTitleStyle: {
-        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         color: 'white'
       }
     }
@@ -314,6 +320,7 @@ const AccountStack = StackNavigator({
       headerTitle: '新建组队帖',
       headerTintColor: 'white',
       headerStyle: {
+        paddingTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
         backgroundColor: '#2196F3'
       },
@@ -350,6 +357,7 @@ const AccountStack = StackNavigator({
     navigationOptions: {
       headerTitle: '编辑招募令',
       headerStyle: {
+        paddingTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
         backgroundColor: '#2196F3'
       },
@@ -357,7 +365,6 @@ const AccountStack = StackNavigator({
         color: 'white'
       },
       headerTitleStyle: {
-        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         color: 'white'
       }
     }
@@ -368,6 +375,7 @@ const AccountStack = StackNavigator({
       headerTitle: '新建招募令',
       headerTintColor: 'white',
       headerStyle: {
+        paddingTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
         backgroundColor: '#2196F3'
       },
@@ -375,7 +383,6 @@ const AccountStack = StackNavigator({
         color: 'white'
       },
       headerTitleStyle: {
-        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         color: 'white'
       }
     }
@@ -386,6 +393,7 @@ const AccountStack = StackNavigator({
       headerTitle: '寻找战队',
       headerTintColor: 'white',
       headerStyle: {
+        paddingTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
         backgroundColor: '#2196F3'
       },
@@ -393,7 +401,6 @@ const AccountStack = StackNavigator({
         color: 'white'
       },
       headerTitleStyle: {
-        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         color: 'white'
       }
     }
@@ -404,6 +411,7 @@ const AccountStack = StackNavigator({
       headerTitle: '编辑自荐贴',
       headerTintColor: 'white',
       headerStyle: {
+        paddingTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
         backgroundColor: '#2196F3'
       },
@@ -411,7 +419,6 @@ const AccountStack = StackNavigator({
         color: 'white'
       },
       headerTitleStyle: {
-        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         color: 'white'
       }
     }
@@ -422,6 +429,7 @@ const AccountStack = StackNavigator({
       headerTitle: '创建自荐贴',
       headerTintColor: 'white',
       headerStyle: {
+        paddingTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
         backgroundColor: '#2196F3'
       },
@@ -429,7 +437,6 @@ const AccountStack = StackNavigator({
         color: 'white'
       },
       headerTitleStyle: {
-        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         color: 'white'
       }
     }
@@ -440,6 +447,7 @@ const AccountStack = StackNavigator({
       headerTitle: '比赛约战',
       headerTintColor: 'white',
       headerStyle: {
+        paddingTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
         backgroundColor: '#2196F3'
       },
@@ -447,7 +455,6 @@ const AccountStack = StackNavigator({
         color: 'white'
       },
       headerTitleStyle: {
-        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         color: 'white'
       }
     }
@@ -458,6 +465,7 @@ const AccountStack = StackNavigator({
       headerTitle: '创建约战贴',
       headerTintColor: 'white',
       headerStyle: {
+        paddingTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
         backgroundColor: '#2196F3'
       },
@@ -465,7 +473,6 @@ const AccountStack = StackNavigator({
         color: 'white'
       },
       headerTitleStyle: {
-        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         color: 'white'
       }
     }
@@ -476,6 +483,7 @@ const AccountStack = StackNavigator({
       headerTitle: '编辑约战贴',
       headerTintColor: 'white',
       headerStyle: {
+        paddingTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
         backgroundColor: '#2196F3'
       },
@@ -483,7 +491,6 @@ const AccountStack = StackNavigator({
         color: 'white'
       },
       headerTitleStyle: {
-        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         color: 'white'
       }
     }
@@ -494,6 +501,7 @@ const AccountStack = StackNavigator({
       headerTitle: '战队列表',
       headerTintColor: 'white',
       headerStyle: {
+        paddingTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
         backgroundColor: '#2196F3'
       },
@@ -501,7 +509,6 @@ const AccountStack = StackNavigator({
         color: 'white'
       },
       headerTitleStyle: {
-        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         color: 'white'
       }
     }
@@ -512,6 +519,7 @@ const AccountStack = StackNavigator({
       headerTitle: '战队编辑',
       headerTintColor: 'white',
       headerStyle: {
+        paddingTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
         backgroundColor: '#2196F3'
       },
@@ -519,7 +527,6 @@ const AccountStack = StackNavigator({
         color: 'white'
       },
       headerTitleStyle: {
-        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         color: 'white'
       }
     }
@@ -530,6 +537,7 @@ const AccountStack = StackNavigator({
       headerTitle: '创建战队',
       headerTintColor: 'white',
       headerStyle: {
+        paddingTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
         backgroundColor: '#2196F3'
       },
@@ -537,7 +545,6 @@ const AccountStack = StackNavigator({
         color: 'white'
       },
       headerTitleStyle: {
-        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         color: 'white'
       }
     }
@@ -548,6 +555,7 @@ const AccountStack = StackNavigator({
       headerTitle: '登录',
       headerTintColor: 'white',
       headerStyle: {
+        paddingTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
         backgroundColor: '#2196F3'
       },
@@ -555,7 +563,6 @@ const AccountStack = StackNavigator({
         color: 'white'
       },
       headerTitleStyle: {
-        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         color: 'white'
       }
     }
@@ -566,6 +573,7 @@ const AccountStack = StackNavigator({
       headerTitle: '注册',
       headerTintColor: 'white',
       headerStyle: {
+        paddingTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
         backgroundColor: '#2196F3'
       },
@@ -573,7 +581,6 @@ const AccountStack = StackNavigator({
         color: 'white'
       },
       headerTitleStyle: {
-        marginTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         color: 'white'
       }
     }
