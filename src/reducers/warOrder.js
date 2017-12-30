@@ -103,7 +103,9 @@ function warOrderReducer(state = initialWarOrderState, action) {
             list: action.payload.isRefreshing
               ? []
               : state.account.warOrder.list,
-            page: action.payload.isRefreshing ? 1 : action.payload.page ? action.payload.page : 1
+            page: action.payload.isRefreshing
+              ? 1
+              : action.payload.page ? action.payload.page : 1
           }
         }
       }
@@ -199,14 +201,6 @@ function warOrderReducer(state = initialWarOrderState, action) {
           ...state.account,
           warOrder: {
             ...state.account.warOrder,
-            list: data,
-            pending: false
-          }
-        },
-        home: {
-          ...state.home,
-          warOrder: {
-            ...state.home.warOrder,
             list: data,
             pending: false
           }

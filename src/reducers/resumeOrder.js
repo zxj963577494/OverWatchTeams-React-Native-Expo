@@ -105,7 +105,9 @@ function resumeOrderReducer(state = initialResumeOrderState, action) {
             list: action.payload.isRefreshing
               ? []
               : state.account.resumeOrder.list,
-            page: action.payload.isRefreshing ? 1 : action.payload.page ? action.payload.page : 1
+            page: action.payload.isRefreshing
+              ? 1
+              : action.payload.page ? action.payload.page : 1
           }
         }
       }
@@ -201,14 +203,6 @@ function resumeOrderReducer(state = initialResumeOrderState, action) {
           ...state.account,
           resumeOrder: {
             ...state.account.resumeOrder,
-            list: data,
-            pending: false
-          }
-        },
-        home: {
-          ...state.account,
-          home: {
-            ...state.home.resumeOrder,
             list: data,
             pending: false
           }

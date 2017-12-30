@@ -103,7 +103,9 @@ function groupOrderReducer(state = initialGroupOrderState, action) {
             list: action.payload.isRefreshing
               ? []
               : state.account.groupOrder.list,
-            page: action.payload.isRefreshing ? 1 : action.payload.page ? action.payload.page : 1
+            page: action.payload.isRefreshing
+              ? 1
+              : action.payload.page ? action.payload.page : 1
           }
         }
       }
@@ -199,14 +201,6 @@ function groupOrderReducer(state = initialGroupOrderState, action) {
           ...state.account,
           groupOrder: {
             ...state.account.groupOrder,
-            list: data,
-            pending: false
-          }
-        },
-        home: {
-          ...state.home,
-          groupOrder: {
-            ...state.home.groupOrder,
             list: data,
             pending: false
           }

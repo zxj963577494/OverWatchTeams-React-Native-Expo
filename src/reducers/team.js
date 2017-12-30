@@ -105,10 +105,7 @@ function teamReducer(state = initialTeamState, action) {
     case PUT_TEAMS_SUCCESS:
       const data = state.account.team.myTeams.map(item => {
         if (item.objectId === action.payload.objectId) {
-          return {
-            ...item,
-            ...action.payload
-          }
+          return Object.assign(item, action.payload)
         } else {
           return item
         }
