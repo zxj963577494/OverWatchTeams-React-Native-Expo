@@ -12,13 +12,13 @@
 
 ## 项目地址
 
-### Andorid版
+### Andorid 版
 
 ![android.png](https://i.loli.net/2017/12/30/5a47184bb539c.png)
 
 [Android](https://fir.im/yg3w)
 
-### Expo版(需 Expo 移动端)
+### Expo 版(需 Expo 移动端)
 
 ![expo.png](https://i.loli.net/2017/12/30/5a47184bb1438.png)
 
@@ -64,7 +64,7 @@ Expo 是一个围绕 React Native 构建的免费开源工具链，可帮助您�
 
 4. [参考资料](https://docs.expo.io/versions/latest/introduction/xde-tour.html)
 
-## 发布项目
+## 项目生成
 
 1. yarn global add exp
 
@@ -74,11 +74,17 @@ Expo 是一个围绕 React Native 构建的免费开源工具链，可帮助您�
 
 4. [参考资料](https://docs.expo.io/versions/latest/guides/exp-cli.html)
 
+## 项目发布
+
+1. yarn global add exp
+
+2. exp public
+
 ## 一些说明
 
-使用 Expo，`build:ios/build:android`命令生成的是 JS Bundle 文件，Expo 会将该文件上传到 Expo 云端，由 Expo 构建 APP，使用`build:status`可以得到 APP 在云端构建的进度，构建完成后，会返回 APP 地址
+`exp build:ios/build:android`生成的是 JS Bundle 文件，Expo 会将该文件上传到 Expo 云端，由 Expo 构建 APP，使用`exp build:status`可以得到 APP 在云端构建的进度，构建完成后，会返回 APP 地址
 
-使用 build:ios 时必须有$99 的开发者账户(我没有，所以没构建 iOS 版本)，如果 apple id 开启了两步验证，需要加`--local-auth`
+使用 ```exp build:ios``` 时必须有$99 的开发者账户(我没有，所以没构建 iOS 版本)，如果 apple id 开启了两步验证，需要加```--local-auth```
 
 Expo 无法像原生 React Native 一样，可以对本地模块进行操作，当然`react-native link` 命令也是无法使用的，但你可以使用 Expo 开放的操作本地功能的 API，[SDK API 参考](https://docs.expo.io/versions/latest/sdk/index.html)
 
