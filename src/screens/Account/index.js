@@ -21,6 +21,7 @@ import {
   Modal
 } from 'antd-mobile'
 import _ from 'lodash'
+import { Constants } from 'expo'
 import {
   getCurrentUserRequest,
   postLogoutRequest,
@@ -262,6 +263,9 @@ class Account extends Component {
           </TouchableWithoutFeedback>
         </List>
         <List renderHeader={() => '关于'}>
+          <List.Item extra={Constants.manifest.version}>
+            <Text>版本号</Text>
+          </List.Item>
           <TouchableWithoutFeedback
             onPress={() => {
               Linking.openURL(
@@ -284,7 +288,7 @@ class Account extends Component {
               <Text>作者主页</Text>
             </List.Item>
           </TouchableWithoutFeedback>
-          <List.Item arrow="horizontal" extra="963577494@qq.com">
+          <List.Item extra="963577494@qq.com">
             <Text>联系作者</Text>
           </List.Item>
         </List>
