@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, StyleSheet } from 'react-native'
+import { Text, StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { createForm } from 'rc-form'
@@ -16,6 +16,7 @@ import {
   DatePicker,
   Radio,
 } from 'antd-mobile'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { putRecruitOrderRequest, getMyTeamsRequest } from '../../../../actions'
 
 let date = new Date()
@@ -99,7 +100,7 @@ class AccountRecruitOrdersEdit extends Component {
     const contactErrors = getFieldError('contact')
     const endDateErrors = getFieldError('endDate')
     return (
-      <ScrollView>
+      <KeyboardAwareScrollView>
         <List renderHeader={() => '招募令标题'}>
           <InputItem
             {...getFieldProps('title', {
@@ -233,7 +234,7 @@ class AccountRecruitOrdersEdit extends Component {
           </Button>
         </WingBlank>
         <WhiteSpace size="lg" />
-      </ScrollView>
+      </KeyboardAwareScrollView>
     )
   }
 }

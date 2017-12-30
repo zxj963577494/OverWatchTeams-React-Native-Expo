@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, StyleSheet } from 'react-native'
+import { Text, StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { createForm } from 'rc-form'
@@ -19,6 +19,7 @@ import {
 import _ from 'lodash'
 import { NavigationActions } from 'react-navigation'
 import { ImagePicker as ExpoImagePicker } from 'expo'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { RANKS } from '../../../../constants'
 import { putTeamsRequest, postUploadRequest } from '../../../../actions'
 import { ImagePickerStyle } from '../../../../components/CustomStyles'
@@ -194,7 +195,7 @@ class AccountTeamsEdit extends Component {
     const honorErrors = getFieldError('honor')
     const matchErrors = getFieldError('match')
     return (
-      <ScrollView>
+      <KeyboardAwareScrollView>
         <List renderHeader={() => '上传Logo'}>
           <ImagePicker
             styles={ImagePickerStyle}
@@ -486,7 +487,7 @@ class AccountTeamsEdit extends Component {
           </Button>
         </WingBlank>
         <WhiteSpace size="lg" />
-      </ScrollView>
+      </KeyboardAwareScrollView>
     )
   }
 }

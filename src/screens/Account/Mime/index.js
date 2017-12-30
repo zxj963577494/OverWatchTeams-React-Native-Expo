@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
-import { ScrollView, View, Text, StyleSheet } from 'react-native'
+import {
+  View,
+  Text,
+  StyleSheet
+} from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { createForm } from 'rc-form'
@@ -19,6 +23,7 @@ import {
 } from 'antd-mobile'
 import { ImagePicker as ExpoImagePicker } from 'expo'
 import _ from 'lodash'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { postUploadRequest, putUserInfoRequest } from '../../../actions'
 import { TEAMPOSITIONS, RANKS, HEROS } from '../../../constants'
 import { ImagePickerStyle } from '../../../components/CustomStyles'
@@ -155,10 +160,12 @@ class AccountMime extends Component {
     }).then(image => {
       const name = 'avatar_' + _.random(10000, 9999999)
       this.setState({
-        files: this.state.files.concat([{
-          url: image.uri,
-          id: name
-        }])
+        files: this.state.files.concat([
+          {
+            url: image.uri,
+            id: name
+          }
+        ])
       })
       this.props.postUpload({ name, image })
     })
@@ -207,7 +214,7 @@ class AccountMime extends Component {
     const keyboardErrors = getFieldError('keyboard')
     const headphonesErrors = getFieldError('headphones')
     return (
-      <ScrollView>
+      <KeyboardAwareScrollView>
         <List renderHeader={() => '上传头像'}>
           <ImagePicker
             styles={ImagePickerStyle}
@@ -484,7 +491,7 @@ class AccountMime extends Component {
           </Button>
         </WingBlank>
         <WhiteSpace size="lg" />
-      </ScrollView>
+      </KeyboardAwareScrollView>
     )
   }
 }
