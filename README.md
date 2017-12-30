@@ -12,9 +12,17 @@
 
 ## 项目地址
 
-[Android]('')/iOS
+### Andorid版
 
-[Expo](https://exp.host/@linq/OverWatchTeams)(可以使用 Expo 移动端扫描页面二维码体验)
+![android.png](https://i.loli.net/2017/12/30/5a47184bb539c.png)
+
+[Android](https://fir.im/yg3w)
+
+### Expo版(需 Expo 移动端)
+
+![expo.png](https://i.loli.net/2017/12/30/5a47184bb1438.png)
+
+[Expo](https://exp.host/@linq/OverWatchTeams)
 
 ## 简介
 
@@ -38,7 +46,11 @@ Expo 是一个围绕 React Native 构建的免费开源工具链，可帮助您�
 
 * [Android](https://play.google.com/store/apps/details?id=host.exp.exponent)
 
+![google.png](https://i.loli.net/2017/12/30/5a47184bb7ee3.png)
+
 * [iOS](https://itunes.com/apps/exponent)
+
+![appstore.png](https://i.loli.net/2017/12/30/5a47184bb675c.png)
 
 3. [参考资料](https://docs.expo.io/versions/latest/introduction/installation.html)
 
