@@ -88,7 +88,7 @@ Expo 是一个围绕 React Native 构建的免费开源工具链，可帮助您�
 
 1. yarn global add exp
 
-2. exp public
+2. exp publish
 
 ## 一些说明
 
@@ -96,7 +96,7 @@ Expo 是一个围绕 React Native 构建的免费开源工具链，可帮助您�
 
 使用 `exp build:ios` 时必须有$99 的开发者账户(我没有，所以没构建 iOS 版本)，如果 apple id 开启了两步验证，需要加`--local-auth`
 
-`exp public`用于发布 JS Bundle 文件，更改 app.json 文件的版本号，icon 之类，用户下载的 App 会自动同步发布时版本所改动的内容，类似于 CodePush 热更新。[参考资料 1](https://docs.expo.io/versions/latest/guides/publishing.html) [参考资料 2](https://docs.expo.io/versions/latest/guides/offline-support.html)
+`exp publish`用于发布 JS Bundle 文件，更改 app.json 文件的版本号，icon 之类，用户下载的 App 会自动同步发布时版本所改动的内容，类似于 CodePush 热更新。[参考资料 1](https://docs.expo.io/versions/latest/guides/publishing.html) [参考资料 2](https://docs.expo.io/versions/latest/guides/offline-support.html)
 
 Expo 无法像原生 React Native 一样，可以对本地模块进行操作，当然`react-native link` 命令也是无法使用的，但你可以使用 Expo 开放的操作本地功能的 API，[SDK API 参考](https://docs.expo.io/versions/latest/sdk/index.html)
 
