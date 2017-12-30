@@ -346,9 +346,9 @@ const AccountStack = StackNavigator({
   },
   AccountRecruitOrdersEdit: {
     screen: AccountRecruitOrdersEdit,
-    headerTintColor: 'white',
     navigationOptions: {
       headerTitle: '编辑招募令',
+      headerTintColor: 'white',
       headerStyle: {
         paddingTop: Platform.OS === 'android' ? STATUS_BAR_HEIGHT : 0,
         height: Platform.OS === 'android' ? 54 + STATUS_BAR_HEIGHT : 54,
@@ -612,7 +612,6 @@ const Tab = TabNavigator(
   {
     initialRouteName: 'Home',
     animationEnabled: true,
-    swipeEnabled: true,
     tabBarPosition: 'bottom'
   }
 )
