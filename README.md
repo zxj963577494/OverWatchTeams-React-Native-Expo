@@ -1,5 +1,9 @@
 # OverWatchTeams-React-Native-Expo
 
+## iOS演示
+
+![ezgif-2-466979bde1.gif](https://i.loli.net/2017/12/30/5a473217396e1.gif)
+
 ## 开源地址
 
 [GitHub](https://github.com/zxj963577494/OverWatchTeams-React-Native-Expo)
