@@ -1,14 +1,10 @@
 # OverWatchTeams-React-Native-Expo
 
-## 技术栈
+## 开源地址
 
-* Expo
-* React-Native
-* React-Navigation
-* Redux
-* Redux-Saga
-* LeanCloud
-* Antd-Mobile
+[GitHub](https://github.com/zxj963577494/OverWatchTeams-React-Native-Expo)
+
+[Gitee](https://gitee.com/zhengxujiang/OverWatchTeams-React-Redux-Native)
 
 ## 项目地址
 
@@ -18,7 +14,7 @@
 
 [Android](https://fir.im/yg3w)
 
-### Expo 版(需 Expo 移动端)
+### Expo 版(需 Expo 移动端([Android](https://play.google.com/store/apps/details?id=host.exp.exponent)/[iOS](https://itunes.com/apps/exponent)))
 
 ![expo.png](https://i.loli.net/2017/12/30/5a47184bb1438.png)
 
@@ -31,6 +27,20 @@
 Expo 是一个围绕 React Native 构建的免费开源工具链，可帮助您使用 JavaScript 和 React 构建本地 iOS 和 Android 项目
 
 [Expo 文档](https://docs.expo.io/versions/latest/index.html)
+
+## 技术栈
+
+* Expo
+* React-Native
+* React-Navigation
+* Redux
+* Redux-Saga
+* LeanCloud
+* Antd-Mobile
+
+## 项目结构
+
+![screenshot_22.png](https://i.loli.net/2017/12/30/5a471b6bc4ea1.png)
 
 ## 准备工具
 
