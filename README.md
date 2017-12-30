@@ -107,3 +107,11 @@ Expo 无法像原生 React Native 一样，可以对本地模块进行操作，�
 ## 开源协议
 
 [GPL-2.0](./LICENSE)
+
+## 免责声明
+
+网站数据均为测试数据，不作为商业用途使用
+
+## Web版
+
+[https://github.com/zxj963577494/OverWatchTeams](https://github.com/zxj963577494/OverWatchTeams)
