@@ -12,7 +12,7 @@
 
 ## 项目地址
 
-### Andorid 版
+### Android 版
 
 ![android.png](https://i.loli.net/2017/12/30/5a47184bb539c.png)
 
