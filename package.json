@@ -2,7 +2,7 @@
   "main": "node_modules/expo/AppEntry.js",
   "private": true,
   "dependencies": {
-    "antd-mobile": "^2.1.2",
+    "antd-mobile": "^2.1.3",
     "expo": "^24.0.0",
     "leancloud-storage": "^3.4.2",
     "moment": "^2.20.1",

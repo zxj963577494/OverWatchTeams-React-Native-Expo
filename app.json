@@ -6,7 +6,7 @@
     "privacy": "public",
     "sdkVersion": "24.0.0",
     "platforms": ["ios", "android"],
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "githubUrl": "https://github.com/zxj963577494/OverWatchTeams-React-Native",
@@ -21,11 +21,11 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.zhengxujiang.overwatchteams",
-      "buildNumber": "1.0.1"
+      "buildNumber": "1.0.2"
     },
     "android": {
       "package": "com.zhengxujiang.overwatchteams",
-      "versionCode": 2,
+      "versionCode": 3,
       "permissions": []
     }
   }

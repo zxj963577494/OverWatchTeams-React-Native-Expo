@@ -1,9 +1,5 @@
 import React, { Component } from 'react'
-import {
-  View,
-  Text,
-  StyleSheet
-} from 'react-native'
+import { View, Text, StyleSheet, Image } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { createForm } from 'rc-form'
@@ -380,15 +376,30 @@ class AccountMime extends Component {
           ))}
         </List>
         <List renderHeader={() => '擅长英雄'}>
-          {heros.map(i => (
-            <Checkbox.CheckboxItem
-              key={i.value}
-              onChange={() => this.onHeroChange(i.value)}
-              checked={i.checked}
-            >
-              {i.label}
-            </Checkbox.CheckboxItem>
-          ))}
+          <View
+            style={{
+              flex: 1,
+              flexDirection: 'row',
+              justifyContent: 'space-around',
+              flexWrap: 'wrap'
+            }}
+          >
+            {heros.map(i => (
+              <Checkbox.CheckboxItem
+                key={i.value}
+                onChange={() => this.onHeroChange(i.value)}
+                checked={i.checked}
+                style={{ width: 90, height: 60, margin: 5 }}
+              >
+                <Image
+                  style={{ width: 60, height: 60, borderRadius: 10 }}
+                  source={{
+                    uri: i.image
+                  }}
+                />
+              </Checkbox.CheckboxItem>
+            ))}
+          </View>
         </List>
         <List renderHeader={() => '其它'}>
           <InputItem
