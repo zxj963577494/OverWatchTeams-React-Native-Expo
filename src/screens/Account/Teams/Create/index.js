@@ -452,10 +452,7 @@ class AccountTeamsCreate extends Component {
           <List.Item
             extra={
               <Switch
-                {...getFieldProps('isRecruit', {
-                  initialValue: isRecruit,
-                  valuePropName: 'checked'
-                })}
+                checked={isRecruit}
                 onChange={checked => {
                   this.onRecruitChange(checked)
                 }}

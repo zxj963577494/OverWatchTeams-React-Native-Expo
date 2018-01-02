@@ -482,10 +482,7 @@ class AccountMime extends Component {
           <List.Item
             extra={
               <Switch
-                {...getFieldProps('isPublic', {
-                  initialValue: isPublic,
-                  valuePropName: 'checked'
-                })}
+                checked={isPublic}
                 onChange={checked => {
                   this.onPublicChange(checked)
                 }}
