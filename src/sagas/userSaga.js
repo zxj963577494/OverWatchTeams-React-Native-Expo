@@ -65,6 +65,7 @@ function* postLogoutWorker() {
     yield call(userService.logOut)
     Toast.success('注销成功', 1)
     yield delay(1000)
+    yield put(action.postLogoutSuccess())
     yield put(
       NavigationActions.reset({
         index: 0,
@@ -73,6 +74,7 @@ function* postLogoutWorker() {
     )
   } catch (error) {
     Toast.success('注销失败', 1)
+    yield put(action.postLogoutFailed(error))
   }
 }
 
